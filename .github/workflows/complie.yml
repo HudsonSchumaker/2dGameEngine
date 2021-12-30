@@ -9,25 +9,23 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     steps:
     - uses: actions/checkout@v2
-    - name: get compiler
-      run:  sudo apt install build-essential
-    - name: SDL2 dev
-      run: sudo apt install libsdl2-dev
-    - name: SDL2 image dev
-      run: sudo apt install libsdl2-image-dev
-    - name: SDL2 ttf dev
-      run: sudo apt install libsdl2-ttf-dev
-    - name: SDL2 mixer dev
-      run: sudo apt install libsdl2-mixer-dev
-    - name: Lua dev
-      run: sudo apt install liblua5.3-dev
+    - name: brew update
+      run: brew update
+    - name: SDL2
+      run: brew install sdl2
+    - name: SDL2 image
+      run: brew install sdl2_image
+    - name: SDL2 ttf
+      run: brew install sdl2_ttf
+    - name: SDL2 mixer
+      run: brew install sdl2_mixer
+    - name: Lua 
+      run: brew install lua
     - name: make
       run: make
     - name: make check
       run: make check
-    - name: make distcheck
-      run: make distcheck
