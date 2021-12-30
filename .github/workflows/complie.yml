@@ -13,6 +13,18 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: get compiler
+      run:  sudo apt install build-essential
+    - name: SDL2 dev
+      run: sudo apt libsdl2-dev
+    - name: SDL2 dev
+      run: sudo apt libsdl2-image-dev
+    - name: SDL2 dev
+      run: sudo apt libsdl2-ttf-dev
+    - name: SDL2 dev
+      run: sudo apt libsdl2-mixer-dev
+    - name: Lua
+      run: sudo apt liblua5.3-dev
     - name: make
       run: make
     - name: make check
