@@ -9,7 +9,7 @@ Game::~Game() {
 }
 
 void Game::Initialize() {
-
+    
 }
 
 void Game::Run() {
