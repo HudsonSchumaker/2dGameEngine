@@ -42,7 +42,8 @@ void Game::Initialize() {
         std::cerr << "Error creating SDL2 renderer." << std::endl;
         return;
     }
-    //SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
+    SDL_SetWindowOpacity(window, 0.5f);
+   // SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
 
     isRunning = true;
 }
@@ -83,7 +84,7 @@ void Game::ProcessInput() {
 
 void Game::Update() {
     int timeToWait = 
-    MILLISECS_PER_FRAME - (SDL_GetTicks() - MILLISECS_PER_FRAME);
+    MILLISECS_PER_FRAME - (SDL_GetTicks() - previousFrame);
 
     if (timeToWait > 0 && timeToWait <= MILLISECS_PER_FRAME) {
         SDL_Delay(timeToWait);
@@ -107,11 +108,10 @@ void Game::Render() {
         32 
     };
 
-    //SDL_RendererFlip flip = SDL_FLIP_NONE;
-    //SDL_RenderCopyEx(renderer, tankSprite, NULL, &rect, 0.0, NULL, flip)
-    SDL_RenderCopy(renderer, tankSprite, NULL, &rect);
+    SDL_RendererFlip flip = SDL_FLIP_NONE;
+    SDL_RenderCopyEx(renderer, tankSprite, NULL, &rect, 0.0, NULL, flip);
+    //SDL_RenderCopy(renderer, tankSprite, NULL, &rect);
     
-   
     SDL_RenderPresent(renderer);
 }
 
