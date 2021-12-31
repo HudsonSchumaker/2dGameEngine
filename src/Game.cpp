@@ -1,6 +1,9 @@
 #include <iostream>
 #include "Game.hpp"
 
+SDL_Surface* tankSurface;
+SDL_Texture* tankSprite;
+
 Game::Game() {
     isRunning = false;
 }
@@ -26,7 +29,8 @@ void Game::Initialize() {
         SDL_WINDOWPOS_CENTERED, 
         width,
         height,
-        SDL_WINDOW_BORDERLESS | SDL_WINDOW_METAL
+        //SDL_WINDOW_BORDERLESS |
+        SDL_WINDOW_METAL
     );
     if (!window) {
         std::cerr << "Error creating SDL2 window." << std::endl;
@@ -38,13 +42,17 @@ void Game::Initialize() {
         std::cerr << "Error creating SDL2 renderer." << std::endl;
         return;
     }
-    SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
+    //SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
 
     isRunning = true;
 }
 
 void Game::Setup() {
+    pos = glm::vec2(10.0, 10.0);
+    vel = glm::vec2(10.0, 0.0);
 
+    tankSurface = IMG_Load("./assets/images/tank-tiger-right.png");
+    tankSprite = SDL_CreateTextureFromSurface(renderer, tankSurface);
 }
 
 void Game::Run() {
@@ -74,18 +82,36 @@ void Game::ProcessInput() {
 }
 
 void Game::Update() {
-    //TODO
+    int timeToWait = 
+    MILLISECS_PER_FRAME - (SDL_GetTicks() - MILLISECS_PER_FRAME);
+
+    if (timeToWait > 0 && timeToWait <= MILLISECS_PER_FRAME) {
+        SDL_Delay(timeToWait);
+    }
+
+    double deltaTime = (SDL_GetTicks() - previousFrame) / 1000.0;
+    previousFrame = SDL_GetTicks();
+   
+    pos.x += vel.x * deltaTime;
+    pos.y += vel.y * deltaTime;    
 }
 
 void Game::Render() {
-    SDL_SetRenderDrawColor(renderer, 21, 21, 21, 50);
+    SDL_SetRenderDrawColor(renderer, 0, 255, 155, 255);
     SDL_RenderClear(renderer);
-    
-    //TODO
-    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 50);
-    SDL_Rect player = {10, 10, 20, 20};
-    SDL_RenderFillRect(renderer, &player);
 
+    SDL_Rect rect = { 
+        static_cast<int>(pos.x), 
+        static_cast<int>(pos.y),
+        32,
+        32 
+    };
+
+    //SDL_RendererFlip flip = SDL_FLIP_NONE;
+    //SDL_RenderCopyEx(renderer, tankSprite, NULL, &rect, 0.0, NULL, flip)
+    SDL_RenderCopy(renderer, tankSprite, NULL, &rect);
+    
+   
     SDL_RenderPresent(renderer);
 }
 
