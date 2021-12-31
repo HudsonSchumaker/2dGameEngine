@@ -1,6 +1,6 @@
 #include <iostream>
 #include "Game.hpp"
-#include "Logger.hpp"
+#include "../Log/Logger.hpp"
 
 SDL_Surface* tankSurface;
 SDL_Texture* tankSprite;

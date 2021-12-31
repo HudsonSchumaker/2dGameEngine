@@ -6,7 +6,7 @@
 #include <glm/glm.hpp>
 #include <imgui/imgui.h>
 #include <sol/sol.hpp>
-#include "Game.hpp"
+#include "./Game/Game.hpp"
 
 int main(int argc, char* argv[]) {
     //SDL_Init(SDL_INIT_EVERYTHING);
