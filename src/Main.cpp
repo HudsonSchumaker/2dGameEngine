@@ -20,7 +20,6 @@ int main(int argc, char* argv[]) {
     game.Run();
     game.Destroy();
 
-
     return 0;
 }
 
