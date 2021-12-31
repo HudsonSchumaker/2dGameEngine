@@ -1,20 +1,23 @@
 #include <iostream>
 #include "Game.hpp"
+#include "Logger.hpp"
 
 SDL_Surface* tankSurface;
 SDL_Texture* tankSprite;
 
 Game::Game() {
+    Logger::Engine("Game started.");
     isRunning = false;
 }
 
 Game::~Game() {
-
+    Logger::Engine("Game ended.");
 }
 
 void Game::Initialize() {
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
-        std::cerr << "Error on initializing SDL2." << std::endl;
+        //std::cerr << "Error on initializing SDL2." << std::endl;
+        Logger::Error("Error on initializing SDL2.");
         return;
     }
 
@@ -33,13 +36,15 @@ void Game::Initialize() {
         SDL_WINDOW_METAL
     );
     if (!window) {
-        std::cerr << "Error creating SDL2 window." << std::endl;
+        //std::cerr << "Error creating SDL2 window." << std::endl;
+        Logger::Error("Error creating SDL2 window.");
         return;
     }
 
     renderer = SDL_CreateRenderer(window, -1, 0);
     if (!renderer) {
-        std::cerr << "Error creating SDL2 renderer." << std::endl;
+        //std::cerr << "Error creating SDL2 renderer." << std::endl;
+        Logger::Error("Error creating SDL2 renderer.");
         return;
     }
     SDL_SetWindowOpacity(window, 0.5f);
