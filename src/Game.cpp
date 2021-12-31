@@ -3,7 +3,6 @@
 
 Game::Game() {
     isRunning = false;
-
 }
 
 Game::~Game() {
@@ -15,14 +14,19 @@ void Game::Initialize() {
         std::cerr << "Error on initializing SDL2." << std::endl;
         return;
     }
-    
+
+    SDL_DisplayMode displayMode;
+    SDL_GetCurrentDisplayMode(0, &displayMode);
+    width = 640; //displayMode.w;
+    height = 480;//displayMode.h;
+
     window = SDL_CreateWindow(
         "Game", 
         SDL_WINDOWPOS_CENTERED, 
         SDL_WINDOWPOS_CENTERED, 
-        800,
-        600,
-        SDL_WINDOW_METAL
+        width,
+        height,
+        SDL_WINDOW_BORDERLESS | SDL_WINDOW_METAL
     );
     if (!window) {
         std::cerr << "Error creating SDL2 window." << std::endl;
@@ -34,10 +38,17 @@ void Game::Initialize() {
         std::cerr << "Error creating SDL2 renderer." << std::endl;
         return;
     }
+    SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
+
     isRunning = true;
 }
 
+void Game::Setup() {
+
+}
+
 void Game::Run() {
+    Setup();
     while(isRunning) {
         ProcessInput();
         Update();
@@ -67,10 +78,13 @@ void Game::Update() {
 }
 
 void Game::Render() {
-    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 50);
+    SDL_SetRenderDrawColor(renderer, 21, 21, 21, 50);
     SDL_RenderClear(renderer);
     
     //TODO
+    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 50);
+    SDL_Rect player = {10, 10, 20, 20};
+    SDL_RenderFillRect(renderer, &player);
 
     SDL_RenderPresent(renderer);
 }

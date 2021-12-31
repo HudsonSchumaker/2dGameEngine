@@ -11,9 +11,13 @@ class Game final {
         Game();
         ~Game();
         void Initialize();
+        void Setup();
         void Run();
         void ProcessInput();
         void Update();
         void Render();
         void Destroy();
+
+        int width;
+        int height;
 };
