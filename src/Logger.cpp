@@ -10,6 +10,7 @@ void Logger::Info(const std::string& message) {
     LogEntry logEntry;
     logEntry.type = LOG_INFO;
     logEntry.message = "LOG: [" + CurrentDateTimeToString() + "]: " + message;
+    
     std::cout << "\x1B[32m" << logEntry.message << "\033[0m" << std::endl;
     messages.push_back(logEntry);
 }
@@ -18,6 +19,7 @@ void Logger::Warning(const std::string& message) {
     LogEntry logEntry;
     logEntry.type = LOG_WARNING;
     logEntry.message = "LOG: [" + CurrentDateTimeToString() + "]: " + message;
+    
     std::cout << "\x1B[33m" << logEntry.message << "\033[0m" << std::endl;
     messages.push_back(logEntry);
 }
@@ -26,6 +28,7 @@ void Logger::Error(const std::string& message) {
     LogEntry logEntry;
     logEntry.type = LOG_ERROR;
     logEntry.message = "LOG: [" + CurrentDateTimeToString() + "]: " + message;
+    
     std::cout << "\x1B[31m" << logEntry.message << "\033[0m" << std::endl;
     messages.push_back(logEntry);
 }
@@ -34,6 +37,7 @@ void Logger::Engine(const std::string& message) {
     LogEntry logEntry;
     logEntry.type = LOG_ENGINE;
     logEntry.message = "LOG: [" + CurrentDateTimeToString() + "]: " + message;
+    
     std::cout << "\x1B[34m" << logEntry.message << "\033[0m" << std::endl;
     messages.push_back(logEntry);
 }
