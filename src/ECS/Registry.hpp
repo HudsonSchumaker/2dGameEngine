@@ -5,7 +5,7 @@
 class Registry final {
     private:
         int numEntities = 0;
-        std::vector<IPool*> data;
+        std::vector<IPool*> componentPools;
 
     public:
         Registry() = default;
