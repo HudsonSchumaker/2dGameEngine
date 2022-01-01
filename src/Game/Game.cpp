@@ -36,19 +36,17 @@ void Game::Initialize() {
         SDL_WINDOW_METAL
     );
     if (!window) {
-        //std::cerr << "Error creating SDL2 window." << std::endl;
         Logger::Error("Error creating SDL2 window.");
         return;
     }
 
     renderer = SDL_CreateRenderer(window, -1, 0);
     if (!renderer) {
-        //std::cerr << "Error creating SDL2 renderer." << std::endl;
         Logger::Error("Error creating SDL2 renderer.");
         return;
     }
-    SDL_SetWindowOpacity(window, 0.5f);
-   // SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
+    // SDL_SetWindowOpacity(window, 0.5f);
+    // SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
 
     isRunning = true;
 }
