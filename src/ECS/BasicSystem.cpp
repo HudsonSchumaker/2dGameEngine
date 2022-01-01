@@ -8,7 +8,7 @@ void BasicSystem::AddEntityToSystem(Entity entity) {
 void BasicSystem::RemoveEntityFromSystem(Entity entity) {
     // This is ridiculous
     entities.erase(std::remove_if(entities.begin(), entities.end(), [&entity](Entity other) {
-        return entity.GetId() == other.GetId();   
+        return entity == other;
     }), entities.end());
 }
 

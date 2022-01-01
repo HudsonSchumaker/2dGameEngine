@@ -24,3 +24,8 @@ run:
 
 clean:
 	rm $(OBJ_NAME)
+
+all:
+	rm $(OBJ_NAME)
+	$(CC) $(C_FLAGS) $(LANG_STD) $(INCLUDE_PATH) $(SRC_FILES) $(LINKER_FLAGS) -o $(OBJ_NAME)
+	./$(OBJ_NAME)
