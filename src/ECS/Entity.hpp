@@ -6,6 +6,6 @@ class Entity {
 
     public:
         Entity(int id) : id(id) {};
-        ~Entity();
+        ~Entity() = default;
         int GetId() const;
 };

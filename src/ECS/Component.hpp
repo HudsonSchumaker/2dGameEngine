@@ -1,9 +1,17 @@
 #pragma once
+#include <bitset>
 
-class Component {
-    private:
+const unsigned int MAX_COMPONENTS = 16;
+typedef std::bitset<MAX_COMPONENTS> Signature;
 
-    public:
-        Component();
-        ~Component();
+struct IComponent {
+    protected:
+        static int nextId;
+};
+
+template <typename T> class Component: public IComponent {
+    static int GetId() {
+        static auto id = nextId++;
+        return id;
+    } 
 };
