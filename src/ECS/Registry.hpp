@@ -23,10 +23,11 @@ class Registry {
         void Update();
         Entity CreateEntity();
         template <typename T, typename ...TArgs> void AddComponent(Entity e, TArgs&& ...args);
-
+        template <typename T> void RemoveComponent(Entity e);
+        template <typename T> bool HasComponent(Entity e);
 };
 
-template <typename T, typename ...TArgs> void AddComponent(Entity e, TArgs&& ...args) {
+template <typename T, typename ...TArgs> void Registry::AddComponent(Entity e, TArgs&& ...args) {
     const auto componentId = Component<T>::GetId();
     const auto entityId = e.GetId();
 
@@ -47,4 +48,15 @@ template <typename T, typename ...TArgs> void AddComponent(Entity e, TArgs&& ...
     T newComponent(std::forward<TArgs>(args)...);
     componentPool->Set(entityId, newComponent);
     entityComponentSignatures[entityId].set(componentId);
+}
+
+template <typename T> void Registry::RemoveComponent(Entity e) {
+    const auto componentId = Component<T>::GetId();
+    const auto entityId = e.GetId();
+
+    entityComponentSignatures[entityId].set(componentId, false);
+}
+
+template <typename T> bool Registry::HasComponent(Entity e) {
+
 }
