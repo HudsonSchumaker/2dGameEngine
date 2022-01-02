@@ -5,6 +5,8 @@
 Game::Game() {
     Logger::Engine("Game started.");
     isRunning = false;
+    registry = new Registry();
+
 }
 
 Game::~Game() {
@@ -48,11 +50,8 @@ void Game::Initialize() {
 }
 
 void Game::Setup() {
-    //pos = glm::vec2(10.0, 10.0);
-    //vel = glm::vec2(10.0, 0.0);
-
-    //tankSurface = IMG_Load("./assets/images/tank-tiger-right.png");
-    //tankSprite = SDL_CreateTextureFromSurface(renderer, tankSurface);
+    Entity tank = registry->CreateEntity();
+    Entity truck = registry->CreateEntity();
 }
 
 void Game::Run() {
@@ -90,7 +89,6 @@ void Game::Update() {
 
     double deltaTime = (SDL_GetTicks() - previousFrame) / 1000.0;
     previousFrame = SDL_GetTicks();
-
 }
 
 void Game::Render() {
@@ -115,4 +113,5 @@ void Game::Destroy() {
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     SDL_Quit();
+    delete registry;
 }

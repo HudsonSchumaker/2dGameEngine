@@ -1,4 +1,12 @@
 #include "Registry.hpp"
+#include "../Log/Logger.hpp"
+
+void Registry::Update() {
+    for(auto entity : entitiesToBeAdded) {
+        AddEntityToSystems(entity);
+    }
+    entitiesToBeAdded.clear();
+}
 
 Entity Registry::CreateEntity() {
     int entityId = numEntities++;
@@ -8,6 +16,7 @@ Entity Registry::CreateEntity() {
 
     Entity e(entityId);
     entitiesToBeAdded.insert(e);
+    Logger::Engine("Entity created with id = " + std::to_string(entityId));
     return e;
 }
 
