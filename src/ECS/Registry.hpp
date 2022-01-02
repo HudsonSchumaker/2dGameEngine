@@ -18,10 +18,33 @@ class Registry final {
 
     public:
         Registry() = default;
-        ~Registry();
+        ~Registry() = default;
 
         void Update();
         Entity CreateEntity();
-        void AddEntityToSystem(Entity e);
+        template <typename T, typename ...TArgs> void AddComponent(Entity e, TArgs&& ...args);
 
 };
+
+template <typename T, typename ...TArgs> void AddComponent(Entity e, TArgs&& ...args) {
+    const auto componentId = Component<T>::GetId();
+    const auto entityId = e.GetId();
+
+    if (componentId >= componentPools.size()) {
+        componentPools.resize(componentId + 1, nullptr);
+    }
+
+    if (!componentPools[componentId]) {
+        Pool<T>* newComponentPool = new Pool<T>();
+        componentPools[componentId] = newComponentPool;
+    }
+
+    Pool<T>* componentPool = componentPools[componentId];
+    if (entityId >= componentPool->GetSize()) {
+        componentPool->Resize(numEntities);
+    }
+
+    T newComponent(std::forward<TArgs>(args)...);
+    componentPool->Set(entityId, newComponent);
+    entityComponentSignatures[entityId].set(componentId);
+}
