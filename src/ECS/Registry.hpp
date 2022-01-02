@@ -4,7 +4,6 @@
 #include <typeindex>
 #include <unordered_map>
 #include "BasicSystem.hpp"
-#include "Component.hpp"
 #include "Pool.hpp"
 #include "../Log/Logger.hpp"
 
@@ -31,6 +30,7 @@ class Registry {
         template <typename C, typename ...CArgs> void AddComponent(Entity e, CArgs&& ...args);
         template <typename C> void RemoveComponent(Entity e);
         template <typename C> bool HasComponent(Entity e) const;
+        template <typename C> C& GetComponent(Entity e) const;
 
         // Systems
         template <typename S, typename ...SArgs> void AddSystem(BasicSystem s, SArgs&& ...args);
@@ -70,6 +70,7 @@ template <typename C> void Registry::RemoveComponent(Entity e) {
     const auto entityId = e.GetId();
 
     entityComponentSignatures[entityId].set(componentId, false);
+    Logger::Engine("Component id = " + std::to_string(componentId) + " was removed to entity id = " + std::to_string(entityId));
 }
 
 template <typename C> bool Registry::HasComponent(Entity e) const {
@@ -77,6 +78,14 @@ template <typename C> bool Registry::HasComponent(Entity e) const {
     const auto entityId = e.GetId();
 
     return entityComponentSignatures[entityId].test(componentId);
+}
+
+template <typename C> C& Registry::GetComponent(Entity e) const {
+    const auto componentId = Component<C>::GetId();
+    const auto entityId = e.GetId();
+    auto componentList = std::static_pointer_cast<Pool<C>>(componentPools[componentId]);
+
+    return componentList->Get(entityId);
 }
 
 template <typename S, typename ...SArgs> void Registry::AddSystem(BasicSystem s, SArgs &&...args) {
