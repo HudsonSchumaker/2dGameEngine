@@ -1,5 +1,4 @@
 #include "Registry.hpp"
-#include "../Log/Logger.hpp"
 
 Registry::Registry() {
     Logger::Engine("Registry created.");

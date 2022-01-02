@@ -6,6 +6,7 @@
 #include "BasicSystem.hpp"
 #include "Component.hpp"
 #include "Pool.hpp"
+#include "../Log/Logger.hpp"
 
 class Registry {
     private:
@@ -61,6 +62,7 @@ template <typename C, typename ...CArgs> void Registry::AddComponent(Entity e, C
     C newComponent(std::forward<CArgs>(args)...);
     componentPool->Set(entityId, newComponent);
     entityComponentSignatures[entityId].set(componentId);
+    Logger::Engine("Component id = " + std::to_string(componentId) + " was added to entity id = " + std::to_string(entityId));
 }
 
 template <typename C> void Registry::RemoveComponent(Entity e) {

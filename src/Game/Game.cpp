@@ -1,5 +1,7 @@
 #include <iostream>
 #include "Game.hpp"
+#include "../Components/TransformComponent.hpp"
+#include "../Components/RigidBodyComponent.hpp"
 #include "../Log/Logger.hpp"
 
 Game::Game() {
@@ -50,7 +52,9 @@ void Game::Initialize() {
 
 void Game::Setup() {
     Entity tank = registry->CreateEntity();
-    Entity truck = registry->CreateEntity();
+    registry->AddComponent<TransformComponent>(tank, glm::vec2(10.0, 10.0), glm::vec2(1.0, 1.0), 0.0);
+    registry->AddComponent<RigidBodyComponent>(tank, glm::vec2(5.0, 0.0));
+
 }
 
 void Game::Run() {

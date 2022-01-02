@@ -13,9 +13,8 @@ class Game final {
     private:
         bool isRunning;
         int previousFrame = 0;
-        SDL_Window* window;
-        SDL_Renderer* renderer;
-
+        SDL_Window* window;     // C lib
+        SDL_Renderer* renderer; // C lib
         std::unique_ptr<Registry> registry;
 
     public:
