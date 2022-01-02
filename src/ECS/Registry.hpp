@@ -24,19 +24,19 @@ class Registry {
         Entity CreateEntity();
 
         // Components
-        template <typename T, typename ...TArgs> void AddComponent(Entity e, TArgs&& ...args);
-        template <typename T> void RemoveComponent(Entity e);
-        template <typename T> bool HasComponent(Entity e) const;
+        template <typename C, typename ...CArgs> void AddComponent(Entity e, CArgs&& ...args);
+        template <typename C> void RemoveComponent(Entity e);
+        template <typename C> bool HasComponent(Entity e) const;
 
         // Systems
-        template <typename T, typename ...TArgs> void AddSystem(BasicSystem s, TArgs&& ...args);
-        template <typename T> void RemoveSystem();
-        template <typename T> bool HasSystem() const;
-        template <typename T> T& GetSystem() const;
+        template <typename S, typename ...SArgs> void AddSystem(BasicSystem s, SArgs&& ...args);
+        template <typename S> void RemoveSystem();
+        template <typename S> bool HasSystem() const;
+        template <typename S> S& GetSystem() const;
 };
 
-template <typename T, typename ...TArgs> void Registry::AddComponent(Entity e, TArgs&& ...args) {
-    const auto componentId = Component<T>::GetId();
+template <typename C, typename ...CArgs> void Registry::AddComponent(Entity e, CArgs&& ...args) {
+    const auto componentId = Component<C>::GetId();
     const auto entityId = e.GetId();
 
     if (componentId >= componentPools.size()) {
@@ -44,49 +44,49 @@ template <typename T, typename ...TArgs> void Registry::AddComponent(Entity e, T
     }
 
     if (!componentPools[componentId]) {
-        Pool<T>* newComponentPool = new Pool<T>();
+        Pool<C>* newComponentPool = new Pool<C>();
         componentPools[componentId] = newComponentPool;
     }
 
-    Pool<T>* componentPool = componentPools[componentId];
+    Pool<C>* componentPool = componentPools[componentId];
     if (entityId >= componentPool->GetSize()) {
         componentPool->Resize(numEntities);
     }
 
-    T newComponent(std::forward<TArgs>(args)...);
+    C newComponent(std::forward<CArgs>(args)...);
     componentPool->Set(entityId, newComponent);
     entityComponentSignatures[entityId].set(componentId);
 }
 
-template <typename T> void Registry::RemoveComponent(Entity e) {
-    const auto componentId = Component<T>::GetId();
+template <typename C> void Registry::RemoveComponent(Entity e) {
+    const auto componentId = Component<C>::GetId();
     const auto entityId = e.GetId();
 
     entityComponentSignatures[entityId].set(componentId, false);
 }
 
-template <typename T> bool Registry::HasComponent(Entity e) const {
-    const auto componentId = Component<T>::GetId();
+template <typename C> bool Registry::HasComponent(Entity e) const {
+    const auto componentId = Component<C>::GetId();
     const auto entityId = e.GetId();
 
     return entityComponentSignatures[entityId].test(componentId);
 }
 
-template <typename T, typename ...TArgs> void Registry::AddSystem(BasicSystem s, TArgs &&...args) {
-    T* newSystem(new T(std::forward<TArgs>(args)...));
-    systems.insert(std::make_pair(std::type_index(typeid(T)), newSystem));
+template <typename S, typename ...SArgs> void Registry::AddSystem(BasicSystem s, SArgs &&...args) {
+    S* newSystem(new S(std::forward<SArgs>(args)...));
+    systems.insert(std::make_pair(std::type_index(typeid(S)), newSystem));
 }
 
-template <typename T> void Registry::RemoveSystem() {
-    auto system = systems.find(std::type_index(typeid(T)));
+template <typename S> void Registry::RemoveSystem() {
+    auto system = systems.find(std::type_index(typeid(S)));
     systems.erase(system);
 }
 
-template <typename T> bool Registry::HasSystem() const {
-    return systems.find(std::type_index(typeid(T))) != systems.end();
+template <typename S> bool Registry::HasSystem() const {
+    return systems.find(std::type_index(typeid(S))) != systems.end();
 }
 
-template <typename T> T& Registry::GetSystem() const {
-    auto system = systems.find(std::type_index(typeid(T)));
-    return *(std::static_pointer_cast<T>()(system->second));
+template <typename S> S& Registry::GetSystem() const {
+    auto system = systems.find(std::type_index(typeid(S)));
+    return *(std::static_pointer_cast<S>()(system->second));
 }

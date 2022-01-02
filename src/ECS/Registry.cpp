@@ -3,7 +3,7 @@
 Entity Registry::CreateEntity() {
     int entityId = numEntities++;
     if (entityId >= entityComponentSignatures.size()) {
-        entityComponentSignatures.resize(entityId +1);
+        entityComponentSignatures.resize(entityId + 1);
     }
 
     Entity e(entityId);
