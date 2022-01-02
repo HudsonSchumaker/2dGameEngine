@@ -58,5 +58,8 @@ template <typename T> void Registry::RemoveComponent(Entity e) {
 }
 
 template <typename T> bool Registry::HasComponent(Entity e) {
+    const auto componentId = Component<T>::GetId();
+    const auto entityId = e.GetId();
 
+    return entityComponentSignatures[entityId].test(componentId);
 }
