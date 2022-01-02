@@ -6,7 +6,6 @@ Game::Game() {
     Logger::Engine("Game started.");
     isRunning = false;
     registry = new Registry();
-
 }
 
 Game::~Game() {
@@ -113,5 +112,5 @@ void Game::Destroy() {
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     SDL_Quit();
-    delete registry;
+    delete registry; // ?
 }

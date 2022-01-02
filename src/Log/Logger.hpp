@@ -24,5 +24,4 @@ class Logger final {
         static void Warning(const std::string& message);
         static void Error(const std::string& message);
         static void Engine(const std::string& message);
-
 };
