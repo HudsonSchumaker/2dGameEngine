@@ -22,6 +22,7 @@ class Registry {
 
         void Update();
         Entity CreateEntity();
+        void AddEntityToSystems(Entity e);
 
         // Components
         template <typename C, typename ...CArgs> void AddComponent(Entity e, CArgs&& ...args);
