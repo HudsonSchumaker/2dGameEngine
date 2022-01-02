@@ -10,15 +10,17 @@
 class Registry {
     private:
         int numEntities = 0;
-        std::vector<IPool*> componentPools;
+        // std::vector<IPool*> componentPools;
+        std::vector<std::shared_ptr<IPool>> componentPools;
         std::vector<Signature> entityComponentSignatures;
-        std::unordered_map<std::type_index, BasicSystem*> systems;
+        // std::unordered_map<std::type_index, BasicSystem*> systems;
+        std::unordered_map<std::type_index, std::shared_ptr<BasicSystem>> systems;
         std::set<Entity> entitiesToBeAdded;
         std::set<Entity> entitiesToBeDestroyed;
 
     public:
-        Registry() = default;
-        ~Registry() = default;
+        Registry();
+        ~Registry();
 
         void Update();
         Entity CreateEntity();
@@ -45,11 +47,13 @@ template <typename C, typename ...CArgs> void Registry::AddComponent(Entity e, C
     }
 
     if (!componentPools[componentId]) {
-        Pool<C>* newComponentPool = new Pool<C>();
+        // Pool<C>* newComponentPool = new Pool<C>();
+        std::shared_ptr<Pool<C>> newComponentPool = std::make_shared<Pool<C>>();
         componentPools[componentId] = newComponentPool;
     }
 
-    Pool<C>* componentPool = componentPools[componentId];
+    // Pool<C>* componentPool = componentPools[componentId];
+    std::shared_ptr<Pool<C>> componentPool = std::static_pointer_cast<Pool<C>>(componentPools[componentId]);
     if (entityId >= componentPool->GetSize()) {
         componentPool->Resize(numEntities);
     }
@@ -74,7 +78,7 @@ template <typename C> bool Registry::HasComponent(Entity e) const {
 }
 
 template <typename S, typename ...SArgs> void Registry::AddSystem(BasicSystem s, SArgs &&...args) {
-    S* newSystem(new S(std::forward<SArgs>(args)...));
+    std::shared_ptr<S> newSystem = std::make_shared<S>(std::forward<SArgs>(args)...);
     systems.insert(std::make_pair(std::type_index(typeid(S)), newSystem));
 }
 

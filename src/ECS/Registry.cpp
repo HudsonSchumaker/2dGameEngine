@@ -1,6 +1,14 @@
 #include "Registry.hpp"
 #include "../Log/Logger.hpp"
 
+Registry::Registry() {
+    Logger::Engine("Registry created.");
+}
+
+Registry::~Registry() {
+    Logger::Engine("Registry destroyed.");
+}
+
 void Registry::Update() {
     for(auto entity : entitiesToBeAdded) {
         AddEntityToSystems(entity);

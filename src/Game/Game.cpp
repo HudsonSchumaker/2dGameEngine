@@ -5,7 +5,7 @@
 Game::Game() {
     Logger::Engine("Game started.");
     isRunning = false;
-    registry = new Registry();
+    registry = std::make_unique<Registry>();
 }
 
 Game::~Game() {
@@ -112,5 +112,4 @@ void Game::Destroy() {
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     SDL_Quit();
-    delete registry; // ?
 }
