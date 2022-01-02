@@ -7,7 +7,7 @@
 #include "Component.hpp"
 #include "Pool.hpp"
 
-class Registry final {
+class Registry {
     private:
         int numEntities = 0;
         std::vector<IPool*> componentPools;

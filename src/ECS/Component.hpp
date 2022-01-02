@@ -10,8 +10,9 @@ struct IComponent {
 };
 
 template <typename T> class Component: public IComponent {
-    static int GetId() {
-        static auto id = nextId++;
-        return id;
-    } 
+    public:
+        static int GetId() {
+            static auto id = nextId++;
+            return id;
+        }
 };
