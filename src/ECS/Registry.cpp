@@ -7,6 +7,6 @@ Entity Registry::CreateEntity() {
     }
 
     Entity e(entityId);
-    //entitiesToBeAdded.insert(e);
+    entitiesToBeAdded.insert(e);
     return e;
 }
