@@ -21,14 +21,7 @@ class Registry final {
         ~Registry();
 
         void Update();
-
         Entity CreateEntity();
         void AddEntityToSystem(Entity e);
-
-        void AddComponent();
-
-
-        void AddSystem();
-
 
 };

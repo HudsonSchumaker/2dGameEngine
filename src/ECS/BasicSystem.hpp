@@ -20,8 +20,7 @@ class BasicSystem {
         template <typename T> void RequireComponent();
 };
 
-template <typename T>
-void BasicSystem::RequireComponent() {
+template <typename T> void BasicSystem::RequireComponent() {
     const auto componentId = Component<T>::GetId();
     componentSignature.set(componentId);
 }
