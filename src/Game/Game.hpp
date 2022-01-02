@@ -4,18 +4,19 @@
 #include <SDL2/SDL_mixer.h>
 #include <SDL2/SDL_ttf.h>
 #include <glm/glm.hpp>
+#include "../ECS/Registry.hpp"
 
 const int FPS = 144;
-const int MILLISECS_PER_FRAME = 1000 / FPS;
+const int MILLI_SECS_PER_FRAME = 1000 / FPS;
 
 class Game final {
     private:
-        int previousFrame = 0;
         bool isRunning;
+        int previousFrame = 0;
         SDL_Window* window;
         SDL_Renderer* renderer;
-        glm::vec2 pos;
-        glm::vec2 vel;
+
+        Registry* registry;
 
     public:
         Game();

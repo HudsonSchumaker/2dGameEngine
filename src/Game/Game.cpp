@@ -2,9 +2,6 @@
 #include "Game.hpp"
 #include "../Log/Logger.hpp"
 
-SDL_Surface* tankSurface;
-SDL_Texture* tankSprite;
-
 Game::Game() {
     Logger::Engine("Game started.");
     isRunning = false;
@@ -16,15 +13,14 @@ Game::~Game() {
 
 void Game::Initialize() {
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
-        //std::cerr << "Error on initializing SDL2." << std::endl;
         Logger::Error("Error on initializing SDL2.");
         return;
     }
 
     SDL_DisplayMode displayMode;
     SDL_GetCurrentDisplayMode(0, &displayMode);
-    width = 640; //displayMode.w;
-    height = 480;//displayMode.h;
+    width = 640;  //displayMode.w;
+    height = 480; //displayMode.h;
 
     window = SDL_CreateWindow(
         "Game", 
@@ -52,11 +48,11 @@ void Game::Initialize() {
 }
 
 void Game::Setup() {
-    pos = glm::vec2(10.0, 10.0);
-    vel = glm::vec2(10.0, 0.0);
+    //pos = glm::vec2(10.0, 10.0);
+    //vel = glm::vec2(10.0, 0.0);
 
-    tankSurface = IMG_Load("./assets/images/tank-tiger-right.png");
-    tankSprite = SDL_CreateTextureFromSurface(renderer, tankSurface);
+    //tankSurface = IMG_Load("./assets/images/tank-tiger-right.png");
+    //tankSprite = SDL_CreateTextureFromSurface(renderer, tankSurface);
 }
 
 void Game::Run() {
@@ -86,34 +82,31 @@ void Game::ProcessInput() {
 }
 
 void Game::Update() {
-    int timeToWait = 
-    MILLISECS_PER_FRAME - (SDL_GetTicks() - previousFrame);
+    int timeToWait = MILLI_SECS_PER_FRAME - (SDL_GetTicks() - previousFrame);
 
-    if (timeToWait > 0 && timeToWait <= MILLISECS_PER_FRAME) {
+    if (timeToWait > 0 && timeToWait <= MILLI_SECS_PER_FRAME) {
         SDL_Delay(timeToWait);
     }
 
     double deltaTime = (SDL_GetTicks() - previousFrame) / 1000.0;
     previousFrame = SDL_GetTicks();
-   
-    pos.x += vel.x * deltaTime;
-    pos.y += vel.y * deltaTime;    
+
 }
 
 void Game::Render() {
     SDL_SetRenderDrawColor(renderer, 0, 255, 155, 255);
     SDL_RenderClear(renderer);
 
-    SDL_Rect rect = { 
-        static_cast<int>(pos.x), 
-        static_cast<int>(pos.y),
-        32,
-        32 
-    };
+    //SDL_Rect rect = {
+      //  static_cast<int>(pos.x),
+      //  static_cast<int>(pos.y),
+      //  32,
+      //  32
+    //};
 
     SDL_RendererFlip flip = SDL_FLIP_NONE;
-    SDL_RenderCopyEx(renderer, tankSprite, NULL, &rect, 0.0, NULL, flip);
-    //SDL_RenderCopy(renderer, tankSprite, NULL, &rect);
+    // SDL_RenderCopyEx(renderer, tankSprite, NULL, &rect, 0.0, NULL, flip);
+    // SDL_RenderCopy(renderer, tankSprite, NULL, &rect);
     
     SDL_RenderPresent(renderer);
 }
