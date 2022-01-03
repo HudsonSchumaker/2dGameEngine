@@ -1,4 +1,6 @@
-#pragma once 
+#ifndef TransformComponent_hpp
+#define TransformComponent_hpp
+
 #include <glm/glm.hpp>
 
 struct TransformComponent {
@@ -12,3 +14,5 @@ struct TransformComponent {
         this->rotation = rotation;
     }
 };
+
+#endif /* TransformComponent_hpp */

@@ -1,4 +1,6 @@
-#pragma once
+#ifndef BasicSystem_hpp
+#define BasicSystem_hpp
+
 #include <vector>
 #include "Component.hpp"
 #include "Entity.hpp"
@@ -24,3 +26,5 @@ template <typename T> void BasicSystem::RequireComponent() {
     const auto componentId = Component<T>::GetId();
     componentSignature.set(componentId);
 }
+
+#endif /* BasicSystem_hpp */
