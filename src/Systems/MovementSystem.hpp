@@ -1,4 +1,6 @@
-#pragma once
+#ifndef MovementSystem_hpp
+#define MovementSystem_hpp
+
 #include "../ECS/BasicSystem.hpp"
 
 class MovementSystem final : public BasicSystem {
@@ -10,3 +12,5 @@ class MovementSystem final : public BasicSystem {
         ~MovementSystem();
         void Update();
 };
+
+#endif /* MovementSystem_hpp */

@@ -1,4 +1,6 @@
-#pragma once
+#ifndef Logger_hpp
+#define Logger_hpp
+
 #include <string>
 #include <vector>
 
@@ -25,3 +27,5 @@ class Logger final {
         static void Error(const std::string& message);
         static void Engine(const std::string& message);
 };
+
+#endif /* Logger_hpp */
