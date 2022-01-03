@@ -1,4 +1,6 @@
-#pragma once
+#ifndef Registry_hpp
+#define Registry_hpp
+
 #include <set>
 #include <vector>
 #include <typeindex>
@@ -106,3 +108,5 @@ template <typename S> S& Registry::GetSystem() const {
     auto system = systems.find(std::type_index(typeid(S)));
     return *(std::static_pointer_cast<S>()(system->second));
 }
+
+#endif /* Registry_hpp */

@@ -1,4 +1,6 @@
-#pragma once
+#ifndef Pool_hpp
+#define Pool_hpp
+
 #include <vector>
 
 class IPool {
@@ -22,3 +24,5 @@ template <typename T> class Pool: public IPool {
         void Clear() {data.clear(); }
         T& operator [](unsigned int index ) { return data[index]; }
 };
+
+#endif /* Pool_hpp */

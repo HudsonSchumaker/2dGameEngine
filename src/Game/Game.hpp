@@ -1,4 +1,6 @@
-#pragma once
+#ifndef Game_hpp
+#define Game_hpp
+
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_mixer.h>
@@ -31,3 +33,5 @@ class Game final {
         int width;
         int height;
 };
+
+#endif /* Game_hpp */

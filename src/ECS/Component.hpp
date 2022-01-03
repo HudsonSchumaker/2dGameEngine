@@ -1,4 +1,6 @@
-#pragma once
+#ifndef Component_hpp
+#define Component_hpp
+
 #include <bitset>
 
 const unsigned int MAX_COMPONENTS = 16;
@@ -16,3 +18,5 @@ template <typename T> class Component: public IComponent {
             return id;
         }
 };
+
+#endif /* Component_hpp */

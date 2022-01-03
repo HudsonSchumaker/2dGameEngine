@@ -1,4 +1,6 @@
-#pragma once
+#ifndef Entity_hpp
+#define Entity_hpp
+
 //#include "Registry.hpp"
 
 class Entity {
@@ -40,3 +42,5 @@ template <typename C> bool Entity::HasComponent() const {
 template <typename C> C& Entity::GetComponent() const {
     return registry->GetComponent<C>(*this);
 }
+
+#endif /* Entity_hpp */
