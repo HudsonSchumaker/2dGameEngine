@@ -24,23 +24,23 @@ class Entity {
         template <typename C> bool HasComponent() const;
         template <typename C> C& GetComponent() const;
 
-        class Registry* registry; // do better
+       // class Registry* registry; // do better
 };
 
 template <typename C, typename ...CArgs> void Entity::AddComponent(CArgs&& ...args) {
-    registry->AddComponent<C>(*this, std::forward<CArgs>(args)...);
+    //Registry::getInstance()::AddComponent<C>(*this, std::forward<CArgs>(args)...);
 }
 
 template <typename C> void Entity::RemoveComponent() {
-    registry->RemoveComponent<C>(*this);
+    //Registry::getInstance()::RemoveComponent<C>(*this);
 }
 
 template <typename C> bool Entity::HasComponent() const {
-    return registry->HasComponent<C>(*this);
+    return false; //Registry::getInstance()::HasComponent<C>(*this);
 }
 
 template <typename C> C& Entity::GetComponent() const {
-    return registry->GetComponent<C>(*this);
+    return nullptr;// Registry::getInstance()::GetComponent<C>(*this);
 }
 
 #endif /* Entity_hpp */

@@ -1,13 +1,5 @@
 #include "Registry.hpp"
 
-Registry::Registry() {
-    Logger::Engine("Registry created.");
-}
-
-Registry::~Registry() {
-    Logger::Engine("Registry destroyed.");
-}
-
 void Registry::Update() {
     for(auto entity : entitiesToBeAdded) {
         AddEntityToSystems(entity);
@@ -23,7 +15,7 @@ Entity Registry::CreateEntity() {
 
     Entity e(entityId);
     // make thi shit a singleton
-    e.registryPtr = *this; // do better
+    //e.registryPtr = *this; // do better
     entitiesToBeAdded.insert(e);
     Logger::Engine("Entity created with id = " + std::to_string(entityId));
     return e;

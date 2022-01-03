@@ -6,11 +6,15 @@
 #include <typeindex>
 #include <unordered_map>
 #include "BasicSystem.hpp"
-#include "Pool.hpp"
 #include "../Log/Logger.hpp"
+#include "Pool.hpp"
 
 class Registry {
     private:
+        Registry()  {
+            Logger::Engine("Registry created.");
+        }
+
         int numEntities = 0;
         // std::vector<IPool*> componentPools;
         std::vector<std::shared_ptr<IPool>> componentPools;
@@ -21,8 +25,13 @@ class Registry {
         std::set<Entity> entitiesToBeDestroyed;
 
     public:
-        Registry();
-        ~Registry();
+        static Registry& getInstance() {
+            static Registry instance;
+            return instance;
+        }
+
+        Registry(Registry const&) = delete;
+        void operator =(Registry const&) = delete;
 
         void Update();
         Entity CreateEntity();
