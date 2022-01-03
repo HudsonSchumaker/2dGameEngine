@@ -31,7 +31,7 @@ class Registry {
         }
 
         Registry(Registry const&) = delete;
-        void operator =(Registry const&) = delete;
+        //void operator =(Registry const&) = delete;
 
         void Update();
         Entity CreateEntity();
