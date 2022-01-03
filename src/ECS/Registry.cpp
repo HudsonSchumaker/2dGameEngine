@@ -14,7 +14,7 @@ Entity Registry::CreateEntity() {
     }
 
     Entity e(entityId);
-    // make thi shit a singleton
+    // make this shit a singleton
     //e.registryPtr = *this; // do better
     entitiesToBeAdded.insert(e);
     Logger::Engine("Entity created with id = " + std::to_string(entityId));
