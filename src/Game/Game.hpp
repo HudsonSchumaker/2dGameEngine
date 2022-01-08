@@ -6,7 +6,7 @@
 #include <SDL2/SDL_mixer.h>
 #include <SDL2/SDL_ttf.h>
 #include <glm/glm.hpp>
-#include "../ECS/Registry.hpp"
+#include "../ECS/RegistryEntity.hpp"
 
 const int FPS = 144;
 const int MILLI_SECS_PER_FRAME = 1000 / FPS;
