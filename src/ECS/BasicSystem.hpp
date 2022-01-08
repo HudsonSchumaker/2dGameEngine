@@ -3,7 +3,7 @@
 
 #include <vector>
 #include "Component.hpp"
-#include "Entity.hpp"
+#include "RegistryEntity.hpp"
 
 class BasicSystem {
     private:
