@@ -3,6 +3,7 @@
 #include "../Components/TransformComponent.hpp"
 #include "../Components/RigidBodyComponent.hpp"
 #include "../Log/Logger.hpp"
+#include "../ECS/RegistryEntity.hpp"
 
 Game::Game() {
     Logger::Engine("Game started.");
