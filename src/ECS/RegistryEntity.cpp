@@ -1,4 +1,4 @@
-#include "Registry.hpp"
+#include "RegistryEntity.hpp"
 
 void Registry::Update() {
     for(auto entity : entitiesToBeAdded) {
@@ -35,4 +35,8 @@ void Registry::AddEntityToSystems(Entity e) {
             system.second->AddEntityToSystem(e);
         }
     }
+}
+
+int Entity::GetId() const {
+    return id;
 }
