@@ -36,7 +36,7 @@ float Vec2::magnitudeSquared() const {
 
 Vec2& Vec2::normalize() {
 	float length = magnitude();
-	if (length != 0.0) {
+	if (length != 0.0f) {
 		x /= length;
 		y /= length;
 	}
@@ -44,9 +44,9 @@ Vec2& Vec2::normalize() {
 }
 
 Vec2 Vec2::unitVector() const {
-	Vec2 result = Vec2(0, 0);
+	Vec2 result = Vec2(0.0f, 0.0f);
 	float length = magnitude();
-	if (length != 0.0) {
+	if (length != 0.0f) {
 		result.x = x / length;
 		result.y = y / length;
 	}
@@ -63,4 +63,73 @@ float Vec2::dot(const Vec2& v) const {
 
 float Vec2::cross(const Vec2& v) const {
 	return (x * v.y) - (y * v.x);
+}
+
+Vec2& Vec2::operator = (const Vec2& v) {
+    x = v.x;
+    y = v.y;
+    return *this;
+}
+
+bool Vec2::operator == (const Vec2& v) const {
+    return x == v.x && y == v.y;
+}
+
+Vec2 Vec2::operator + (const Vec2&v) const {
+    Vec2 result;
+    result.x = x + v.x;
+    result.y = y + v.y;
+    return result;
+}
+
+Vec2 Vec2::operator - (const Vec2&v) const {
+    Vec2 result;
+    result.x = x - v.x;
+    result.y = y - v.y;
+    return result;
+}
+
+Vec2 Vec2::operator * (const float n) const {
+    Vec2 result;
+    result.x = x * n;
+    result.y = y * n;
+    return result;
+}
+
+Vec2 Vec2::operator / (const float n) const {
+    Vec2 result;
+    result.x = x / n;
+    result.y = y / n;
+    return result;
+}
+
+Vec2& Vec2::operator += (const Vec2& v) {
+    x += v.x;
+    y += v.y;
+    return *this;
+}
+
+Vec2& Vec2::operator -= (const Vec2& v) {
+    x -= v.x;
+    y -= v.y;
+    return *this;
+}
+
+Vec2& Vec2::operator *= (const float n) {
+    x *= n;
+    y *= n;
+    return *this;
+}
+
+Vec2& Vec2::operator /= (const float n) {
+    x /= n;
+    y /= n;
+    return *this;
+}
+
+Vec2 Vec2::operator - () {
+    Vec2 result;
+    result.x = x * -1;
+    result.y = y * -1;
+    return result;
 }
