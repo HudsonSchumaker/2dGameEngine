@@ -58,7 +58,7 @@ Vec2 Vec2::normal() const {
 }
 
 float Vec2::dot(const Vec2& v) const {
-    return (x * v.x) + (y * v.y);
+	return (x * v.x) + (y * v.y);
 }
 
 float Vec2::cross(const Vec2& v) const {
@@ -66,27 +66,27 @@ float Vec2::cross(const Vec2& v) const {
 }
 
 Vec2& Vec2::operator = (const Vec2& v) {
-    x = v.x;
-    y = v.y;
-    return *this;
+	x = v.x;
+    	y = v.y;
+    	return *this;
 }
 
 bool Vec2::operator == (const Vec2& v) const {
-    return x == v.x && y == v.y;
+	return x == v.x && y == v.y;
 }
 
 Vec2 Vec2::operator + (const Vec2&v) const {
-    Vec2 result;
-    result.x = x + v.x;
-    result.y = y + v.y;
-    return result;
+	Vec2 result;
+    	result.x = x + v.x;
+	result.y = y + v.y;
+    	return result;
 }
 
 Vec2 Vec2::operator - (const Vec2&v) const {
-    Vec2 result;
-    result.x = x - v.x;
-    result.y = y - v.y;
-    return result;
+	Vec2 result;
+    	result.x = x - v.x;
+    	result.y = y - v.y;
+	return result;
 }
 
 Vec2 Vec2::operator * (const float n) const {
