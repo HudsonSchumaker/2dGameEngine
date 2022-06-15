@@ -1,4 +1,3 @@
-/.vscode
 /engine
 
 # Prerequisites
@@ -34,5 +33,8 @@
 *.out
 *.app
 
-# Others
+# macOS ds files
 *.DS_Store
+
+# debug symbols
+*.dSYM
