@@ -14,6 +14,7 @@ namespace dodoi {
             std::vector<Entity> entities;
 
         protected:
+            void addEntity(Entity entity);
 
         public:   
             virtual void update() = 0; 
