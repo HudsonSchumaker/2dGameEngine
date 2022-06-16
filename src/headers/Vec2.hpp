@@ -5,6 +5,7 @@
 //
 
 #pragma once
+#include "Basic.hpp"
 
 namespace dodoi {
     struct Vec2 {
