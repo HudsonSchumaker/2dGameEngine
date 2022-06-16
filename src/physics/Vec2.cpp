@@ -5,8 +5,6 @@
 //
 
 #include "../headers/Vec2.hpp"
-#include <math.h>
-
 using namespace dodoi;
 
 Vec2::Vec2() : x(0.0f), y(0.0f) {}
