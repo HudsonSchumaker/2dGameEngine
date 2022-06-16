@@ -5,6 +5,7 @@
 //
 
 #pragma once
+
 #include <map>
 #include <array>     // std::array
 #include <math.h>
