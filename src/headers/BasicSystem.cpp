@@ -8,4 +8,13 @@
 
 namespace dodoi {
     
+    class BasicSystem {
+
+        private:
+            
+        
+        public:
+            BasicSystem::BasicSystem() = default;
+            BasicSystem::~BasicSystem() = default;
+    };
 }
