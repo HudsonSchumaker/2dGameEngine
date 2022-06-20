@@ -19,6 +19,7 @@
 #include <unistd.h>
 #include <iostream>
 #include <algorithm> // std::shuffle
+
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
