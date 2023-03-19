@@ -1,9 +1,8 @@
 /*
-    Windows 10 - 11
+    SchumakerLab
     SchumakerTeam
     Hudson Schumaker
 */
-
 #pragma once
 #include "../include/Common.h"
 

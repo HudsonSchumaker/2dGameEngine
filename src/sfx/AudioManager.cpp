@@ -1,7 +1,7 @@
 /*
-	Windows 10 - 11
-	SchumakerTeam
-	Hudson Schumaker
+    SchumakerLab
+    SchumakerTeam
+    Hudson Schumaker
 */
 
 #include "AudioManager.h"
