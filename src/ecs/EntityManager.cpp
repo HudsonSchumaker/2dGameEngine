@@ -76,4 +76,5 @@ void EntityManager::clear() {
 	for (auto& e : entities) {
 		removeEntity(e);
 	}
+	index = 0;
 }
