@@ -22,7 +22,7 @@
 #include <algorithm>
 #include <functional>
 #include <unordered_map>
-#include <SDL.h>
+#include <SDL2/SDL.h>
 #include <math.h>
 #include <SDL_ttf.h>
 #include <SDL_image.h>
@@ -39,7 +39,7 @@
 
 class Common final {
 public:
-    inline static const char NAME[] = "- Submarine Story -";
+    inline static const char NAME[] = "- -";
 
     constexpr static float FPS = 60.0f;
     constexpr static float FRAME_TIME_LENGTH = 1000.0f / FPS;
