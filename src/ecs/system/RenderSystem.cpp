@@ -14,22 +14,31 @@ RenderSystem::RenderSystem() {
 	this->renderer = Gfx::getInstance()->getRenderer();
 }
 
-void RenderSystem::update(float dt) {
+void RenderSystem::update(Camera* camera) {
 	auto entities = EntityManager::getInstance()->getEntitiesWithComponent<Sprite>();
 	sort(entities.begin(), entities.end(), Sprite::compareAsc);
 
 	for (auto& entity : entities) {
-		Sprite* renderable = entity->getComponent<Sprite>();
+		Sprite* sprite = entity->getComponent<Sprite>();
 		Transform* transform = entity->getComponent<Transform>();
 
-		if (renderable && transform) {
-			renderable->rect.x = transform->position.x;
-			renderable->rect.y = transform->position.y;
+		if (sprite && transform) {
+			SDL_Rect srcRect = sprite->srcRect;
+			SDL_FRect dstRect = {
+				transform->position.x - (sprite->isFixed ? 0 : camera->x), 
+				transform->position.y - (sprite->isFixed ? 0 : camera->y),
+				sprite->w * transform->scale.x,
+				sprite->h * transform->scale.y
+			};
 
-			renderable->rect.w = renderable->w * transform->scale.x;
-			renderable->rect.h = renderable->h * transform->scale.y;
-
-			SDL_RenderCopyF(renderer, renderable->texture, nullptr, &renderable->rect);
+			SDL_RenderCopyExF(
+				renderer,
+				sprite->texture,
+				&srcRect,
+				&dstRect,
+				transform->rotation,
+				NULL,
+				SDL_FLIP_NONE);
 		}
 	}
 }

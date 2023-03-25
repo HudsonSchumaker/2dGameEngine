@@ -6,6 +6,7 @@
 
 #pragma once
 #include "System.h"
+#include "../../core/Camera.h"
 
 class RenderSystem final : public System {
 private:
@@ -14,5 +15,5 @@ private:
 public:
 	RenderSystem();
 	~RenderSystem() = default;
-	void update(float dt) override;
+	void update(Camera* camera);
 };

@@ -8,7 +8,7 @@
 #include "../EntityManager.h"
 #include "../component/Projectile.h"
 
-void ProjectileLifecycleSystem::update(float dt) {
+void ProjectileLifecycleSystem::update() {
     auto entities = EntityManager::getInstance()->getEntitiesWithComponent<Projectile>();
 
     for (auto& entity : entities) {

@@ -7,7 +7,4 @@
 #pragma once
 #include "../../include/Common.h"
 
-class System {
-public:
-	virtual void update(float dt) = 0;
-};
+class System {};

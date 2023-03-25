@@ -16,5 +16,4 @@ public:
     ProjectileEmitSystem();
     ~ProjectileEmitSystem() = default;
     void onFire(FireEvent& event);
-    void update(float dt);
 };

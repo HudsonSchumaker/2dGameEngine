@@ -1,7 +1,7 @@
 /*
-    SchumakerLab
-    SchumakerTeam
-    Hudson Schumaker
+	Windows 10 - 11
+	SchumakerTeam
+	Hudson Schumaker
 */
 
 #include "Gfx.h"
@@ -10,16 +10,62 @@
 
 Sprite::Sprite(short id) {
 	texture = AssetManager::getInstance()->getTexture(id);
-	rect = Gfx::getInstance()->getTextureFBounds(texture);
-	w = rect.w;
-	h = rect.h;
+	srcRect = Gfx::getInstance()->getTextureBounds(texture);
+	w = srcRect.w;
+	h = srcRect.h;
+}
+
+Sprite::Sprite(short id, bool isFixed) {
+	texture = AssetManager::getInstance()->getTexture(id);
+	srcRect = Gfx::getInstance()->getTextureBounds(texture);
+	w = srcRect.w;
+	h = srcRect.h;
+	this->isFixed = isFixed;
+}
+
+Sprite::Sprite(short id, bool isFixed, short layer) {
+	texture = AssetManager::getInstance()->getTexture(id);
+	srcRect = Gfx::getInstance()->getTextureBounds(texture);
+	w = srcRect.w;
+	h = srcRect.h;
+	this->isFixed = isFixed;
+	this->layer = layer;
 }
 
 Sprite::Sprite(short id, short layer) {
 	texture = AssetManager::getInstance()->getTexture(id);
-	rect = Gfx::getInstance()->getTextureFBounds(texture);
-	w = rect.w;
-	h = rect.h;
+	srcRect = Gfx::getInstance()->getTextureBounds(texture);
+	w = srcRect.w;
+	h = srcRect.h;
+	this->layer = layer;
+}
+
+Sprite::Sprite(short id, int srcX, int srcY, int w, int h, short layer) {
+	texture = AssetManager::getInstance()->getTexture(id);
+	srcRect = {
+		srcX,
+		srcY,
+		w,
+		h
+	};
+
+	this->w = srcRect.w;
+	this->h = srcRect.h;
+	this->layer = layer;
+}
+
+Sprite::Sprite(short id, int srcX, int srcY, int w, int h, bool isFixed, short layer) {
+	texture = AssetManager::getInstance()->getTexture(id);
+	srcRect = {
+		srcX,
+		srcY,
+		w,
+		h
+	};
+
+	this->w = srcRect.w;
+	this->h = srcRect.h;
+	this->isFixed = isFixed;
 	this->layer = layer;
 }
 

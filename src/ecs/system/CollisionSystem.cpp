@@ -1,7 +1,7 @@
 /*
-    SchumakerLab
-    SchumakerTeam
-    Hudson Schumaker
+	Windows 10 - 11
+	SchumakerTeam
+	Hudson Schumaker
 */
 
 #include "CollisionSystem.h"
@@ -9,7 +9,7 @@
 #include "../../event/EventBus.h"
 #include "../../event/CollisionEvent.h"
 
-void CollisionSystem::update(float dt) {
+void CollisionSystem::update() {
 	auto entities = EntityManager::getInstance()->getEntitiesWithComponent<BoxCollider>();
     for (int i = 0; i < entities.size(); i++) {
         Entity* a = entities[i];

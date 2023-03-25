@@ -1,12 +1,12 @@
 /*
-    SchumakerLab
-    SchumakerTeam
-    Hudson Schumaker
+	Windows 10 - 11
+	SchumakerTeam
+	Hudson Schumaker
 */
 
 #pragma once
 #include "System.h"
-#include "../../include/Common.h"
+#include "../../core/Camera.h"
 
 class AnimationSystem final : public System {
 private:
@@ -15,5 +15,5 @@ private:
 public:
 	AnimationSystem();
 	~AnimationSystem() = default;
-	void update(float dt) override;
+	void update(Camera* camera);
 };

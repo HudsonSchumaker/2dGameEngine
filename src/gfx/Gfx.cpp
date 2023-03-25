@@ -1,7 +1,7 @@
 /*
-    SchumakerLab
-    SchumakerTeam
-    Hudson Schumaker
+	Windows 10 / 11
+	SchumakerTeam
+	Hudson Schumaker
 */
 
 #include "Gfx.h"
@@ -39,7 +39,7 @@ void Gfx::setGfxContext() {
 	SDL_SetWindowIcon(window, iconSurface);
 	SDL_FreeSurface(iconSurface);
 
-	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 	SDL_RenderClear(renderer);
 	SDL_RenderPresent(renderer);

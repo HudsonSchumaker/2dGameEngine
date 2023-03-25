@@ -6,6 +6,7 @@
 
 #pragma once
 #include "System.h"
+#include "../../core/Camera.h"
 
 class RenderColliderSystem final : public System {
 private:
@@ -14,6 +15,5 @@ private:
 public:
 	RenderColliderSystem();
 	~RenderColliderSystem() = default;
-	void update(float dt) override;
+	void update(Camera* camera);
 };
-

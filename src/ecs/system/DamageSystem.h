@@ -17,6 +17,5 @@ public:
     ~DamageSystem() = default;
 
     void onCollision(CollisionEvent& event);
-    void update(float dt) override;
 };
 

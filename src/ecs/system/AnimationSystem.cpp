@@ -1,8 +1,9 @@
 /*
-    SchumakerLab
+    Windows 10 - 11
     SchumakerTeam
     Hudson Schumaker
 */
+
 #include "AnimationSystem.h"
 #include "../../gfx/Gfx.h"
 #include "../EntityManager.h"
@@ -13,7 +14,7 @@ AnimationSystem::AnimationSystem() {
 	this->renderer = Gfx::getInstance()->getRenderer();
 }
 
-void AnimationSystem::update(float dt) {
+void AnimationSystem::update(Camera* camera) {
     auto entities = EntityManager::getInstance()->getEntitiesWithComponent<Animation>();
     sort(entities.begin(), entities.end(), Animation::compareAsc);
 
@@ -29,16 +30,30 @@ void AnimationSystem::update(float dt) {
                 animation->bounds.x, animation->bounds.y };
 
             SDL_FRect dest;
-            dest.x = transform->position.x;
-            dest.y = transform->position.y;
+            dest.x = transform->position.x - (animation->isFixed ? 0 : camera->x);
+            dest.y = transform->position.y - (animation->isFixed ? 0 : camera->y);
             dest.w = animation->bounds.x * transform->scale.x;
             dest.h = animation->bounds.y * transform->scale.y;
             
             if (animation->flip) {
-                SDL_RenderCopyExF(renderer, animation->texture, &origin, &dest, 0.0, NULL, SDL_FLIP_HORIZONTAL);
+                SDL_RenderCopyExF(
+                    renderer, 
+                    animation->texture, 
+                    &origin, 
+                    &dest, 
+                    transform->rotation, 
+                    NULL, 
+                    SDL_FLIP_HORIZONTAL);
             }
             else {
-                SDL_RenderCopyExF(renderer, animation->texture, &origin, &dest,0.0, NULL, SDL_FLIP_NONE);
+                SDL_RenderCopyExF(
+                    renderer, 
+                    animation->texture, 
+                    &origin, 
+                    &dest, 
+                    transform->rotation, 
+                    NULL, 
+                    SDL_FLIP_NONE);
             }
         }
     }

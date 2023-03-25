@@ -15,7 +15,7 @@ RenderColliderSystem::RenderColliderSystem() {
 	this->renderer = Gfx::getInstance()->getRenderer();
 }
 
-void RenderColliderSystem::update(float dt) {
+void RenderColliderSystem::update(Camera* camera) {
 	auto entities = EntityManager::getInstance()->getEntitiesWithComponent<BoxCollider>();
 
 	for (auto& entity : entities) {
@@ -24,8 +24,8 @@ void RenderColliderSystem::update(float dt) {
 
 		if (collider && transform) {
 			SDL_FRect colliderRect = {
-					transform->position.x + collider->offset.x,
-					transform->position.y + collider->offset.y,
+					transform->position.x + collider->offset.x - camera->x, 
+					transform->position.y + collider->offset.y -camera->y,
 					(float)collider->bounds.w,
 					(float)collider->bounds.h
 			};

@@ -1,11 +1,12 @@
 /*
-    SchumakerLab
-    SchumakerTeam
-    Hudson Schumaker
+	Windows 10 - 11
+	SchumakerTeam
+	Hudson Schumaker
 */
 
 #pragma once
 #include "Gfx.h"
+#include "../core/Camera.h"
 #include "../include/Common.h"
 
 class Scene {
@@ -17,9 +18,14 @@ private:
 	virtual void unload() = 0;
 
 protected:
+	Camera camera;
 	SDL_Renderer* renderer;
 	float deltaTime = 0.0f;
 	int ticksLastFrame = 0;
+	Uint64 currentTick = 0;
+	Uint64 lastTick = 0;
+
+
 	bool isRunning = false;
 	short exit = 0;
 

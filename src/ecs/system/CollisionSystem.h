@@ -1,7 +1,7 @@
 /*
-    SchumakerLab
-    SchumakerTeam
-    Hudson Schumaker
+	Windows 10 - 11
+	SchumakerTeam
+	Hudson Schumaker
 */
 
 #pragma once
@@ -16,5 +16,5 @@ private:
 public:
 	CollisionSystem() = default;
 	~CollisionSystem() = default;
-	void update(float dt) override;
+	void update();
 };

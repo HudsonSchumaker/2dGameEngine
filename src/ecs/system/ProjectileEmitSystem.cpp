@@ -45,7 +45,3 @@ void ProjectileEmitSystem::onFire(FireEvent& event) {
         }
     }
 }
-
-void ProjectileEmitSystem::update(float dt) {
-    //TODO: logi to update the projectiles of the enemies
-}

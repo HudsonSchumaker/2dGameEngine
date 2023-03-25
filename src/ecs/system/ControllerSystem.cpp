@@ -1,7 +1,7 @@
 /*
-    SchumakerLab
-    SchumakerTeam
-    Hudson Schumaker
+	Windows 10 - 11
+	SchumakerTeam
+	Hudson Schumaker
 */
 
 #include "ControllerSystem.h"
@@ -93,5 +93,3 @@ void ControllerSystem::onKeyReleased(KeyReleasedEvent& event) {
         }
     }
 }
-
-void ControllerSystem::update(float dt) {}

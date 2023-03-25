@@ -9,5 +9,5 @@
 
 class MovementSystem final : public System {
 public:
-	void update(float dt) override;
+	void update(float dt);
 };

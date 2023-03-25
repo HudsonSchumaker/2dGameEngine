@@ -1,5 +1,5 @@
 /*
-    SchumakerLab
+    Windows 10 - 11
     SchumakerTeam
     Hudson Schumaker
 */
@@ -21,5 +21,4 @@ public:
     void onKeyPressed(KeyPressedEvent& event);
     void onKeyReleased(KeyReleasedEvent& event);
     void joypadLeftAxis(JoyPadLeftAxisEvent& event);
-	void update(float dt) override;
 };

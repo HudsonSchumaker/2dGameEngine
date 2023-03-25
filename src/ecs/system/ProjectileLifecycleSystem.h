@@ -9,5 +9,5 @@
 
 class ProjectileLifecycleSystem final : public System {
 public:
-    void update(float dt);
+    void update();
 };

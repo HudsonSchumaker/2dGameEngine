@@ -1,5 +1,5 @@
 /*
-    SchumakerLab
+    Windows 10 - 11
     SchumakerTeam
     Hudson Schumaker
 */
@@ -16,6 +16,7 @@ public:
     int startTime;
     bool flip = false;
     bool isLoop = true;
+    bool isFixed = false;
     short layer = 1;
     short numFrames = 1;
     short currentFrame = 1;

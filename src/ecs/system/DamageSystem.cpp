@@ -33,5 +33,3 @@ void DamageSystem::onCollision(CollisionEvent& event) {
 	std::cout << "a: " << event.a->id << std::endl;
 	std::cout << "b:" << event.b->id << std::endl;
 }
-
-void DamageSystem::update(float dt) {}
