@@ -13,7 +13,7 @@ class TextLabel final : public Component {
 public:
     std::string fontName;
     SDL_Texture* label;
-    boolean isFixed;
+    bool isFixed;
     Vec2 position;
     std::string text;
     short size;
@@ -21,7 +21,7 @@ public:
     int w = 0;
     int h = 0;
 
-    TextLabel(const std::string fontName, boolean isFixed, Vec2 position, std::string text, short size, SDL_Color color) {
+    TextLabel(const std::string fontName, bool isFixed, Vec2 position, std::string text, short size, SDL_Color color) {
         this->fontName = fontName;
         this->isFixed = isFixed;
         this->text = text;
@@ -33,7 +33,7 @@ public:
         SDL_QueryTexture(label, NULL, NULL, &w, &h);
     }
 
-    TextLabel(const std::string fontName, boolean isFixed, float x, float y, std::string text, short size, SDL_Color color) {
+    TextLabel(const std::string fontName, bool isFixed, float x, float y, std::string text, short size, SDL_Color color) {
         this->fontName = fontName;
         this->isFixed = isFixed;
         this->text = text;
