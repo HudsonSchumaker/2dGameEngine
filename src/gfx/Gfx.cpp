@@ -56,7 +56,8 @@ SDL_Renderer* Gfx::getRenderer() {
 	return renderer;
 }
 
-SDL_Texture* Gfx::createText(std::string path, std::string text, short size, SDL_Color color) {
+SDL_Texture* Gfx::createText(std::string fontName, std::string text, short size, SDL_Color color) {
+	auto path = FONT_FOLDER + fontName;
 	TTF_Font* font = TTF_OpenFont(path.c_str(), size);
 	SDL_Surface* surface = TTF_RenderText_Blended(font, text.c_str(), color);
 	SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);

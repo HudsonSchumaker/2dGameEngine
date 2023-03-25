@@ -22,7 +22,7 @@ public:
     void setGfxContext();
     SDL_Window* getWindow();
     SDL_Renderer* getRenderer();
-    SDL_Texture* createText(std::string path, std::string text, short size, SDL_Color color);
+    SDL_Texture* createText(std::string fontName, std::string text, short size, SDL_Color color);
     SDL_Texture* loadTexture(std::string path);
     SDL_Point getTextureSize(SDL_Texture* texture);
     SDL_Rect getTextureBounds(SDL_Texture* texture);
