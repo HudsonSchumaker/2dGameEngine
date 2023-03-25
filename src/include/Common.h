@@ -28,7 +28,6 @@
 #include <SDL_image.h>
 #include <SDL_mixer.h>
 #include <SDL_gamecontroller.h>
-#include <windows.h>
 
 #define QUIT -1
 #define TITLE 0
