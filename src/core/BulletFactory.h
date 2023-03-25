@@ -1,7 +1,7 @@
 /*
-    SchumakerLab
-    SchumakerTeam
-    Hudson Schumaker
+	Windows 10 - 11
+	SchumakerTeam
+	Hudson Schumaker
 */
 
 #pragma once
@@ -27,7 +27,7 @@ public:
 
 struct Bullet1 {
 	short id = AssetManager::BULLET_1;
-	Vec2 velocity = { 100.0f, 0.0f };
+	Vec2 velocity = { 0.50f, 0.0f };
 	short damage = 5;
 	unsigned int duration = 10000;
 
