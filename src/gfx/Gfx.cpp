@@ -34,7 +34,9 @@ void Gfx::setGfxContext() {
 
 	//SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
 
-	SDL_Surface* iconSurface = IMG_Load("data/images/chesttile.png");
+	std::string icon = "icon.png";
+	auto path = IMAGE_FOLDER + icon; 
+	SDL_Surface* iconSurface = IMG_Load(path.c_str());
 	SDL_SetWindowIcon(window, iconSurface);
 	SDL_FreeSurface(iconSurface);
 
@@ -65,7 +67,8 @@ SDL_Texture* Gfx::createText(std::string fontName, std::string text, short size,
 	return texture;
 }
 
-SDL_Texture* Gfx::loadTexture(std::string path) {
+SDL_Texture* Gfx::loadTexture(std::string name) {
+	auto path = IMAGE_FOLDER + name;
 	SDL_Surface* surface = IMG_Load(path.c_str());
 	SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
 
