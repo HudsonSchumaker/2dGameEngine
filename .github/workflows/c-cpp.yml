@@ -12,6 +12,7 @@ jobs:
     - name: brew update
       run: brew update
     
+    - uses: actions/cache@v3
     - name: install dependencies
       run: | 
         brew install SDL2
