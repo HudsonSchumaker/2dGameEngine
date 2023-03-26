@@ -38,17 +38,22 @@ public:
     }
 
     static std::vector<std::string> listImageFilesInFolder() {
-        return listImageFilesInFolder(IMAGE_FOLDER);
+        const std::set<std::string> imageExtensions = { ".jpg", ".jpeg", ".png", ".bmp", ".gif" };
+        return listFilesInFolder(IMAGE_FOLDER, imageExtensions);
     }
 
-    static std::vector<std::string> listImageFilesInFolder(const std::filesystem::path dirPath) {
+    static std::vector<std::string> listAudioFilesInFolder() {
+        const std::set<std::string> soundExtensions = { ".mp3", ".wav", ".ogg" };
+        return listFilesInFolder(AUDIO_FOLDER, soundExtensions);
+    }
+
+    static std::vector<std::string> listFilesInFolder(const std::filesystem::path dirPath, const std::set<std::string>& extensions) {
         std::vector<std::string> fileNames;
-        const std::set<std::string> imageExtensions = {".jpg", ".jpeg", ".png", ".bmp", ".gif"};
 
         for (const auto& entry : std::filesystem::directory_iterator(dirPath)) {
             if (entry.is_regular_file()) {
                 std::string extension = entry.path().extension().string();
-                if (imageExtensions.find(extension) != imageExtensions.end()) {
+                if (extensions.find(extension) != extensions.end()) {
                     fileNames.push_back(entry.path().filename().string());
                 }
             }   

@@ -22,5 +22,4 @@ public:
     void addTexture(const std::string& name, const short value, const std::string& filePath);
     SDL_Texture* getTexture(const std::string& name);
     void clearAssets();
-
 };

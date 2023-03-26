@@ -9,7 +9,7 @@
 class AudioManager final {
 private:
     inline static AudioManager* instance;
-    std::map<short, Mix_Chunk*> sounds;
+    std::map<std::string, Mix_Chunk*> sounds;
 
     AudioManager();
     ~AudioManager();
@@ -17,8 +17,8 @@ private:
 public:
     static AudioManager* getInstance();
     void load();
-    void addSound(const short assetId, const std::string& filePath);
-    void playSound(const short assetId);
+    void addSound(const std::string&name,  const std::string& filePath);
+    void playSound(const std::string& name);
     void clearAssets();
 
     static const short BACK = 0;

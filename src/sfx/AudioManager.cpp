@@ -4,6 +4,7 @@
 */
 
 #include "AudioManager.h"
+#include "../io/FileUtils.h"
 
 AudioManager::AudioManager() {}
 AudioManager::~AudioManager() {
@@ -18,13 +19,13 @@ AudioManager* AudioManager::getInstance() {
 	return instance;
 }
 
-void AudioManager::addSound(const short assetId, const std::string& filePath) {
-	this->sounds.emplace(assetId, Mix_LoadWAV(filePath.c_str()));
+void AudioManager::addSound(const std::string& name, const std::string& filePath) {
+	this->sounds.emplace(name, Mix_LoadWAV(filePath.c_str()));
 }
 
-void AudioManager::playSound(short assetId) {
+void AudioManager::playSound(const std::string&name) {
 	std::async(std::launch::async, [&]() {
-		Mix_PlayChannel(-1, this->sounds[assetId], 0);
+		Mix_PlayChannel(-1, this->sounds[name], 0);
 	});
 }
 
@@ -35,8 +36,11 @@ void AudioManager::clearAssets() {
 }
 
 void AudioManager::load() {
-	addSound(AudioManager::OK, "data/audio/ok.wav");
-	addSound(AudioManager::BACK, "data/audio/back.wav");
+	auto files = FileUtils::listAudioFilesInFolder();
+    for (auto& file : files) {
+        auto filePath = AUDIO_FOLDER + file;
+        addSound(FileUtils::getClearName(filePath), filePath);
+    }
 
 	std::cout << "done load audios" << std::endl;
 }
