@@ -18,11 +18,6 @@ int main(int argc, char* argv[]) {
 
 void setUp() {
     Gfx::getInstance()->setGfxContext();
-
-  auto i = FileUtils::listImageFilesInDirectory();
-  for (const auto& fileName : i) {
-        std::cout << fileName << std::endl;
-    }
 }
 
 void load() {

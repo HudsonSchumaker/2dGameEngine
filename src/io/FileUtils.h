@@ -37,23 +37,23 @@ public:
         return "";
     }
 
-    static std::vector<std::string> listImageFilesInDirectory() {
-        return listImageFilesInDirectory(IMAGE_FOLDER);
+    static std::vector<std::string> listImageFilesInFolder() {
+        return listImageFilesInFolder(IMAGE_FOLDER);
     }
 
-    static std::vector<std::string> listImageFilesInDirectory(const std::filesystem::path& dirPath) {
-        std::vector<std::string> imageFileNames;
+    static std::vector<std::string> listImageFilesInFolder(const std::filesystem::path dirPath) {
+        std::vector<std::string> fileNames;
         const std::set<std::string> imageExtensions = {".jpg", ".jpeg", ".png", ".bmp", ".gif"};
 
         for (const auto& entry : std::filesystem::directory_iterator(dirPath)) {
             if (entry.is_regular_file()) {
                 std::string extension = entry.path().extension().string();
                 if (imageExtensions.find(extension) != imageExtensions.end()) {
-                    imageFileNames.push_back(entry.path().filename().string());
+                    fileNames.push_back(entry.path().filename().string());
                 }
             }   
         }
 
-        return imageFileNames;
+        return fileNames;
     }
 };

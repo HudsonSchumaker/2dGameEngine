@@ -5,6 +5,7 @@
 
 #include "Gfx.h"
 #include "AssetManager.h"
+#include "../io/FileUtils.h"
 
 AssetManager::AssetManager() {}
 AssetManager::~AssetManager() {
@@ -39,7 +40,12 @@ void AssetManager::clearAssets() {
 }
 
 void AssetManager::load() {
+    auto files = FileUtils::listImageFilesInFolder();
+    for (auto& file : files) {
+        auto filePath = IMAGE_FOLDER + file;
+        std::cout << filePath << std::endl;
+        addTexture(FileUtils::getClearName(filePath), 0, filePath);
+    }
    
-
     std::cout << "done load texture" << std::endl;
 }
