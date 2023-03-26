@@ -1,3 +1,8 @@
+/*
+    SchumakerTeam
+    Hudson Schumaker
+*/
+
 #pragma once
 #include "Event.h"
 #include "../ecs/Entity.h"
