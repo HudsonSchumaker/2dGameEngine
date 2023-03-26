@@ -1,0 +1,37 @@
+name: C/C++ CI
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-latest
+  
+    steps:
+    - uses: actions/checkout@v3
+    - name: brew update
+      run: brew update
+    
+    - name: install dependencies
+      run: | 
+        brew install SDL2
+        brew install SDL2_image
+        brew install SDL2_ttf
+        brew install SDL2_mixer
+        brew install SDL2_gfx
+    
+    - name: build
+      run: make
+    
+    - name: compress
+      run: |
+        mkdir release
+        tar -cvf ./release/artifacts.tar ./build
+        ls -al ./build
+
+    - name: upload macOS binary
+      uses: actions/upload-artifact@v3
+      with:
+        name: artifacts
+        path: ./release
+    
