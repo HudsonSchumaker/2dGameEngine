@@ -1,5 +1,4 @@
 /*
-    Windows 10 - 11
     SchumakerTeam
     Hudson Schumaker
 */
@@ -39,7 +38,7 @@
 
 class Common final {
 public:
-    inline static const char NAME[] = "- Submarine Story -";
+    inline static const char NAME[] = "- -";
 
     constexpr static float FPS = 60.0f;
     constexpr static float FRAME_TIME_LENGTH = 1000.0f / FPS;
