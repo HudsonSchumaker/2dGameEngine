@@ -74,7 +74,6 @@ void ControllerSystem::onKeyReleased(KeyReleasedEvent& event) {
 
     for (auto& entity : entities) {
         RigidBody* rigidBody = entity->getComponent<RigidBody>();
-        Controller* controller = entity->getComponent<Controller>();
 
         switch (event.symbol) {
         case SDLK_UP:
