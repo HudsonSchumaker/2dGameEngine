@@ -1,5 +1,5 @@
 /*
-	Windows 10 - 11
+
 	SchumakerTeam
 	Hudson Schumaker
 */
@@ -11,14 +11,14 @@
 class Audio final : public Component {
 public:
 	short audioId = 0;
-	boolean playOnAwake = false;
-	boolean loop = false;
+	bool playOnAwake = false;
+	bool loop = false;
 
 	Audio(short audioId) {
 		this->audioId = audioId;
 	}
 
-	Audio(short audioId, boolean playOnAwake, boolean loop) {
+	Audio(short audioId, bool playOnAwake, bool loop) {
 		this->audioId = audioId;
 		this->playOnAwake = playOnAwake;
 		this->loop = loop;
