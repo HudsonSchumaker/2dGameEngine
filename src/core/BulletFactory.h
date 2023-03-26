@@ -17,7 +17,7 @@ enum class BulletType {
 class BulletFactory final {
 private:
     inline static BulletFactory* instance;
-	Entity* createBullet(short id, Vec2 velocity, short damage, bool isFriendly, int duration = 10000);
+	Entity* createBullet(std::string id, Vec2 velocity, short damage, bool isFriendly, int duration = 10000);
 
 public:
 	static BulletFactory* getInstance();
@@ -27,7 +27,7 @@ public:
 //TODO: fix bullet id and types
 
 struct Bullet1 {
-	short id = 1;
+	std::string id = "1";
 	Vec2 velocity = { 0.50f, 0.0f };
 	short damage = 5;
 	unsigned int duration = 10000;
@@ -36,7 +36,7 @@ struct Bullet1 {
 };
 
 struct Bullet2 {
-	short id = 1;
+	std::string id = "1";
 	Vec2 velocity = { 100.0f, 0.0f };
 	short damage = 5;
 	unsigned int duration = 10000;
@@ -45,7 +45,7 @@ struct Bullet2 {
 };
 
 struct Bullet3 {
-	short id = 1;
+	std::string id = "1";
 	Vec2 velocity = { 100.0f, 0.0f };
 	short damage = 5;
 	unsigned int duration = 10000;

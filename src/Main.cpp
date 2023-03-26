@@ -3,6 +3,7 @@
     Hudson Schumaker
 */
 
+#include "include/Main.h"
 #include "gfx/Gfx.h"
 #include "gfx/AssetManager.h"
 #include "sfx/AudioManager.h"
@@ -18,12 +19,10 @@ int main(int argc, char* argv[]) {
 void setUp() {
     Gfx::getInstance()->setGfxContext();
 
-  auto i = FileUtils::listImageFilesInDirectory(IMAGE_FOLDER);
+  auto i = FileUtils::listImageFilesInDirectory();
   for (const auto& fileName : i) {
         std::cout << fileName << std::endl;
     }
-
-
 }
 
 void load() {

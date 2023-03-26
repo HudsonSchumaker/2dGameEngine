@@ -39,7 +39,7 @@ Entity* BulletFactory::createBullet(BulletType bulletType, bool isFriendly) {
 	return EntityManager::getInstance()->createEntity();
 }
 
-Entity* BulletFactory::createBullet(short id, Vec2 velocity, short damage, bool isFriendly, int duration) {
+Entity* BulletFactory::createBullet(std::string id, Vec2 velocity, short damage, bool isFriendly, int duration) {
 	auto bullet = EntityManager::getInstance()->createEntity();
 	bullet->tag = Tag::bullet;
 

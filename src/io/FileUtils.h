@@ -37,6 +37,10 @@ public:
         return "";
     }
 
+    static std::vector<std::string> listImageFilesInDirectory() {
+        return listImageFilesInDirectory(IMAGE_FOLDER);
+    }
+
     static std::vector<std::string> listImageFilesInDirectory(const std::filesystem::path& dirPath) {
         std::vector<std::string> imageFileNames;
         const std::set<std::string> imageExtensions = {".jpg", ".jpeg", ".png", ".bmp", ".gif"};
