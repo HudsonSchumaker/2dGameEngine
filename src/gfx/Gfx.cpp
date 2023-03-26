@@ -22,7 +22,7 @@ void Gfx::setGfxContext() {
 	SDL_Init(SDL_INIT_EVERYTHING);
 	TTF_Init();
 
-	int n = SDL_GetNumVideoDisplays();
+	//int n = SDL_GetNumVideoDisplays();
 	SDL_DisplayMode displayMode;
 	SDL_GetCurrentDisplayMode(0, &displayMode);
 
@@ -91,7 +91,7 @@ SDL_Rect Gfx::getTextureBounds(SDL_Texture* texture) {
 SDL_FRect Gfx::getTextureFBounds(SDL_Texture* texture) {
 	SDL_Point size;
 	SDL_QueryTexture(texture, NULL, NULL, &size.x, &size.y);
-	SDL_FRect rect = { 0.0f, 0.0f, size.x, size.y };
+	SDL_FRect rect = { 0.0f, 0.0f, static_cast<float>(size.x), static_cast<float>(size.y) };
 
 	return rect;
 }
@@ -102,7 +102,7 @@ void Gfx::drawTexture(int x, int y, int w, int h, SDL_Texture* texture) {
 }
 
 void Gfx::drawTexture(float x, float y, int w, int h, SDL_Texture* texture) {
-	SDL_FRect rect = { x, y, w, h };
+	SDL_FRect rect = { x, y, static_cast<float>(w), static_cast<float>(h) };
 	SDL_RenderCopyF(renderer, texture, NULL, &rect);
 }
 
@@ -113,7 +113,7 @@ void Gfx::drawTexture(int x, int y, int w, int h, float rotation, SDL_Texture* t
 }
 
 void Gfx::drawTexture(float x, float y, int w, int h, float rotation, SDL_Texture* texture) {
-	SDL_FRect dstRect = { x, y, w, h };
+	SDL_FRect dstRect = { x, y, static_cast<float>(w), static_cast<float>(h) };
 	float rotationDeg = rotation * 57.2958;
 	SDL_RenderCopyExF(renderer, texture, NULL, &dstRect, rotationDeg, NULL, SDL_FLIP_NONE);
 }
@@ -125,7 +125,7 @@ void Gfx::drawTexture(int x, int y, int w, int h, float rotation, SDL_RendererFl
 }
 
 void Gfx::drawTexture(float x, float y, int w, int h, float rotation, SDL_RendererFlip flip, SDL_Texture* texture) {
-	SDL_FRect dstRect = { x, y, w, h };
+	SDL_FRect dstRect = { x, y, static_cast<float>(w), static_cast<float>(h) };
 	float rotationDeg = rotation * 57.2958;
 	SDL_RenderCopyExF(renderer, texture, NULL, &dstRect, rotationDeg, NULL, flip);
 }
