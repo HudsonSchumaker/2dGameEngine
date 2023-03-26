@@ -3,7 +3,6 @@
 	Hudson Schumaker
 */
 
-#pragma once
 #include "MapLoader.h"
 #include "../gfx/Sprite.h"
 #include "../gfx/AssetManager.h"
