@@ -43,7 +43,6 @@ void AssetManager::load() {
     auto files = FileUtils::listImageFilesInFolder();
     for (auto& file : files) {
         auto filePath = IMAGE_FOLDER + file;
-        std::cout << filePath << std::endl;
         addTexture(FileUtils::getClearName(filePath), 0, filePath);
     }
    
