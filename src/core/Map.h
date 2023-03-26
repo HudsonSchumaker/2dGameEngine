@@ -8,7 +8,7 @@
 
 class Map final {
 public:
-	short assertId = 0;
+	std::string assertId;
 	std::string mapId = "";
 	short tileSize = 0;
 	float scale = 1.0f;
@@ -18,8 +18,8 @@ public:
 	int mapHeight = 0;
 
 	Map() {}
-	Map(short assertId, std::string mapId, short tileSize, float scale, short mapNumCols, short mapNumRows) {
-		this->assertId = assertId;
+	Map(const std::string& name, std::string mapId, short tileSize, float scale, short mapNumCols, short mapNumRows) {
+		this->assertId = name;
 		this->mapId = mapId;
 		this->tileSize = tileSize;
 		this->scale = scale;

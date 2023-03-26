@@ -7,24 +7,24 @@
 #include "Animation.h"
 #include "AssetManager.h"
 
-Animation::Animation(short id, short numFrames, short frameSpeedRate, bool isLoop) {
+Animation::Animation(const std::string& name, short numFrames, short frameSpeedRate, bool isLoop) {
 	this->numFrames = numFrames;
 	this->frameSpeedRate = frameSpeedRate;
 	this->isLoop = isLoop;
 
-	texture = AssetManager::getInstance()->getTexture(id);
+	texture = AssetManager::getInstance()->getTexture(name);
 	bounds = Gfx::getInstance()->getTextureSize(texture);
 	bounds.x = bounds.x / numFrames;
 	startTime = SDL_GetTicks();
 }
 
-Animation::Animation(short id, short numFrames, short frameSpeedRate, short layer, bool isLoop) {
+Animation::Animation(const std::string& name, short numFrames, short frameSpeedRate, short layer, bool isLoop) {
 	this->numFrames = numFrames;
 	this->frameSpeedRate = frameSpeedRate;
 	this->layer = layer;
 	this->isLoop = isLoop;
 
-	texture = AssetManager::getInstance()->getTexture(id);
+	texture = AssetManager::getInstance()->getTexture(name);
 	bounds = Gfx::getInstance()->getTextureSize(texture);
 	bounds.x = bounds.x / numFrames;
 	startTime = SDL_GetTicks();

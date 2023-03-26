@@ -16,12 +16,12 @@ public:
 	SDL_Rect srcRect;
 	short layer = 10;
 
-	Sprite(short id);
-	Sprite(short id, bool isFixed);
-	Sprite(short id, short layer);
-	Sprite(short id, bool isFixed, short layer);
-	Sprite(short id, int srcX, int srcY, int w, int h, short layer);
-	Sprite(short id, int srcX, int srcY, int w, int h, bool isFixed, short layer);
+	Sprite(const std::string& name);
+	Sprite(const std::string& name, bool isFixed);
+	Sprite(const std::string& name, short layer);
+	Sprite(const std::string& name, bool isFixed, short layer);
+	Sprite(const std::string& name, int srcX, int srcY, int w, int h, short layer);
+	Sprite(const std::string& name, int srcX, int srcY, int w, int h, bool isFixed, short layer);
 	~Sprite();
 
 	static bool compareAsc(Entity* e1, Entity* e2);

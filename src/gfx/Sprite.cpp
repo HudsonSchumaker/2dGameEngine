@@ -7,23 +7,23 @@
 #include "Sprite.h"
 #include "AssetManager.h"
 
-Sprite::Sprite(short id) {
-	texture = AssetManager::getInstance()->getTexture(id);
+Sprite::Sprite(const std::string& name) {
+	texture = AssetManager::getInstance()->getTexture(name);
 	srcRect = Gfx::getInstance()->getTextureBounds(texture);
 	w = srcRect.w;
 	h = srcRect.h;
 }
 
-Sprite::Sprite(short id, bool isFixed) {
-	texture = AssetManager::getInstance()->getTexture(id);
+Sprite::Sprite(const std::string& name, bool isFixed) {
+	texture = AssetManager::getInstance()->getTexture(name);
 	srcRect = Gfx::getInstance()->getTextureBounds(texture);
 	w = srcRect.w;
 	h = srcRect.h;
 	this->isFixed = isFixed;
 }
 
-Sprite::Sprite(short id, bool isFixed, short layer) {
-	texture = AssetManager::getInstance()->getTexture(id);
+Sprite::Sprite(const std::string& name, bool isFixed, short layer) {
+	texture = AssetManager::getInstance()->getTexture(name);
 	srcRect = Gfx::getInstance()->getTextureBounds(texture);
 	w = srcRect.w;
 	h = srcRect.h;
@@ -31,16 +31,16 @@ Sprite::Sprite(short id, bool isFixed, short layer) {
 	this->layer = layer;
 }
 
-Sprite::Sprite(short id, short layer) {
-	texture = AssetManager::getInstance()->getTexture(id);
+Sprite::Sprite(const std::string& name, short layer) {
+	texture = AssetManager::getInstance()->getTexture(name);
 	srcRect = Gfx::getInstance()->getTextureBounds(texture);
 	w = srcRect.w;
 	h = srcRect.h;
 	this->layer = layer;
 }
 
-Sprite::Sprite(short id, int srcX, int srcY, int w, int h, short layer) {
-	texture = AssetManager::getInstance()->getTexture(id);
+Sprite::Sprite(const std::string& name, int srcX, int srcY, int w, int h, short layer) {
+	texture = AssetManager::getInstance()->getTexture(name);
 	srcRect = {
 		srcX,
 		srcY,
@@ -53,8 +53,8 @@ Sprite::Sprite(short id, int srcX, int srcY, int w, int h, short layer) {
 	this->layer = layer;
 }
 
-Sprite::Sprite(short id, int srcX, int srcY, int w, int h, bool isFixed, short layer) {
-	texture = AssetManager::getInstance()->getTexture(id);
+Sprite::Sprite(const std::string& name, int srcX, int srcY, int w, int h, bool isFixed, short layer) {
+	texture = AssetManager::getInstance()->getTexture(name);
 	srcRect = {
 		srcX,
 		srcY,

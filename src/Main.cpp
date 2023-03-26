@@ -6,7 +6,7 @@
 #include "gfx/Gfx.h"
 #include "gfx/AssetManager.h"
 #include "sfx/AudioManager.h"
-#include "core/Camera.h"
+#include "io/FileUtils.h"
 
 int main(int argc, char* argv[]) {
     setUp();
@@ -17,7 +17,13 @@ int main(int argc, char* argv[]) {
 
 void setUp() {
     Gfx::getInstance()->setGfxContext();
-    Camera* camera = new Camera();
+
+  auto i = FileUtils::listImageFilesInDirectory(IMAGE_FOLDER);
+  for (const auto& fileName : i) {
+        std::cout << fileName << std::endl;
+    }
+
+
 }
 
 void load() {

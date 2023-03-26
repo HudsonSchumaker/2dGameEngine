@@ -21,8 +21,8 @@ public:
     short currentFrame = 1;
     short frameSpeedRate = 1;
     
-    Animation(short id, short numFrames, short frameSpeedRate, bool isLoop);
-    Animation(short id, short numFrames, short frameSpeedRate, short layer, bool isLoop);
+    Animation(const std::string& name, short numFrames, short frameSpeedRate, bool isLoop);
+    Animation(const std::string& name, short numFrames, short frameSpeedRate, short layer, bool isLoop);
     ~Animation();
 
     static bool compareAsc(Entity* e1, Entity* e2);
