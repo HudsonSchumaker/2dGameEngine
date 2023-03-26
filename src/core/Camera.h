@@ -6,6 +6,9 @@
 #pragma once
 #include "../include/Common.h"
 
+/*
+ 	Camera class  
+*/
 class Camera final {
 public:
 	int x, y, w, h;
