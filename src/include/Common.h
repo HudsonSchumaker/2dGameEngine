@@ -6,6 +6,7 @@
 #pragma once
 #include <set>
 #include <map>
+#include <list>
 #include <array>
 #include <limits>
 #include <vector>
@@ -21,7 +22,7 @@
 #include <algorithm>
 #include <functional>
 #include <unordered_map>
-#include <SDL.h>
+#include <SDL2/SDL.h>
 #include <math.h>
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_image.h>
@@ -29,8 +30,11 @@
 #include <SDL2/SDL_gamecontroller.h>
 
 #define QUIT -1
-#define TITLE 0
-#define MENU 1
+#define AUDIO_FOLDER "data/audios/"
+#define FONT_FOLDER "data/fonts/"
+#define IMAGE_FOLDER "data/images/"
+#define MAP_FOLDER "data/maps/"
+
 #define SCREEN_WIDTH 1280
 #define SCREEN_H_WIDTH SCREEN_WIDTH/2
 #define SCREEN_HEIGHT 720

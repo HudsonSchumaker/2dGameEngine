@@ -14,7 +14,8 @@
 
 void MapLoader::loadMap(Map map) {
 	std::fstream mapFile;
-	mapFile.open("data/maps/" + map.mapId);
+	auto path = MAP_FOLDER + map.mapId;
+	mapFile.open(path);
 
 	for (short y = 0; y < map.mapNumRows; y++) {
 		for (short x = 0; x < map.mapNumCols; x++) {

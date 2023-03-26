@@ -24,7 +24,6 @@ protected:
 	Uint64 currentTick = 0;
 	Uint64 lastTick = 0;
 
-
 	bool isRunning = false;
 	short exit = 0;
 
