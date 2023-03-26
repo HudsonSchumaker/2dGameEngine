@@ -12,7 +12,6 @@ class AssetManager final {
 private:
     inline static AssetManager* instance;
     texture_t textures;
-    font_t fonts;
 
     AssetManager();
     ~AssetManager();
