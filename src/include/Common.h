@@ -20,6 +20,7 @@
 #include <iostream>
 #include <typeindex>
 #include <algorithm>
+#include <filesystem>
 #include <functional>
 #include <unordered_map>
 #include <SDL2/SDL.h>
