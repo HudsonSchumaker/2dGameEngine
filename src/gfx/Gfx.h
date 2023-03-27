@@ -26,6 +26,7 @@ public:
     SDL_Point getTextureSize(SDL_Texture* texture);
     SDL_Rect getTextureBounds(SDL_Texture* texture);
     SDL_FRect getTextureFBounds(SDL_Texture* texture);
+    void showMouseCursor(bool value);
     void drawTexture(int x, int y, int w, int h, SDL_Texture* texture);
     void drawTexture(int x, int y, int w, int h, float r, SDL_Texture* texture);
     void drawTexture(int x, int y, int w, int h, float r, SDL_RendererFlip flip, SDL_Texture* texture);
