@@ -6,8 +6,8 @@
 #pragma once
 #include "Event.h"
 
-class MouseWhellEvent final : public Event {
+class MouseWheelEvent final : public Event {
 public:
     int y;
-    MouseWhellEvent(int y) : y(y) {}
+    MouseWheelEvent(int y) : y(y) {}
 };
