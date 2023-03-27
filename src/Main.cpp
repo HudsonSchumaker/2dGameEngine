@@ -11,20 +11,16 @@
 
 int main(int argc, char* argv[]) {
     setUp();
-    load();
 
-    for (;;);
     return 0;
 }
 
 void setUp() {
     Gfx::getInstance()->setGfxContext();
-}
-
-void load() {
     AssetManager::getInstance()->load();
     AudioManager::getInstance()->load();
 }
+
 
 void quit() {
     SDL_GameControllerClose(0);

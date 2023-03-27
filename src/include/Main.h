@@ -8,5 +8,4 @@
 #include "../gfx/Gfx.h"
 
 void setUp();
-void load();
 void quit();
