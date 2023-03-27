@@ -46,7 +46,6 @@ void Gfx::setGfxContext() {
 	SDL_RenderPresent(renderer);
 
 	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
-	SDL_ShowCursor(SDL_DISABLE);
 }
 
 SDL_Window* Gfx::getWindow() {
@@ -98,6 +97,11 @@ SDL_FRect Gfx::getTextureFBounds(SDL_Texture* texture) {
 
 	return rect;
 }
+
+ void Gfx::showMouseCursor(bool value) {
+	if(value) { SDL_ShowCursor(SDL_ENABLE); }
+	else {SDL_ShowCursor(SDL_DISABLE); }
+ }
 
 void Gfx::drawTexture(int x, int y, int w, int h, SDL_Texture* texture) {
 	SDL_Rect rect = { x, y, w, h };
