@@ -32,7 +32,7 @@ void CollisionSystem::update() {
     }
 }
 
-bool CollisionSystem::checkAABBCollision(Transform* tA, Transform* tB, BoxCollider* bA, BoxCollider* bB) {
+bool CollisionSystem::checkAABBCollision(Transform* tA, Transform* tB, BoxCollider* bA, BoxCollider* bB) const {
     float aX = tA->position.x + bA->offset.x;
     float aY = tA->position.y + bA->offset.y;
     float aW = bA->bounds.w;

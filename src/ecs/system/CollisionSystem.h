@@ -10,7 +10,7 @@
 
 class CollisionSystem final : public System {
 private:
-	bool checkAABBCollision(Transform* tA, Transform* tB, BoxCollider* bA, BoxCollider* bB);
+	bool checkAABBCollision(Transform* tA, Transform* tB, BoxCollider* bA, BoxCollider* bB) const;
 
 public:
 	CollisionSystem() = default;
