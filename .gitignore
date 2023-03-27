@@ -38,3 +38,4 @@
 
 # debug symbols
 *.dSYM
+*-app
