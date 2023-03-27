@@ -3,13 +3,13 @@
 	Hudson Schumaker
 */
 
-#include "MapLoader.h"
-#include "../gfx/Sprite.h"
-#include "../gfx/AssetManager.h"
-#include "../ecs/EntityManager.h"
-#include "../ecs/component/RigidBody.h"
-#include "../ecs/component/Transform.h"
-#include "../ecs/component/BoxCollider.h"
+#include "../include/MapLoader.h"
+#include "../include/Sprite.h"
+#include "../include/AssetManager.h"
+#include "../include/EntityManager.h"
+#include "../include/RigidBody.h"
+#include "../include/Transform.h"
+#include "../include/BoxCollider.h"
 
 void MapLoader::loadMap(Map map) {
 	std::fstream mapFile;

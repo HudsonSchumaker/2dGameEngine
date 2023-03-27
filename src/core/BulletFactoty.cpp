@@ -3,13 +3,13 @@
 	Hudson Schumaker
 */
 
-#include "BulletFactory.h"
-#include "../gfx/Animation.h"
-#include "../ecs/EntityManager.h"
-#include "../ecs/component/RigidBody.h"
-#include "../ecs/component/Transform.h"
-#include "../ecs/component/Projectile.h"
-#include "../ecs/component/BoxCollider.h"
+#include "../include/BulletFactory.h"
+#include "../include/Animation.h"
+#include "../include/EntityManager.h"
+#include "../include/RigidBody.h"
+#include "../include/Transform.h"
+#include "../include/Projectile.h"
+#include "../include/BoxCollider.h"
 
 BulletFactory* BulletFactory::getInstance() {
 	if (instance == nullptr) {
