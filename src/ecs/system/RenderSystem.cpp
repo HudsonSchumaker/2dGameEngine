@@ -20,8 +20,19 @@ void RenderSystem::update(Camera* camera) {
 	for (auto& entity : entities) {
 		Sprite* sprite = entity->getComponent<Sprite>();
 		Transform* transform = entity->getComponent<Transform>();
-
+		
 		if (sprite && transform) {
+			bool isOutsideCameraView = (
+				transform->position.x + (transform->scale.x * sprite->w) < camera->x ||
+				transform->position.x > camera->x + camera->w ||
+				transform->position.y + (transform->scale.y * sprite->h) < camera->y ||
+				transform->position.y > camera->y + camera->h
+			);
+
+			if (isOutsideCameraView && !sprite->isFixed) {
+                continue;
+            }
+
 			SDL_Rect srcRect = sprite->srcRect;
 			SDL_FRect dstRect = {
 				transform->position.x - (sprite->isFixed ? 0 : camera->x), 
@@ -37,7 +48,8 @@ void RenderSystem::update(Camera* camera) {
 				&dstRect,
 				transform->rotation,
 				NULL,
-				SDL_FLIP_NONE);
+				SDL_FLIP_NONE
+			);
 		}
 	}
 }
