@@ -6,7 +6,6 @@
 #pragma once
 #include "Event.h"
 
-
 enum class MouseButton {
 	LEFT,
 	RIGHT,
