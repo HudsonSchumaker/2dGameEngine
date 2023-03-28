@@ -31,10 +31,10 @@
 #include <SDL2/SDL_gamecontroller.h>
 
 #define QUIT -1
-#define AUDIO_FOLDER "./data/audios/"
-#define FONT_FOLDER "./data/fonts/"
-#define IMAGE_FOLDER "./data/images/"
-#define MAP_FOLDER "./data/maps/"
+#define AUDIO_FOLDER "/data/audios/"
+#define FONT_FOLDER "/data/fonts/"
+#define IMAGE_FOLDER "/data/images/"
+#define MAP_FOLDER "/data/maps/"
 
 #define SCREEN_WIDTH 1280
 #define SCREEN_H_WIDTH SCREEN_WIDTH/2

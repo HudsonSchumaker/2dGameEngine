@@ -29,6 +29,10 @@ void AudioManager::playSound(const std::string&name) {
 	});
 }
 
+int AudioManager::audioCount() const {
+	return this->sounds.size();
+}
+
 void AudioManager::clearAssets() {
 	for (auto& sound : sounds) {
 		Mix_FreeChunk(sound.second);

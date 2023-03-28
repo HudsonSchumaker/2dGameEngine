@@ -39,6 +39,10 @@ void AssetManager::clearAssets() {
     this->textures.clear();
 }
 
+int AssetManager::textureCount() const {
+    return this->textures.size();
+}
+
 void AssetManager::load() {
     auto files = FileUtils::listImageFilesInFolder();
     for (auto& file : files) {
