@@ -21,6 +21,7 @@
                 "${workspaceFolder}/src/ecs/*.cpp",
                 "${workspaceFolder}/src/ecs/system/*.cpp",
                 "${workspaceFolder}/src/gfx/*.cpp",
+                "${workspaceFolder}/src/io/*.cpp",
                 "${workspaceFolder}/src/physics/*.cpp",
                 "${workspaceFolder}/src/sfx/*.cpp",
                 "-o",
