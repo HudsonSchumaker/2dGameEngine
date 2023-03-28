@@ -19,8 +19,6 @@ public:
     void load();
     void addSound(const std::string&name,  const std::string& filePath);
     void playSound(const std::string& name);
+    int audioCount() const;
     void clearAssets();
-
-    static const short BACK = 0;
-    static const short OK = 1;
 };
