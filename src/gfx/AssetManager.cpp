@@ -37,6 +37,7 @@ void AssetManager::clearAssets() {
     }
 
     this->textures.clear();
+    int y = 0;
 }
 
 int AssetManager::textureCount() const {
@@ -47,7 +48,7 @@ void AssetManager::load() {
     auto files = FileUtils::listImageFilesInFolder();
     for (auto& file : files) {
         auto filePath = IMAGE_FOLDER + file;
-        addTexture(FileUtils::getClearName(filePath), 0, filePath);
+        addTexture(FileUtils::getClearName(filePath), 0, file);
     }
    
     std::cout << "done load texture" << std::endl;

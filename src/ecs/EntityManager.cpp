@@ -22,19 +22,29 @@ EntityManager* EntityManager::getInstance() {
 
 Entity* EntityManager::createEntity() {
 	Entity* entity = new Entity();
-	entity->id = index;
 	index++;
+	entity->id = index;
 	entities.push_back(entity);
 	return entity;
 }
 
 Entity* EntityManager::createEntity(float x, float y) {
 	Entity* entity = new Entity();
-	entity->id = index;
 	index++;
+	entity->id = index;
 	entity->addComponent(new Transform(Vec2(x, y)));
 	entities.push_back(entity);
 	return entity;
+}
+
+Entity* EntityManager::getEntity(unsigned long id) {
+	for (auto& e : entities) {
+		if (e->id == id) {
+			return e;
+		}
+	}
+
+    return nullptr;
 }
 
 void EntityManager::removeEntity(Entity* entity) {

@@ -53,5 +53,21 @@ public:
         this->label = Gfx::getInstance()->createText(fontName, text, size, newColor);
     }
 
+    void setOnCenter() {
+        auto bounds = Gfx::getInstance()->getTextureSize(label);
+        position.x = SCREEN_H_WIDTH - (bounds.x/2);
+        position.y = SCREEN_H_HEIGHT - (bounds.y/2);
+    }
+
+    void setOnCenterX() {
+        auto bounds = Gfx::getInstance()->getTextureSize(label);
+        position.x = SCREEN_H_WIDTH - (bounds.x/2);
+    }
+
+    void setOnCenterY() {
+        auto bounds = Gfx::getInstance()->getTextureSize(label);
+        position.y = SCREEN_H_HEIGHT - (bounds.y/2);
+    }
+
     ~TextLabel() = default;
 };
