@@ -107,6 +107,10 @@ void Sprite::setOnCenterY() {
 	}
 }
 
+Dimension Sprite::getSize() const {
+	return Dimension(w, h);
+}
+
 bool Sprite::compareAsc(Entity* e1, Entity* e2) {
 	return (e1->getComponent<Sprite>()->layer < e2->getComponent<Sprite>()->layer);
 }

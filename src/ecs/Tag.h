@@ -12,5 +12,5 @@ enum class Tag {
     enemy = 3,
     player = 4,
     bullet = 5,
-    hud = 6
+    ui = 6
 };

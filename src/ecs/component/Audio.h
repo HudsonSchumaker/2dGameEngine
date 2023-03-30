@@ -9,15 +9,15 @@
 
 class Audio final : public Component {
 public:
-	short audioId = 0;
+	std::string audioId;
 	bool playOnAwake = false;
 	bool loop = false;
 
-	Audio(short audioId) {
+	Audio(std::string& audioId) {
 		this->audioId = audioId;
 	}
 
-	Audio(short audioId, bool playOnAwake, bool loop) {
+	Audio(std::string& audioId, bool playOnAwake, bool loop) {
 		this->audioId = audioId;
 		this->playOnAwake = playOnAwake;
 		this->loop = loop;

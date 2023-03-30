@@ -37,7 +37,6 @@ void AssetManager::clearAssets() {
     }
 
     this->textures.clear();
-    int y = 0;
 }
 
 int AssetManager::textureCount() const {

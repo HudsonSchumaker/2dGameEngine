@@ -6,6 +6,7 @@
 #pragma once
 #include "../ecs/Entity.h"
 #include "../ecs/component/Component.h"
+#include "../physics/Dimension.h"
 
 class Sprite final : public Component {
 public:
@@ -23,11 +24,12 @@ public:
 	Sprite(const std::string& name, bool isFixed, short layer);
 	Sprite(const std::string& name, int srcX, int srcY, int w, int h, short layer);
 	Sprite(const std::string& name, int srcX, int srcY, int w, int h, bool isFixed, short layer);
+	~Sprite();
 
 	void setOnCenter();
 	void setOnCenterX();
 	void setOnCenterY();
-	~Sprite();
+	Dimension getSize() const;
 
 	static bool compareAsc(Entity* e1, Entity* e2);
 	static bool compareDesc(Entity* e1, Entity* e2);
