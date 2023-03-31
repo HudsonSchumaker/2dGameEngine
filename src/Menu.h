@@ -5,11 +5,12 @@
 #include "core/MousePointer.h"
 #include "ecs/system/RenderSystem.h"
 #include "ecs/system/CollisionSystem.h"
+#include "ecs/system/GuiUpdateSystem.h"
 #include "ecs/system/RenderTextSystem.h"
 #include "ecs/system/ControllerSystem.h"
-#include "ecs/system/MouseCollisionSystem.h"
+#include "ecs/system/MouseSystem.h"
 
-class Menu : public Scene {
+class Menu final : public Scene {
 private:
     Entity* background = nullptr;
     Entity* title = nullptr;
@@ -18,7 +19,8 @@ private:
 	MousePointer pointer;
 
     CollisionSystem collisionSystem;
-	MouseCollisionSystem mouseCollisionSystem;
+	GuiUpdateSystem guiUpdateSystem;
+	MouseSystem mouseSystem;
 	ControllerSystem controllerSystem;
 	RenderSystem renderSystem;
     RenderTextSystem renderTextSystem;
@@ -28,7 +30,8 @@ private:
 	void update() override;
 	void render() override;
 	void unload() override;
-
+	void buttonHard();
+	
 public:
 	Menu();
 	~Menu();

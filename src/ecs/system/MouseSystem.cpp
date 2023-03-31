@@ -3,14 +3,14 @@
 	Hudson Schumaker
 */
 
-#include "MouseCollisionSystem.h"
+#include "MouseSystem.h"
 #include "../EntityManager.h"
 #include "../component/Button.h"
 #include "../../event/EventBus.h"
 #include "../component/Transform.h"
 #include "../component/BoxCollider.h"
 
-void MouseCollisionSystem::update(MousePointer pointer) {
+void MouseSystem::update(MousePointer pointer) {
     auto entities = EntityManager::getInstance()->getEntitiesWithComponent<Button>();
 
 	for (auto& entity : entities) {
@@ -26,13 +26,15 @@ void MouseCollisionSystem::update(MousePointer pointer) {
             };
 
             if (isInside(pointer.getBounds(), box)) {
-                std::cout << "dentro: " << std::endl;
+                EventBus::getInstance()->emitEvent<MouseHoverEvent>(entity, true);
+            } else {
+                EventBus::getInstance()->emitEvent<MouseHoverEvent>(entity, false);
             }
         }
     }
 }
 
-bool MouseCollisionSystem::isInside(const SDL_Rect& box1, const SDL_Rect& box2) const {
+bool MouseSystem::isInside(const SDL_Rect& box1, const SDL_Rect& box2) const {
     SDL_Rect aabb1 = { box1.x - box1.w / 2, box1.y - box1.h / 2, box1.w, box1.h };
     SDL_Rect aabb2 = { box2.x - box2.w / 2, box2.y - box2.h / 2, box2.w, box2.h };
 

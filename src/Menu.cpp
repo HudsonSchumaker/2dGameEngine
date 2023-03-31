@@ -1,9 +1,11 @@
 
 #include "Menu.h"
-#include "ecs/EntityManager.h"
 #include "gfx/Sprite.h"
 #include "gfx/Color.h"
+#include "event/EventBus.h"
+#include "ecs/EntityManager.h"
 #include "ecs/component/Button.h"
+#include "event/MouseClickEvent.h"
 #include "ecs/component/TextLabel.h"
 #include "ecs/component/Transform.h"
 
@@ -16,7 +18,8 @@ Menu::~Menu() {
 
 void Menu::load() {
     background = EntityManager::getInstance()->createEntity(0, 0);
-    background->addComponent(new Sprite("back129", true, (int)Tag::background));
+	background->tag = Tag::background;
+    background->addComponent(new Sprite("back129", true, Tags::getLayer(Tag::background)));
     background->getComponent<Sprite>()->setOnCenterX();
 
     title = EntityManager::getInstance()->createEntity(350, 0);
@@ -24,9 +27,12 @@ void Menu::load() {
     title->getComponent<TextLabel>()->setOnCenterX();
 
 	button = EntityManager::getInstance()->createEntity(352, 360);
-	button->addComponent(new Sprite("hard", true, (int)Tag::ui));
+	button->tag = Tag::ui;
+	button->addComponent(new Sprite("hard", true,  Tags::getLayer(Tag::ui)));
 	button->addComponent(new BoxCollider(button->getComponent<Sprite>()->getSize()));
 	button->addComponent(new Button());
+	auto cb = button->getComponent<Button>();
+	cb->callback.addOnclickCallback(this, buttonHard);
 
     isRunning = true;
 }
@@ -50,6 +56,16 @@ void Menu::input() {
 			isRunning = false;
 			exit = QUIT;
 			break;
+		
+		case SDL_MOUSEBUTTONDOWN:
+			SDL_GetMouseState(&pointer.x, &pointer.y);
+            if (sdlEvent.button.button == SDL_BUTTON_LEFT) {
+				EventBus::getInstance()->emitEvent<MouseClickEvent>(pointer, MouseButton::LEFT);
+                  
+            } else if (sdlEvent.button.button == SDL_BUTTON_RIGHT) {
+                EventBus::getInstance()->emitEvent<MouseClickEvent>(pointer, MouseButton::RIGHT);
+            }
+            break;
 		}
 	}
 }
@@ -61,7 +77,7 @@ void Menu::update() {
 
 	EntityManager::getInstance()->update();
 	collisionSystem.update();
-	mouseCollisionSystem.update(pointer);
+	mouseSystem.update(pointer);
 }
 
 void Menu::render() {
@@ -72,6 +88,10 @@ SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 	renderTextSystem.update(&camera);
 
 	SDL_RenderPresent(renderer);
+}
+
+void Menu::buttonHard() {
+
 }
 
 void Menu::unload() {

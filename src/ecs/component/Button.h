@@ -6,12 +6,15 @@
 #pragma once
 #include "Component.h"
 #include "Transform.h"
+#include "../../gfx/Scene.h"
 #include "../EntityManager.h"
+#include "../../core/CallbackFunction.h"
 
 class Button final : public Component {
 public:
     short hover = 8;
     bool isHover = false;
+    CallbackFunction callback;
     
     Button() {}
     Button(short hover) {
@@ -22,7 +25,12 @@ public:
         this->hover = hover;
         this->isHover = isHover;
     }
+
     ~Button() = default;
+
+    void onClick() {
+       callback.onClickEvevnt();
+    }
 
     void hoverOn() {
         if (isHover == false) {

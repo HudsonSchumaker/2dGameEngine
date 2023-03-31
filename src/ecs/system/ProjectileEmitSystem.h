@@ -5,7 +5,7 @@
 
 #pragma once
 #include "System.h"
-#include "../../event/FireEvent.h"
+#include "../../event/EventBus.h"
 
 class ProjectileEmitSystem final : public System {
 private:
