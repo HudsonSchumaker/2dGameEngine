@@ -5,6 +5,13 @@
 
 #pragma once
 #include "Event.h"
+#include "FireEvent.h"
+#include "MouseHoverEvent.h"
+#include "KeyPressedEvent.h"
+#include "MouseClickEvent.h"
+#include "MouseWheelEvent.h"
+#include "KeyReleasedEvent.h"
+#include "JoyPadLeftAxisEvent.h"
 
 class IEventCallback {
 private:

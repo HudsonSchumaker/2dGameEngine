@@ -6,4 +6,7 @@
 #pragma once
 #include "../../include/Common.h"
 
-class Component {};
+class Component {
+public:
+    unsigned long parentId = 0;
+};

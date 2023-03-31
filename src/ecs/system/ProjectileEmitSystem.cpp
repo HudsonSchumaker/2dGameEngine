@@ -6,7 +6,6 @@
 #include "ProjectileEmitSystem.h"
 #include "../EntityManager.h"
 #include "../../gfx/Animation.h"
-#include "../../event/EventBus.h"
 #include "../component/Transform.h"
 #include "../component/RigidBody.h"
 #include "../../core/BulletFactory.h"

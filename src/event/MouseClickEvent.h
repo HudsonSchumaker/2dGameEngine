@@ -5,6 +5,7 @@
 
 #pragma once
 #include "Event.h"
+#include "../core/MousePointer.h"
 
 enum class MouseButton {
 	LEFT,
@@ -12,10 +13,10 @@ enum class MouseButton {
 };
 
 
-class MouseClickEvent final : Event {
+class MouseClickEvent final : public Event {
 public:
-    int x, y;
+    MousePointer pointer;
     MouseButton button;
 
-    MouseClickEvent(int x, int y, MouseButton b) : x(x), y(y), button(b) {}
+    MouseClickEvent(MousePointer p, MouseButton b) : pointer(p), button(b) {}
 };

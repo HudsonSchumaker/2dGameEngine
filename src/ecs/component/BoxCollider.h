@@ -18,6 +18,7 @@ public:
 		this->bounds.w = v;
 		this->bounds.h = v;
 	}
+	
 	BoxCollider(short w, short h) {
 		this->bounds.w = w;
 		this->bounds.h = h;

@@ -7,7 +7,6 @@
 #include "Entity.h"
 #include "../include/Common.h"
 
-using uuid64 = size_t;
 class EntityManager final {
 private:
     unsigned long index = 0;
@@ -22,8 +21,9 @@ public:
     static EntityManager* getInstance();
     Entity* createEntity();
     Entity* createEntity(float x, float y);
-    void removeEntity(Entity* entity);
+    Entity* getEntity(unsigned long id);
     const std::vector<Entity*>& getEntities() const;
+    void removeEntity(Entity* entity);
     
     template<typename T>
     std::vector<Entity*> getEntitiesWithComponent() {

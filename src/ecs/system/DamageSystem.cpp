@@ -22,13 +22,6 @@ void DamageSystem::onCollision(CollisionEvent& event) {
 		if (event.b->tag == Tag::enemy) {
 			EntityManager::getInstance()->killEntity(event.b);
 		}
-		return;
 	}
 
-	std::cout << "entities: " <<
-		EntityManager::getInstance()->getEntities().size() 
-	<< std::endl;
-
-	std::cout << "a: " << event.a->id << std::endl;
-	std::cout << "b:" << event.b->id << std::endl;
 }
