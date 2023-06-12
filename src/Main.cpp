@@ -93,7 +93,6 @@ void setUp() {
     AudioManager::getInstance()->load();
 }
 
-
 void quit() {
     SDL_GameControllerClose(0);
     IMG_Quit();

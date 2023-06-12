@@ -1,13 +1,29 @@
 /*
-    SchumakerTeam
-    Hudson Schumaker
+	SchumakerTeam
+	Dodoi Engine
+	Hudson Schumaker
 */
 
 #include "Color.h"
 
 Color::Color(int r, int g, int b, int a) : r(r), g(g), b(b), a(a) {}
 
-unsigned long Color::createRGBA(int r, int g, int b, int a) {
+Uint32 Color::createRGBA(SDL_Color color) {
+    return createRGBA(color.r, color.g, color.b, color.a);
+}
+
+Uint32 Color::createRGBA(int r, int g, int b, int a) {
+    return ((a & 0xff) << 24)
+        + ((r & 0xff) << 16)
+        + ((g & 0xff) << 8)
+        + (b & 0xff);
+}
+
+Uint32 Color::createARGB(SDL_Color color) {
+    return createARGB(color.a, color.r, color.g, color.b);
+}
+
+Uint32 Color::createARGB(int a, int r, int g, int b) {
     return ((r & 0xff) << 24)
         + ((g & 0xff) << 16)
         + ((b & 0xff) << 8)

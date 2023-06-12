@@ -30,7 +30,7 @@ private:
 	void update() override;
 	void render() override;
 	void unload() override;
-	void buttonHard();
+	void buttonHard(int value);
 	
 public:
 	Menu();

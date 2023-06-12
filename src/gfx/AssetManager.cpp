@@ -1,6 +1,7 @@
 /*
-    SchumakerTeam
-    Hudson Schumaker
+	SchumakerTeam
+	Dodoi Engine
+	Hudson Schumaker
 */
 
 #include "Gfx.h"

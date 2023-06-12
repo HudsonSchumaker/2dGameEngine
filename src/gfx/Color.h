@@ -1,6 +1,7 @@
 /*
-    SchumakerTeam
-    Hudson Schumaker
+	SchumakerTeam
+	Dodoi Engine
+	Hudson Schumaker
 */
 
 #pragma once
@@ -14,7 +15,12 @@ public:
     Color(int r, int g, int b, int a);
     ~Color() = default;
 
-    static unsigned long createRGBA(int r, int g, int b, int a);
+    static Uint32 createRGBA(SDL_Color color);
+    static Uint32 createRGBA(int r, int g, int b, int a);
+
+    static Uint32 createARGB(SDL_Color color);
+    static Uint32 createARGB(int a, int r, int g, int b);
+
     unsigned long getHex();
     static SDL_Color getRed();
     static SDL_Color getGreen();

@@ -11,23 +11,39 @@
 
 class Button : public Component {
 public:
+    typedef std::function<void(int)> Callback;
     short hover = 8;
     bool isHover = false;
     
-    Button() {}
-    Button(short hover) {
+    Button() {
+        callback_ = nullptr;
+    }
+
+    Button(const Callback& callback) {
+        callback_ = callback;
+    }
+
+    Button(const Callback& callback, short hover) {
+        callback_ = callback;
         this->hover = hover;
     }
     
-    Button(short hover, bool isHover) {
+    Button(const Callback& callback, short hover, bool isHover) {
+        callback_ = callback;
         this->hover = hover;
         this->isHover = isHover;
     }
 
     ~Button() = default;
 
-    void callBack() {
-      
+    void setCallback(const Callback& callback) {
+       callback_ = callback;
+    }
+
+    void click(int value) {
+       if (callback_) {
+           callback_(value);
+       }
     }
 
     void hoverOn() {
@@ -53,4 +69,7 @@ public:
             }
         }
     }
+
+private:
+    Callback callback_;
 };

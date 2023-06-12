@@ -32,6 +32,9 @@ void Menu::load() {
 	button->addComponent(new BoxCollider(button->getComponent<Sprite>()->getSize()));
 	button->addComponent(new Button());
 	auto cb = button->getComponent<Button>();
+	cb->setCallback([&](int value) {
+        buttonHard(value);
+	});
 
     isRunning = true;
 }
@@ -91,8 +94,8 @@ SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 	SDL_RenderPresent(renderer);
 }
 
-void Menu::buttonHard(void) {
-	auto c = 1;
+void Menu::buttonHard(int value) {
+	std::cout << "hard button click" << std::endl;
 }
 
 void Menu::unload() {
