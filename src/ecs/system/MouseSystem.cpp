@@ -10,6 +10,14 @@
 #include "../component/Transform.h"
 #include "../component/BoxCollider.h"
 
+MouseSystem::MouseSystem() {
+    subscribeToEvents();
+}
+
+void MouseSystem::subscribeToEvents() {
+    EventBus::getInstance()->subscribeToEvent<MouseClickEvent>(this, &MouseSystem::onMouseClick);
+}
+
 void MouseSystem::update(MousePointer pointer) {
     auto entities = EntityManager::getInstance()->getEntitiesWithComponent<Button>();
 
@@ -30,6 +38,28 @@ void MouseSystem::update(MousePointer pointer) {
             } else {
                 EventBus::getInstance()->emitEvent<MouseHoverEvent>(entity, false);
             }
+        }
+    }
+}
+
+void MouseSystem::onMouseClick(MouseClickEvent& event) {
+    auto entities = EntityManager::getInstance()->getEntitiesWithComponent<Button>();
+
+    for (auto& entity : entities) {
+		Transform* transform = entity->getComponent<Transform>();
+        BoxCollider* collider = entity->getComponent<BoxCollider>();
+
+        if (collider && transform) {
+            SDL_Rect box = { 
+                static_cast<int>(transform->position.x), 
+                static_cast<int>(transform->position.y),
+                collider->bounds.w, 
+                collider->bounds.h 
+            };
+
+            if (isInside(event.pointer.getBounds(), box)) {
+
+            } 
         }
     }
 }

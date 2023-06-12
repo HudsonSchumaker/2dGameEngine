@@ -7,16 +7,11 @@
 #include "Event.h"
 #include "../core/MousePointer.h"
 
-enum class MouseButton {
-	LEFT,
-	RIGHT,
-};
-
 
 class MouseClickEvent final : public Event {
 public:
     MousePointer pointer;
     MouseButton button;
 
-    MouseClickEvent(MousePointer p, MouseButton b) : pointer(p), button(b) {}
+    MouseClickEvent(MousePointer p) : pointer(p) {}
 };

@@ -8,13 +8,11 @@
 #include "Transform.h"
 #include "../../gfx/Scene.h"
 #include "../EntityManager.h"
-#include "../../core/CallbackFunction.h"
 
-class Button final : public Component {
+class Button : public Component {
 public:
     short hover = 8;
     bool isHover = false;
-    CallbackFunction callback;
     
     Button() {}
     Button(short hover) {
@@ -28,8 +26,8 @@ public:
 
     ~Button() = default;
 
-    void onClick() {
-       callback.onClickEvevnt();
+    void callBack() {
+      
     }
 
     void hoverOn() {

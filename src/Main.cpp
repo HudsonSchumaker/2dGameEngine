@@ -81,6 +81,7 @@ int main(int argc, char* argv[]) {
 
         SDL_RenderFillRect(renderer, &rect);
         SDL_RenderPresent(renderer);
+        
     }
 
     return 0;
