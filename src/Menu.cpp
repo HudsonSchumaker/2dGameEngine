@@ -28,11 +28,11 @@ void Menu::load() {
 
 	button = EntityManager::getInstance()->createEntity(352, 360);
 	button->tag = Tag::ui;
-	button->addComponent(new Sprite("hard", true,  Tags::getLayer(Tag::ui)));
+	button->addComponent(new Sprite("hard", true, Tags::getLayer(Tag::ui)));
 	button->addComponent(new BoxCollider(button->getComponent<Sprite>()->getSize()));
-	button->addComponent(new Button());
-	auto cb = button->getComponent<Button>();
-	cb->setCallback([&](int value) {
+	button->addComponent(new Button()); 
+	auto bt = button->getComponent<Button>();
+	bt->setCallback([&](int value) {
         buttonHard(value);
 	});
 
@@ -68,7 +68,10 @@ void Menu::input() {
             } else if (sdlEvent.button.button == SDL_BUTTON_RIGHT) {
 				pointer.button = MouseButton::RIGHT;
                 EventBus::getInstance()->emitEvent<MouseClickEvent>(pointer);
-            }
+            } else if (sdlEvent.button.button == SDL_BUTTON_MIDDLE) {
+				pointer.button = MouseButton::MIDDLE;
+ 				EventBus::getInstance()->emitEvent<MouseClickEvent>(pointer);
+ 			}
             break;
 		}
 	}
@@ -95,7 +98,18 @@ SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 }
 
 void Menu::buttonHard(int value) {
-	std::cout << "hard button click" << std::endl;
+	if (value == 1) {
+		std::cout << "hard button click left" << std::endl;
+	}
+
+	if (value == 2) {
+		std::cout << "hard button click right" << std::endl;
+	}
+
+	if (value == 3) {
+		std::cout << "hard button click middle" << std::endl;
+	}
+	
 }
 
 void Menu::unload() {

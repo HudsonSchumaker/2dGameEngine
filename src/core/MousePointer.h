@@ -11,6 +11,7 @@ enum class MouseButton {
     NONE,
 	LEFT,
 	RIGHT,
+    MIDDLE,
 };
 
 class MousePointer final {
