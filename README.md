@@ -3,6 +3,7 @@
 ### Components
     Audio
     BoxCollier
+    Button
     CameraFollow
     Controller
     Health
