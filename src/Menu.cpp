@@ -32,7 +32,6 @@ void Menu::load() {
 	button->addComponent(new BoxCollider(button->getComponent<Sprite>()->getSize()));
 	button->addComponent(new Button());
 	auto cb = button->getComponent<Button>();
-	cb->callback.addOnclickCallback(this, buttonHard);
 
     isRunning = true;
 }
@@ -60,10 +59,12 @@ void Menu::input() {
 		case SDL_MOUSEBUTTONDOWN:
 			SDL_GetMouseState(&pointer.x, &pointer.y);
             if (sdlEvent.button.button == SDL_BUTTON_LEFT) {
-				EventBus::getInstance()->emitEvent<MouseClickEvent>(pointer, MouseButton::LEFT);
+				pointer.button = MouseButton::LEFT;
+				EventBus::getInstance()->emitEvent<MouseClickEvent>(pointer);
                   
             } else if (sdlEvent.button.button == SDL_BUTTON_RIGHT) {
-                EventBus::getInstance()->emitEvent<MouseClickEvent>(pointer, MouseButton::RIGHT);
+				pointer.button = MouseButton::RIGHT;
+                EventBus::getInstance()->emitEvent<MouseClickEvent>(pointer);
             }
             break;
 		}
@@ -90,8 +91,8 @@ SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 	SDL_RenderPresent(renderer);
 }
 
-void Menu::buttonHard() {
-
+void Menu::buttonHard(void) {
+	auto c = 1;
 }
 
 void Menu::unload() {
