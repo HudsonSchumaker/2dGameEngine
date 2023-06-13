@@ -31,4 +31,5 @@ public:
     static SDL_Color getOrange();
     static SDL_Color getYellow();
     static SDL_Color getPink();
+    static SDL_Color getBrown();
 };

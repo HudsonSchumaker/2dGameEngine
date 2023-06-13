@@ -50,7 +50,7 @@ SDL_Color Color::getBlue() {
 }
 
 SDL_Color Color::getWhite() {
-    SDL_Color white = { 255 , 255, 255, 255 };
+    SDL_Color white = { 255, 255, 255, 255 };
     return white;
 }
 
@@ -65,16 +65,21 @@ SDL_Color Color::getGray() {
 }
 
 SDL_Color Color::getOrange() {
-    SDL_Color orange = { 255 , 200, 0, 255 };
+    SDL_Color orange = { 255, 200, 0, 255 };
     return orange;
 }
 
 SDL_Color Color::getYellow() {
-    SDL_Color yellow = { 255 , 255, 0, 255 };
+    SDL_Color yellow = { 255, 255, 0, 255 };
     return yellow;
 }
 
 SDL_Color Color::getPink() {
-    SDL_Color pink = { 255 , 175, 175, 255 };
+    SDL_Color pink = { 255, 175, 175, 255 };
     return pink;
+}
+
+SDL_Color Color::getBrown() {
+    SDL_Color brown = { 78, 53, 36, 255 };
+    return brown;
 }
