@@ -4,6 +4,7 @@
 */
 
 #include "Gfx.h"
+#include "Color.h"
 
 Gfx::~Gfx() {
 	SDL_DestroyRenderer(renderer);
@@ -135,4 +136,62 @@ void Gfx::drawTexture(float x, float y, int w, int h, float rotation, SDL_Render
 	SDL_FRect dstRect = { x, y, static_cast<float>(w), static_cast<float>(h) };
 	float rotationDeg = rotation * 57.2958;
 	SDL_RenderCopyExF(renderer, texture, NULL, &dstRect, rotationDeg, NULL, flip);
+}
+
+void Gfx::drawLine(int x0, int y0, int x1, int y1, SDL_Color color) {
+    Uint32 pixelColor = Color::createRGBA(color.r, color.g, color.b, color.a);
+    lineColor(renderer, x0, y0, x1, y1, pixelColor);
+}
+
+void Gfx::drawCircle(int x, int y, int radius, float angle, SDL_Color color) {
+    Uint32 pixelColor = Color::createRGBA(color.r, color.g, color.b, color.a);
+    circleColor(renderer, x, y, radius, pixelColor);
+    lineColor(renderer, x, y, x + cos(angle) * radius, y + sin(angle) * radius, pixelColor);
+}
+
+void Gfx::drawFillCircle(int x, int y, int radius, SDL_Color color) {
+    Uint32 pixelColor = Color::createRGBA(color.r, color.g, color.b, color.a);
+    filledCircleColor(renderer, x, y, radius, pixelColor);
+}
+
+void Gfx::drawRect(int x, int y, int width, int height, SDL_Color color) {
+	Uint32 pixelColor = Color::createRGBA(color.r, color.g, color.b, color.a);
+    lineColor(renderer, x - width / 2.0, y - height / 2.0, x + width / 2.0, y - height / 2.0, pixelColor);
+    lineColor(renderer, x + width / 2.0, y - height / 2.0, x + width / 2.0, y + height / 2.0, pixelColor);
+    lineColor(renderer, x + width / 2.0, y + height / 2.0, x - width / 2.0, y + height / 2.0, pixelColor);
+    lineColor(renderer, x - width / 2.0, y + height / 2.0, x - width / 2.0, y - height / 2.0, pixelColor);
+}
+
+void Gfx::drawRect(int x, int y, int width, int height, float angle, SDL_Color color) {
+	// Set the rotation center
+	int centerX = x + width / 2;
+	int centerY = y + height / 2;
+
+	// Calculate the rotated coordinates of the rectangle corners
+	int rotatedX1 = centerX + (x - centerX) * cos(angle * M_PI / 180.0) - (y - centerY) * sin(angle * M_PI / 180.0);
+	int rotatedY1 = centerY + (x - centerX) * sin(angle * M_PI / 180.0) + (y - centerY) * cos(angle * M_PI / 180.0);
+
+	int rotatedX2 = centerX + (x + width - centerX) * cos(angle * M_PI / 180.0) - (y - centerY) * sin(angle * M_PI / 180.0);
+	int rotatedY2 = centerY + (x + width - centerX) * sin(angle * M_PI / 180.0) + (y - centerY) * cos(angle * M_PI / 180.0);
+
+	int rotatedX3 = centerX + (x + width - centerX) * cos(angle * M_PI / 180.0) - (y + height - centerY) * sin(angle * M_PI / 180.0);
+	int rotatedY3 = centerY + (x + width - centerX) * sin(angle * M_PI / 180.0) + (y + height - centerY) * cos(angle * M_PI / 180.0);
+
+	int rotatedX4 = centerX + (x - centerX) * cos(angle * M_PI / 180.0) - (y + height - centerY) * sin(angle * M_PI / 180.0);
+	int rotatedY4 = centerY + (x - centerX) * sin(angle * M_PI / 180.0) + (y + height - centerY) * cos(angle * M_PI / 180.0);
+
+	// Render the rotated rectangle
+	SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);  // Set the rendering color
+	SDL_RenderDrawLine(renderer, rotatedX1, rotatedY1, rotatedX2, rotatedY2);
+	SDL_RenderDrawLine(renderer, rotatedX2, rotatedY2, rotatedX3, rotatedY3);
+	SDL_RenderDrawLine(renderer, rotatedX3, rotatedY3, rotatedX4, rotatedY4);
+	SDL_RenderDrawLine(renderer, rotatedX4, rotatedY4, rotatedX1, rotatedY1);
+
+	Uint32 pixelColor = Color::createRGBA(color.r, color.g, color.b, color.a);
+	filledCircleColor(renderer, centerX, centerY, 1, pixelColor);
+}
+
+void Gfx::drawFillRect(int x, int y, int width, int height, SDL_Color color) {
+    Uint32 pixelColor = Color::createRGBA(color.r, color.g, color.b, color.a);
+    boxColor(renderer, x - width / 2.0, y - height / 2.0, x + width / 2.0, y + height / 2.0, pixelColor);
 }
