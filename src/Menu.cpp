@@ -109,7 +109,6 @@ void Menu::buttonHard(int value) {
 	if (value == 3) {
 		std::cout << "hard button click middle" << std::endl;
 	}
-	
 }
 
 void Menu::unload() {

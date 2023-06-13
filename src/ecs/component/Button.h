@@ -40,7 +40,7 @@ public:
        callback_ = callback;
     }
 
-    void click(int value) {
+    void onClick(int value) {
        if (callback_) {
            callback_(value);
        }

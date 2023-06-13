@@ -60,7 +60,7 @@ void MouseSystem::onMouseClick(MouseClickEvent& event) {
             if (isInside(event.pointer.getBounds(), box)) {
                 auto bt = entity->getComponent<Button>();
                 int buttonClick = (int)event.pointer.button;
-                bt->click(buttonClick);
+                bt->onClick(buttonClick);
             } 
         }
     }
