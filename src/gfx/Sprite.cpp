@@ -92,7 +92,6 @@ void Sprite::setOnCenterX() {
 	auto transform = parent->getComponent<Transform>();
 	if (transform) {
 		auto bounds = Gfx::getInstance()->getTextureSize(texture);
-
 		transform->position.x = SCREEN_H_WIDTH - (bounds.x/2);
 	}
 }
@@ -102,7 +101,6 @@ void Sprite::setOnCenterY() {
 	auto transform = parent->getComponent<Transform>();
 	if (transform) {
 		auto bounds = Gfx::getInstance()->getTextureSize(texture);
-
 		transform->position.y = SCREEN_H_HEIGHT - (bounds.y/2);
 	}
 }
