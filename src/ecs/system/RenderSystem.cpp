@@ -41,6 +41,7 @@ void RenderSystem::update(Camera* camera) {
 				sprite->h * transform->scale.y
 			};
 
+			//TODO: why not using Gfx ?
 			SDL_RenderCopyExF(
 				renderer,
 				sprite->texture,
