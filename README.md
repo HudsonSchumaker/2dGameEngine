@@ -2,12 +2,14 @@
 
 ### Components
     Audio
-    BoxCollier
+    Box
+    BoxCollider
     Button
     CameraFollow
     Controller
     Health
     Projectile
     RigidBody
+    Sprite
     TextLabel
     Transform
