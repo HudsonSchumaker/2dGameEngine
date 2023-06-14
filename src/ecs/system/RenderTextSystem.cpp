@@ -21,12 +21,13 @@ void RenderTextSystem::update(Camera* camera) {
 		
 		if (textLabel) {
 			SDL_Rect dstRect = {
-					static_cast<int>(textLabel->position.x - (textLabel->isFixed ? 0 : camera->x)),
-					static_cast<int>(textLabel->position.y - (textLabel->isFixed ? 0 : camera->y)),
-					textLabel->w,
-					textLabel->h
+				static_cast<int>(textLabel->position.x - (textLabel->isFixed ? 0 : camera->x)),
+				static_cast<int>(textLabel->position.y - (textLabel->isFixed ? 0 : camera->y)),
+				textLabel->w,
+				textLabel->h
 			};
 			
+			// TODO: why not using Gfx?
 			SDL_RenderCopy(renderer, textLabel->label, NULL, &dstRect);
 		}
 	}
