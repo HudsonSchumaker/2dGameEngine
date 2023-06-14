@@ -5,9 +5,10 @@
 */
 
 #pragma once
+#include "../gfx/Color.h"
 #include "../ecs/Entity.h"
-#include "../ecs/component/Component.h"
 #include "../physics/Dimension.h"
+#include "../ecs/component/Component.h"
 
 class Box final : public Component {
 public:
@@ -15,6 +16,7 @@ public:
     int h = 0;
     short layer = 10;
     bool isFixed = false;
+    SDL_Color color = Color::getWhite();
     
     Box();
     Box(int w, int h);

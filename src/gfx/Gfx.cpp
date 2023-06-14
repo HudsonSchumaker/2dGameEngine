@@ -195,3 +195,11 @@ void Gfx::drawFillRect(int x, int y, int width, int height, SDL_Color color) {
     Uint32 pixelColor = Color::createRGBA(color.r, color.g, color.b, color.a);
     boxColor(renderer, x - width / 2.0, y - height / 2.0, x + width / 2.0, y + height / 2.0, pixelColor);
 }
+
+void Gfx::drawBox(SDL_Rect rect, SDL_Color color) {
+	Uint8 r, g, b, a;
+    SDL_GetRenderDrawColor(renderer, &r, &g, &b, &a);
+    SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
+    SDL_RenderDrawRect(renderer, &rect);
+    SDL_SetRenderDrawColor(renderer, r, g, b, a);
+}

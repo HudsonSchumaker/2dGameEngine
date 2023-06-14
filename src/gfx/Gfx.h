@@ -41,4 +41,5 @@ public:
     void drawRect(int x, int y, int w, int h, SDL_Color color);
     void drawRect(int x, int y, int w, int h, float r, SDL_Color color);
     void drawFillRect(int x, int y, int w, int h, SDL_Color color);
+    void drawBox(SDL_Rect rect, SDL_Color color);
 };
