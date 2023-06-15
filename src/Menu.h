@@ -16,6 +16,7 @@ private:
     Entity* background = nullptr;
     Entity* title = nullptr;
 	Entity* button = nullptr;
+	Entity* button2 = nullptr;
 
 	MousePointer pointer;
 
