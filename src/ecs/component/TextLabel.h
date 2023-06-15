@@ -7,6 +7,7 @@
 #include "Component.h"
 #include "../../gfx/Gfx.h"
 #include "../../physics/Vec2.h"
+#include "../../ecs/component/Transform.h"
 
 class TextLabel final : public Component {
 public:
@@ -54,17 +55,45 @@ public:
     }
 
     void setOnCenter() {
+        auto parent = EntityManager::getInstance()->getEntity(parentId);
+	    auto transform = parent->getComponent<Transform>();
+	    if (transform) {
+            auto bounds = Gfx::getInstance()->getTextureSize(label);
+            position.x = transform->position.x - (bounds.x/2);
+            position.y = transform->position.y - (bounds.y/2);
+        }
+    }
+
+    void setOnCenterX() {
+        auto parent = EntityManager::getInstance()->getEntity(parentId);
+	    auto transform = parent->getComponent<Transform>();
+	    if (transform) {
+            auto bounds = Gfx::getInstance()->getTextureSize(label);
+            position.x = transform->position.x - (bounds.x/2);
+        }
+    }
+
+    void setOnCenterY() {
+       auto parent = EntityManager::getInstance()->getEntity(parentId);
+	    auto transform = parent->getComponent<Transform>();
+	    if (transform) {
+            auto bounds = Gfx::getInstance()->getTextureSize(label);
+            position.y = transform->position.y - (bounds.y/2);
+        }
+    }
+
+    void setOnScreenCenter() {
         auto bounds = Gfx::getInstance()->getTextureSize(label);
         position.x = SCREEN_H_WIDTH - (bounds.x/2);
         position.y = SCREEN_H_HEIGHT - (bounds.y/2);
     }
 
-    void setOnCenterX() {
+    void setOnScreenCenterX() {
         auto bounds = Gfx::getInstance()->getTextureSize(label);
         position.x = SCREEN_H_WIDTH - (bounds.x/2);
     }
 
-    void setOnCenterY() {
+    void setOnScreenCenterY() {
         auto bounds = Gfx::getInstance()->getTextureSize(label);
         position.y = SCREEN_H_HEIGHT - (bounds.y/2);
     }
