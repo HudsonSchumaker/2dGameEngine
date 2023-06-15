@@ -22,6 +22,7 @@ public:
     Box(int w, int h);
     Box(int w, int h, short layer);
     Box(int w, int h, short layer, bool isFixed);
+    Box(int w, int h, short layer, bool isFixed, SDL_Color color);
     ~Box() = default;
 
     void setOnCenter();

@@ -9,6 +9,7 @@
 #include "ecs/system/RenderTextSystem.h"
 #include "ecs/system/ControllerSystem.h"
 #include "ecs/system/MouseSystem.h"
+#include "ecs/system/PrimitiveRenderSystem.h"
 
 class Menu final : public Scene {
 private:
@@ -24,6 +25,7 @@ private:
 	ControllerSystem controllerSystem;
 	RenderSystem renderSystem;
     RenderTextSystem renderTextSystem;
+	PrimitiveRenderSystem primitiveRenderSystem;
 
     void load() override;
 	void input() override;

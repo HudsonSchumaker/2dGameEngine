@@ -33,6 +33,14 @@ Box::Box(int w, int h, short layer, bool isFixed) {
     this->isFixed = isFixed;
 }
 
+Box::Box(int w, int h, short layer, bool isFixed, SDL_Color color) {
+    this->w = w;
+    this->h = h;
+    this->layer = layer;
+    this->isFixed = isFixed;
+	this->color = color;
+}
+
 void Box::setOnCenter() {
 	auto parent = EntityManager::getInstance()->getEntity(parentId);
 	auto transform = parent->getComponent<Transform>();

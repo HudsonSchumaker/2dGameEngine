@@ -1,7 +1,8 @@
 
 #include "Menu.h"
-#include "gfx/Sprite.h"
+#include "gfx/Box.h"
 #include "gfx/Color.h"
+#include "gfx/Sprite.h"
 #include "event/EventBus.h"
 #include "ecs/EntityManager.h"
 #include "ecs/component/Button.h"
@@ -9,15 +10,14 @@
 #include "ecs/component/TextLabel.h"
 #include "ecs/component/Transform.h"
 
-Menu::Menu() {
-}
+Menu::Menu() {}
 
 Menu::~Menu() {
     unload();
 }
 
 void Menu::load() {
-    background = EntityManager::getInstance()->createEntity(0, 0);
+   /* background = EntityManager::getInstance()->createEntity(0, 0);
 	background->tag = Tag::background;
     background->addComponent(new Sprite("back129", true, Tags::getLayer(Tag::background)));
     background->getComponent<Sprite>()->setOnCenterX();
@@ -25,16 +25,18 @@ void Menu::load() {
     title = EntityManager::getInstance()->createEntity(350, 0);
     title->addComponent(new TextLabel("HemiHead.ttf", true, title->getComponent<Transform>()->position, "Only One dodoi engine", 60, Color::getRed()));
     title->getComponent<TextLabel>()->setOnCenterX();
-
+*/
 	button = EntityManager::getInstance()->createEntity(352, 360);
 	button->tag = Tag::ui;
-	button->addComponent(new Sprite("hard", true, Tags::getLayer(Tag::ui)));
-	button->addComponent(new BoxCollider(button->getComponent<Sprite>()->getSize()));
+	//button->addComponent(new Sprite("hard", true, Tags::getLayer(Tag::ui)));
+	button->addComponent(new Box(32, 32, Tags::getLayer(Tag::ui), true));
+	button->addComponent(new BoxCollider(button->getComponent<Box>()->getSize()));
 	button->addComponent(new Button()); 
 	auto bt = button->getComponent<Button>();
 	bt->setCallback([&](int value) {
         buttonHard(value);
 	});
+	
 
     isRunning = true;
 }
@@ -93,6 +95,7 @@ SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 		
 	renderSystem.update(&camera);
 	renderTextSystem.update(&camera);
+	primitiveRenderSystem.update(&camera);
 
 	SDL_RenderPresent(renderer);
 }

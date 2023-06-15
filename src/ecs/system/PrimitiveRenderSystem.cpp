@@ -40,10 +40,10 @@ void PrimitiveRenderSystem::renderBox(Camera* camera) {
             }
 
 			SDL_Rect dstRect = {
-				transform->position.x - (box->isFixed ? 0 : camera->x), 
-				transform->position.y - (box->isFixed ? 0 : camera->y),
-				box->w * transform->scale.x,
-				box->h * transform->scale.y
+				static_cast<int>(transform->position.x - (box->isFixed ? 0 : camera->x)), 
+				static_cast<int>(transform->position.y - (box->isFixed ? 0 : camera->y)),
+				static_cast<int>(box->w * transform->scale.x),
+				static_cast<int>(box->h * transform->scale.y)
 			};
 
             Gfx::getInstance()->drawBox(dstRect, box->color);
