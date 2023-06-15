@@ -32,12 +32,38 @@ void Menu::load() {
 	button->addComponent(new Box(32, 32, Tags::getLayer(Tag::ui), true));
 	button->addComponent(new BoxCollider(button->getComponent<Box>()->getSize()));
 	button->addComponent(new Button()); 
+	button->addComponent(new TextLabel("HemiHead.ttf", true, button->getComponent<Transform>()->position, "T", 12, Color::getRed()));
+   
+    auto label = button->getComponent<TextLabel>();
 	auto bt = button->getComponent<Button>();
+	auto tr = button->getComponent<Transform>();
+	label->position.x = tr->position.x + 16 - (label->w/2);
+    label->position.y= tr->position.y + 16 - (label->h/2);
+
+	 bt->hover = 0;
 	bt->setCallback([&](int value) {
         buttonHard(value);
 	});
-	
 
+	button2 = EntityManager::getInstance()->createEntity(100, 360);
+	button2->tag = Tag::ui;
+	//button->addComponent(new Sprite("hard", true, Tags::getLayer(Tag::ui)));
+	button2->addComponent(new Box(32, 32, Tags::getLayer(Tag::ui), true));
+	button2->addComponent(new BoxCollider(button->getComponent<Box>()->getSize()));
+	button2->addComponent(new Button()); 
+	button2->addComponent(new TextLabel("HemiHead.ttf", true, button2->getComponent<Transform>()->position, "T", 12, Color::getRed()));
+   
+    auto label2 = button2->getComponent<TextLabel>();
+	auto bt2 = button2->getComponent<Button>();
+	auto tr2 = button2->getComponent<Transform>();
+	label2->position.x = tr2->position.x + 16 - (label2->w/2);
+    label2->position.y= tr2->position.y + 16 - (label2->h/2);
+
+	bt2->hover = 0;
+	bt2->setCallback([&](int value) {
+        buttonHard(value);
+	});
+	
     isRunning = true;
 }
 
