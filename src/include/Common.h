@@ -50,5 +50,5 @@ public:
 
     constexpr static float FPS = 60.0f;
     constexpr static float FRAME_TIME_LENGTH = 1000.0f / FPS;
-    constexpr static float PI = 3.141592f;
+
 };

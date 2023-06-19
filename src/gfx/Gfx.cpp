@@ -187,6 +187,34 @@ void Gfx::drawCircle(int centerX, int centerY, int radius, SDL_Color color) {
 	SDL_SetRenderDrawColor(renderer, r, g, b, a);
 }
 
+void Gfx::drawDashedCircle(int centerX, int centerY, int radius, int dashLength, SDL_Color color) {
+	Uint8 r, g, b, a;
+    SDL_GetRenderDrawColor(renderer, &r, &g, &b, &a);
+    SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
+
+	// draw
+	const float PI = 3.141592f;
+	const int totalSegments = radius * 2 * PI / dashLength;
+
+    for (int i = 0; i < totalSegments; ++i) {
+        double angle = 2 * PI * i / totalSegments;
+
+        int x1 = centerX + radius * std::cos(angle);
+        int y1 = centerY + radius * std::sin(angle);
+
+        angle = 2 * PI * (i + 1) / totalSegments;
+
+        int x2 = centerX + radius * std::cos(angle);
+        int y2 = centerY + radius * std::sin(angle);
+
+        if (i % 2 == 0) {
+            SDL_RenderDrawLine(renderer, x1, y1, x2, y2);
+        }
+    }
+
+	SDL_SetRenderDrawColor(renderer, r, g, b, a);
+}
+
 void Gfx::drawFillCircle(int x, int y, int radius, SDL_Color color) {
     Uint32 pixelColor = Color::createRGBA(color.r, color.g, color.b, color.a);
     filledCircleColor(renderer, x, y, radius, pixelColor);
@@ -241,4 +269,3 @@ void Gfx::drawBox(SDL_Rect rect, SDL_Color color) {
     SDL_RenderDrawRect(renderer, &rect);
     SDL_SetRenderDrawColor(renderer, r, g, b, a);
 }
-

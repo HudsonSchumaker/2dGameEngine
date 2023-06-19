@@ -38,6 +38,7 @@ public:
     void drawLine(int x0, int y0, int x1, int y1, SDL_Color color);
     void drawCircle(int x, int y, int r, float a, SDL_Color color);
     void drawCircle(int centerX, int centerY, int radius, SDL_Color color);
+    void drawDashedCircle(int centerX, int centerY, int radius, int dashLength, SDL_Color color);
     void drawFillCircle(int x, int y, int r, SDL_Color color);
     void drawRect(int x, int y, int w, int h, SDL_Color color);
     void drawRect(int x, int y, int w, int h, float r, SDL_Color color);

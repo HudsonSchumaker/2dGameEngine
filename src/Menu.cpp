@@ -10,6 +10,7 @@
 #include "event/MouseClickEvent.h"
 #include "ecs/component/TextLabel.h"
 #include "ecs/component/Transform.h"
+#include "ecs/component/RigidBody.h"
 
 Menu::Menu() {}
 
@@ -65,8 +66,9 @@ void Menu::load() {
         buttonHard(value);
 	});
 
-	enemy = EntityManager::getInstance()->createEntity(190, 360);
+	enemy = EntityManager::getInstance()->createEntity(0, 360);
 	enemy->tag = Tag::ui;
+	enemy->addComponent(new RigidBody(50.0f, 0.0f));
 	//button->addComponent(new Sprite("hard", true, Tags::getLayer(Tag::ui)));
 	enemy->addComponent(new Circle(16, Tags::getLayer(Tag::ui), false));
 	enemy->addComponent(new BoxCollider(enemy->getComponent<Circle>()->getSize()));
@@ -117,15 +119,17 @@ void Menu::input() {
 void Menu::update() {
     lastTick = currentTick;
 	currentTick = SDL_GetPerformanceCounter();
-	deltaTime = (float)((currentTick - lastTick) * 1000.0f / (float)SDL_GetPerformanceFrequency());
+	//deltaTime = (float)(((currentTick - lastTick) * 1000.0f) / (float)SDL_GetPerformanceFrequency());
+	deltaTime = 0.016f;
 
 	EntityManager::getInstance()->update();
 	collisionSystem.update();
 	mouseSystem.update(pointer);
+	movementSystem.update(deltaTime);
 }
 
 void Menu::render() {
-SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 	SDL_RenderClear(renderer);
 		
 	renderSystem.update(&camera);
