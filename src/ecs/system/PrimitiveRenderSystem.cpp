@@ -7,6 +7,7 @@
 #include "PrimitiveRenderSystem.h"
 #include "../../gfx/Box.h"
 #include "../../gfx/Gfx.h"
+#include "../../gfx/Circle.h"
 #include "../EntityManager.h"
 #include "../component/Transform.h"
 
@@ -52,5 +53,31 @@ void PrimitiveRenderSystem::renderBox(Camera* camera) {
 }
 
 void PrimitiveRenderSystem::renderCircle(Camera* camera) {
+	auto entities = EntityManager::getInstance()->getEntitiesWithComponent<Circle>();
+	sort(entities.begin(), entities.end(), Circle::compareAsc);
 
+	for (auto& entity : entities) {
+		Circle* circle = entity->getComponent<Circle>();
+		Transform* transform = entity->getComponent<Transform>();
+		
+		if (circle && transform) {
+			auto wh =  circle->getSize().w;
+			bool isOutsideCameraView = (
+				transform->position.x + (transform->scale.x * wh) < camera->x ||
+				transform->position.x > camera->x + camera->w ||
+				transform->position.y + (transform->scale.y * wh) < camera->y ||
+				transform->position.y > camera->y + camera->h
+			);
+
+			if (isOutsideCameraView && !circle->isFixed) {
+                continue;
+            }
+
+			auto x = static_cast<int>(transform->position.x - (circle->isFixed ? 0 : camera->x)); 
+			auto y = static_cast<int>(transform->position.y - (circle->isFixed ? 0 : camera->y));
+			auto r = static_cast<int>(wh * transform->scale.x);
+	
+            Gfx::getInstance()->drawCircle(x, y, r, circle->color);
+		}
+	}
 }
