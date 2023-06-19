@@ -149,6 +149,44 @@ void Gfx::drawCircle(int x, int y, int radius, float angle, SDL_Color color) {
     lineColor(renderer, x, y, x + cos(angle) * radius, y + sin(angle) * radius, pixelColor);
 }
 
+void Gfx::drawCircle(int centerX, int centerY, int radius, SDL_Color color) {
+	Uint8 r, g, b, a;
+    SDL_GetRenderDrawColor(renderer, &r, &g, &b, &a);
+    SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
+	
+	//draw
+	int x = radius - 1;
+    int y = 0;
+    int dx = 1;
+    int dy = 1;
+    int err = dx - (radius << 1);
+
+    while (x >= y) {
+        SDL_RenderDrawPoint(renderer, centerX + x, centerY + y);
+        SDL_RenderDrawPoint(renderer, centerX + y, centerY + x);
+        SDL_RenderDrawPoint(renderer, centerX - y, centerY + x);
+        SDL_RenderDrawPoint(renderer, centerX - x, centerY + y);
+        SDL_RenderDrawPoint(renderer, centerX - x, centerY - y);
+        SDL_RenderDrawPoint(renderer, centerX - y, centerY - x);
+        SDL_RenderDrawPoint(renderer, centerX + y, centerY - x);
+        SDL_RenderDrawPoint(renderer, centerX + x, centerY - y);
+
+        if (err <= 0) {
+            y++;
+            err += dy;
+            dy += 2;
+        }
+
+        if (err > 0) {
+            x--;
+            dx += 2;
+            err += dx - (radius << 1);
+        }
+    }
+
+	SDL_SetRenderDrawColor(renderer, r, g, b, a);
+}
+
 void Gfx::drawFillCircle(int x, int y, int radius, SDL_Color color) {
     Uint32 pixelColor = Color::createRGBA(color.r, color.g, color.b, color.a);
     filledCircleColor(renderer, x, y, radius, pixelColor);
@@ -203,3 +241,4 @@ void Gfx::drawBox(SDL_Rect rect, SDL_Color color) {
     SDL_RenderDrawRect(renderer, &rect);
     SDL_SetRenderDrawColor(renderer, r, g, b, a);
 }
+
