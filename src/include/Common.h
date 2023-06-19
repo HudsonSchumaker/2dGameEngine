@@ -9,6 +9,7 @@
 #include <map>
 #include <list>
 #include <array>
+#include <cmath>
 #include <limits>
 #include <vector>
 #include <random>
