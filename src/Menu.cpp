@@ -1,6 +1,7 @@
 
 #include "Menu.h"
 #include "gfx/Box.h"
+#include "gfx/Circle.h"
 #include "gfx/Color.h"
 #include "gfx/Sprite.h"
 #include "event/EventBus.h"
@@ -63,6 +64,14 @@ void Menu::load() {
 	bt2->setCallback([&](int value) {
         buttonHard(value);
 	});
+
+	enemy = EntityManager::getInstance()->createEntity(190, 360);
+	enemy->tag = Tag::ui;
+	//button->addComponent(new Sprite("hard", true, Tags::getLayer(Tag::ui)));
+	enemy->addComponent(new Circle(16, Tags::getLayer(Tag::ui), false));
+	enemy->addComponent(new BoxCollider(enemy->getComponent<Circle>()->getSize()));
+	enemy->addComponent(new Button()); 
+	enemy->addComponent(new TextLabel("HemiHead.ttf", true, enemy->getComponent<Transform>()->position, "E", 12, Color::getRed()));
 	
     isRunning = true;
 }
