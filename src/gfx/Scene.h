@@ -19,13 +19,15 @@ private:
 protected:
 	Camera camera;
 	SDL_Renderer* renderer;
+	int millisecsPreviousFrame = 0;
 	float deltaTime = 0.0f;
-	int ticksLastFrame = 0;
-	Uint64 currentTick = 0;
-	Uint64 lastTick = 0;
 
 	bool isRunning = false;
 	short exit = 0;
+
+	float calculateDeltaTime();
+	void beginRender();
+	void endRender();
 
 public:
 	Scene();
