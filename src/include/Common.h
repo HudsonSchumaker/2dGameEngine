@@ -48,7 +48,6 @@ class Common final {
 public:
     inline static const char NAME[] = "- -";
 
-    constexpr static float FPS = 60.0f;
-    constexpr static float FRAME_TIME_LENGTH = 1000.0f / FPS;
-
+    static const int FPS = 120;
+    static const int MILLISECS_PER_FRAME = 1000 / FPS; 
 };
