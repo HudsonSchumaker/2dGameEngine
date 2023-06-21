@@ -18,7 +18,6 @@ private:
     //Entity* title = nullptr;
 	Entity* button = nullptr;
 	Entity* button2 = nullptr;
-	Entity* enemy = nullptr;
 	MousePointer pointer;
 
     CollisionSystem collisionSystem;
