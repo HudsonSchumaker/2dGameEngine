@@ -77,8 +77,8 @@ void PrimitiveRenderSystem::renderCircle(Camera* camera) {
 			auto y = static_cast<int>(transform->position.y - (circle->isFixed ? 0 : camera->y));
 			auto r = static_cast<int>(wh * transform->scale.x);
 	
-            //Gfx::getInstance()->drawCircle(x, y, r, circle->color);
-			Gfx::getInstance()->drawDashedCircle(x, y, r, 8, circle->color);
+            Gfx::getInstance()->drawCircle(x, y, r, circle->color);
+			//Gfx::getInstance()->drawDashedCircle(x, y, r, 8, circle->color);
 		}
 	}
 }
