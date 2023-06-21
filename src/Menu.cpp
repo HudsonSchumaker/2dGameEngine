@@ -66,14 +66,18 @@ void Menu::load() {
         buttonHard(value);
 	});
 
-	enemy = EntityManager::getInstance()->createEntity(0, 360);
-	enemy->tag = Tag::ui;
-	enemy->addComponent(new RigidBody(50.0f, 0.0f));
-	//button->addComponent(new Sprite("hard", true, Tags::getLayer(Tag::ui)));
-	enemy->addComponent(new Circle(16, Tags::getLayer(Tag::ui), false));
-	enemy->addComponent(new BoxCollider(enemy->getComponent<Circle>()->getSize()));
-	enemy->addComponent(new Button()); 
-	enemy->addComponent(new TextLabel("HemiHead.ttf", true, enemy->getComponent<Transform>()->position, "E", 12, Color::getRed()));
+	for(int i = 1; i < 16; i++) {
+		auto enemy = EntityManager::getInstance()->createEntity(0, i*42);
+		enemy->tag = Tag::ui;
+		enemy->addComponent(new RigidBody(10.0f + i, 0.0f));
+		enemy->addComponent(new Box(32, 32, Tags::getLayer(Tag::ui), true));
+		//button->addComponent(new Sprite("hard", true, Tags::getLayer(Tag::ui)));
+		enemy->addComponent(new Circle(16, Tags::getLayer(Tag::ui), false));
+		enemy->addComponent(new BoxCollider(enemy->getComponent<Circle>()->getSize()));
+		enemy->addComponent(new Button()); 
+		//enemy->addComponent(new TextLabel("HemiHead.ttf", true, enemy->getComponent<Transform>()->position, "E", 12, Color::getRed()));
+	}
+	
 	
     isRunning = true;
 }
@@ -89,6 +93,8 @@ short Menu::run() {
 }
 
 void Menu::input() {
+	
+
 	SDL_Event sdlEvent;
 	SDL_GetMouseState(&pointer.x, &pointer.y);
 	while (SDL_PollEvent(&sdlEvent)) {
@@ -117,26 +123,22 @@ void Menu::input() {
 }
 
 void Menu::update() {
-    lastTick = currentTick;
-	currentTick = SDL_GetPerformanceCounter();
-	//deltaTime = (float)(((currentTick - lastTick) * 1000.0f) / (float)SDL_GetPerformanceFrequency());
-	deltaTime = 0.016f;
+	calculateDeltaTime();
 
 	EntityManager::getInstance()->update();
 	collisionSystem.update();
 	mouseSystem.update(pointer);
 	movementSystem.update(deltaTime);
-}
+} 
 
 void Menu::render() {
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-	SDL_RenderClear(renderer);
+	beginRender();
 		
 	renderSystem.update(&camera);
 	renderTextSystem.update(&camera);
 	primitiveRenderSystem.update(&camera);
 
-	SDL_RenderPresent(renderer);
+	endRender();
 }
 
 void Menu::buttonHard(int value) {
