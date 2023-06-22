@@ -28,13 +28,13 @@ int main(int argc, char* argv[]) {
     int x, y;
     auto controller = SDL_GameControllerOpen(0);
 
-    bool quit = false;
-    while (!quit) {
+    bool exit = false;
+    while (!exit) {
         SDL_Event event;
         while (SDL_PollEvent(&event)) {
             switch (event.type) {
                 case SDL_QUIT:
-                    quit = true;
+                    exit = true;
                     break;
                 case SDL_MOUSEBUTTONDOWN:
                     if (event.button.button == SDL_BUTTON_LEFT) {
@@ -82,6 +82,8 @@ int main(int argc, char* argv[]) {
         SDL_RenderFillRect(renderer, &rect);
         SDL_RenderPresent(renderer);
     }
+
+    quit();
 
     return 0;
 }
