@@ -66,10 +66,10 @@ void Menu::load() {
         buttonHard(value);
 	});
 
-	for(int i = 1; i < 16; i++) {
-		auto enemy = EntityManager::getInstance()->createEntity(0, i*42);
+	for(int i = 1; i < 500; i++) {
+		auto enemy = EntityManager::getInstance()->createEntity(0, i+1);
 		enemy->tag = Tag::ui;
-		enemy->addComponent(new RigidBody(10.0f + i, 0.0f));
+		enemy->addComponent(new RigidBody(0.01f +i, 0.0f));
 		enemy->addComponent(new Box(32, 32, Tags::getLayer(Tag::ui), true));
 		//button->addComponent(new Sprite("hard", true, Tags::getLayer(Tag::ui)));
 		enemy->addComponent(new Circle(16, Tags::getLayer(Tag::ui), false));
