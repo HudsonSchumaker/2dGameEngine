@@ -48,6 +48,6 @@ class Common final {
 public:
     inline static const char NAME[] = "- -";
 
-    static const int FPS = 120;
+    static const int FPS = 60;
     static const int MILLISECS_PER_FRAME = 1000 / FPS; 
 };
