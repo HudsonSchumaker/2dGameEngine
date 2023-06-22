@@ -77,8 +77,7 @@ void Menu::load() {
 		enemy->addComponent(new Button()); 
 		//enemy->addComponent(new TextLabel("HemiHead.ttf", true, enemy->getComponent<Transform>()->position, "E", 12, Color::getRed()));
 	}
-	
-	
+
     isRunning = true;
 }
 
@@ -93,8 +92,6 @@ short Menu::run() {
 }
 
 void Menu::input() {
-	
-
 	SDL_Event sdlEvent;
 	SDL_GetMouseState(&pointer.x, &pointer.y);
 	while (SDL_PollEvent(&sdlEvent)) {
