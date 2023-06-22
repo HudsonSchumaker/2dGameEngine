@@ -11,6 +11,7 @@
 #include "ecs/component/TextLabel.h"
 #include "ecs/component/Transform.h"
 #include "ecs/component/RigidBody.h"
+#include "ecs/component/SpriteText.h"
 
 Menu::Menu() {}
 
@@ -66,16 +67,16 @@ void Menu::load() {
         buttonHard(value);
 	});
 
-	for(int i = 1; i < 500; i++) {
-		auto enemy = EntityManager::getInstance()->createEntity(0, i+1);
+	for(int i = 1; i < 11; i++) {
+		auto enemy = EntityManager::getInstance()->createEntity(0, i * 42);
 		enemy->tag = Tag::ui;
-		enemy->addComponent(new RigidBody(0.01f +i, 0.0f));
-		enemy->addComponent(new Box(32, 32, Tags::getLayer(Tag::ui), true));
-		//button->addComponent(new Sprite("hard", true, Tags::getLayer(Tag::ui)));
-		enemy->addComponent(new Circle(16, Tags::getLayer(Tag::ui), false));
+		enemy->addComponent(new RigidBody(0.1f + i, 0.0f));
+		//enemy->addComponent(new Box(32, 32, Tags::getLayer(Tag::ui), true));
+		//enemy->addComponent(new Sprite("hard", true, Tags::getLayer(Tag::ui)));
+		enemy->addComponent(new Circle(9, Tags::getLayer(Tag::ui), false, Color::getRed()));
 		enemy->addComponent(new BoxCollider(enemy->getComponent<Circle>()->getSize()));
-		enemy->addComponent(new Button()); 
-		//enemy->addComponent(new TextLabel("HemiHead.ttf", true, enemy->getComponent<Transform>()->position, "E", 12, Color::getRed()));
+		//enemy->addComponent(new Button()); 
+		enemy->addComponent(new SpriteText("HemiHead.ttf", true, {-3, -9}, "E", 12, Color::getRed()));
 	}
 
     isRunning = true;
