@@ -79,6 +79,8 @@ void Menu::load() {
 		enemy->addComponent(new SpriteText("HemiHead.ttf", true, {-3, -9}, "E", 12, Color::getRed()));
 	}
 
+	Gfx::getInstance()->drawLine(400,400, 600, 600, Color::getBlue());
+
     isRunning = true;
 }
 
