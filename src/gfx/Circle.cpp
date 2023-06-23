@@ -6,7 +6,6 @@
 
 #include "Gfx.h"
 #include "Circle.h"
-#include "AssetManager.h"
 #include "../ecs/EntityManager.h"
 #include "../ecs/component/Transform.h"
 
