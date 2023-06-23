@@ -10,7 +10,6 @@
 #include "../ecs/component/Transform.h"
 
 Dimension Line::getSize() const {
-
     double x1 = a.x;
     double y1 = a.y;
     double x2 = b.x;

@@ -10,6 +10,7 @@
     Circle       - to draw a circle   
     Controller   - to use a joystick controller
     Health       - to set a health value
+    Line         - to draw a line
     Projectile   - to set a projectile
     RigidBody    - to set the velocity
     Sprite       - to draw a sprite on the screen
