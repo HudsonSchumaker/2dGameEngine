@@ -1,6 +1,7 @@
 
 #include "Menu.h"
 #include "gfx/Box.h"
+#include "gfx/Line.h"
 #include "gfx/Circle.h"
 #include "gfx/Color.h"
 #include "gfx/Sprite.h"
@@ -43,7 +44,7 @@ void Menu::load() {
 	label->position.x = tr->position.x + 16 - (label->w/2);
     label->position.y= tr->position.y + 16 - (label->h/2);
 
-	 bt->hover = 0;
+	bt->hover = 0;
 	bt->setCallback([&](int value) {
         buttonHard(value);
 	});
@@ -60,7 +61,7 @@ void Menu::load() {
 	auto bt2 = button2->getComponent<Button>();
 	auto tr2 = button2->getComponent<Transform>();
 	label2->position.x = tr2->position.x + 16 - (label2->w/2);
-    label2->position.y= tr2->position.y + 16 - (label2->h/2);
+    label2->position.y = tr2->position.y + 16 - (label2->h/2);
 
 	bt2->hover = 0;
 	bt2->setCallback([&](int value) {
@@ -79,8 +80,10 @@ void Menu::load() {
 		enemy->addComponent(new SpriteText("HemiHead.ttf", true, {-3, -9}, "E", 12, Color::getRed()));
 	}
 
-	Gfx::getInstance()->drawLine(400,400, 600, 600, Color::getBlue());
-
+	auto line = EntityManager::getInstance()->createEntity(300, 300);
+	line->tag = Tag::ui;
+	line->addComponent(new Line(340, 340));
+	
     isRunning = true;
 }
 

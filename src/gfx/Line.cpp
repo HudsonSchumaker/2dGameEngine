@@ -10,13 +10,19 @@
 #include "../ecs/component/Transform.h"
 
 Dimension Line::getSize() const {
-    double x1 = a.x;
-    double y1 = a.y;
-    double x2 = b.x;
-    double y2 = b.y;
+	auto parent = EntityManager::getInstance()->getEntity(parentId);
+	auto transform = parent->getComponent<Transform>();
+	if (transform) {
+		double x1 = transform->position.x;
+    	double y1 = transform->position.y;
+    	double x2 = b.x;
+    	double y2 = b.y;
 
-    double length = std::sqrt(std::pow(x2 - x1, 2) + std::pow(y2 - y1, 2));
-	return Dimension(length, 2);
+    	double length = std::sqrt(std::pow(x2 - x1, 2) + std::pow(y2 - y1, 2));
+		return Dimension(length, 2);
+	}
+	
+	return Dimension(0, 0);
 }
 
 bool Line::compareAsc(Entity* e1, Entity* e2) {

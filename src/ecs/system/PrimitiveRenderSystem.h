@@ -12,9 +12,10 @@ class PrimitiveRenderSystem final : public System {
 private:
 	SDL_Renderer* renderer = nullptr;
 
+	void renderLine(Camera* camera);
     void renderBox(Camera* camera);
     void renderCircle(Camera* camera);
-
+	
 public:
 	PrimitiveRenderSystem();
 	~PrimitiveRenderSystem() = default;

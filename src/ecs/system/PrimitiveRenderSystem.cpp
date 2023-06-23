@@ -7,6 +7,7 @@
 #include "PrimitiveRenderSystem.h"
 #include "../../gfx/Box.h"
 #include "../../gfx/Gfx.h"
+#include "../../gfx/Line.h"
 #include "../../gfx/Circle.h"
 #include "../EntityManager.h"
 #include "../component/Transform.h"
@@ -16,8 +17,42 @@ PrimitiveRenderSystem::PrimitiveRenderSystem() {
 }
 
 void PrimitiveRenderSystem::update(Camera* camera) {
+	renderLine(camera);
 	renderBox(camera);
     renderCircle(camera);
+}
+
+void PrimitiveRenderSystem::renderLine(Camera* camera) {
+	auto entities = EntityManager::getInstance()->getEntitiesWithComponent<Line>();
+	sort(entities.begin(), entities.end(), Line::compareAsc);
+
+	for (auto& entity : entities) {
+		Line* line = entity->getComponent<Line>();
+		Transform* transform = entity->getComponent<Transform>();
+		auto dimension = line->getSize();
+		auto lW = dimension.w;
+		auto lH = dimension.h;
+
+		if (line && transform) {
+			bool isOutsideCameraView = (
+				transform->position.x + (transform->scale.x * lW) < camera->x ||
+				transform->position.x > camera->x + camera->w ||
+				transform->position.y + (transform->scale.y * lH) < camera->y ||
+				transform->position.y > camera->y + camera->h
+			);
+
+			if (isOutsideCameraView && !line->isFixed) {
+                continue;
+            }
+
+			auto x0 = static_cast<int>(transform->position.x - (line->isFixed ? 0 : camera->x)); 
+			auto y0 = static_cast<int>(transform->position.y - (line->isFixed ? 0 : camera->y));
+			auto x1 = static_cast<int>(line->b.x * transform->scale.x); 
+			auto y1 = static_cast<int>(line->b.y * transform->scale.y);
+			
+            Gfx::getInstance()->drawLine(x0, y0, x1, y1, line->color);
+		}
+	}
 }
 
 void PrimitiveRenderSystem::renderBox(Camera* camera) {
