@@ -25,7 +25,6 @@ public:
     ~Circle() = default;
 
     Dimension getSize() const;
-
     static bool compareAsc(Entity* e1, Entity* e2);
 	static bool compareDesc(Entity* e1, Entity* e2);
 };
