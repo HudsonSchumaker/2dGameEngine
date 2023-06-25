@@ -68,16 +68,22 @@ void Menu::load() {
         buttonHard(value);
 	});
 
-	for(int i = 1; i < 11; i++) {
-		auto enemy = EntityManager::getInstance()->createEntity(0, i * 42);
+	for(int i = 1; i < 1000; i++) {
+		auto enemy = EntityManager::getInstance()->createEntity(0, i * 32);
 		enemy->tag = Tag::ui;
 		enemy->addComponent(new RigidBody(0.1f + i, 0.0f));
 		//enemy->addComponent(new Box(32, 32, Tags::getLayer(Tag::ui), true));
 		//enemy->addComponent(new Sprite("hard", true, Tags::getLayer(Tag::ui)));
-		enemy->addComponent(new Circle(9, Tags::getLayer(Tag::ui), false, Color::getRed()));
+		enemy->addComponent(new Circle(16, Tags::getLayer(Tag::ui), false, Color::getRed()));
 		enemy->addComponent(new BoxCollider(enemy->getComponent<Circle>()->getSize()));
-		//enemy->addComponent(new Button()); 
+		enemy->addComponent(new Button()); 
 		enemy->addComponent(new SpriteText("HemiHead.ttf", true, {-3, -9}, "E", 12, Color::getRed()));
+		auto bt2 = enemy->getComponent<Button>();
+		bt2->hover = 0;
+		bt2->setCallback([&](int value) {
+        buttonHard(value);
+	});
+
 	}
 
 	auto line = EntityManager::getInstance()->createEntity(300, 300);
@@ -127,6 +133,20 @@ void Menu::input() {
 
 void Menu::update() {
 	calculateDeltaTime();
+
+	auto circles = EntityManager::getInstance()->getEntitiesWithComponent<Circle>();
+	for(auto& circle : circles) {
+		if( circle->id%2 == 0) {
+			auto r = circle->getComponent<Circle>()->getRadius();
+
+			if (r < 28) {
+				circle->getComponent<Circle>()->setRadius(r + 2.0f);
+			}
+			if (r > 27) {
+				circle->getComponent<Circle>()->setRadius(r - 16.0f);
+			}
+		}
+	}
 
 	EntityManager::getInstance()->update();
 	collisionSystem.update();

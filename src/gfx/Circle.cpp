@@ -9,9 +9,12 @@
 #include "../ecs/EntityManager.h"
 #include "../ecs/component/Transform.h"
 
+void Circle::sideCalculation() {
+    side = std::sqrt(2) * r;
+}
+
 Dimension Circle::getSize() const {
-    int sideLength = sqrt(2) * r;
-	return Dimension(sideLength, sideLength);
+	return Dimension(side, side);
 }
 
 bool Circle::compareAsc(Entity* e1, Entity* e2) {
