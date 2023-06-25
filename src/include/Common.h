@@ -39,15 +39,15 @@
 #define IMAGE_FOLDER "./data/images/"
 #define MAP_FOLDER "./data/maps/"
 
-#define SCREEN_WIDTH 1280
+#define SCREEN_WIDTH 1600
 #define SCREEN_H_WIDTH SCREEN_WIDTH/2
-#define SCREEN_HEIGHT 720
+#define SCREEN_HEIGHT 900
 #define SCREEN_H_HEIGHT SCREEN_HEIGHT/2 
 
 class Common final {
 public:
     inline static const char NAME[] = "- -";
 
-    static const int FPS = 60;
+    static const int FPS = 80;
     static const int MILLISECS_PER_FRAME = 1000 / FPS; 
 };
