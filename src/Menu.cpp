@@ -45,8 +45,8 @@ void Menu::load() {
     label->position.y= tr->position.y + 16 - (label->h/2);
 
 	bt->hover = 0;
-	bt->setCallback([&](int value) {
-        buttonHard(value);
+	bt->setCallback([&](int id, int value) {
+        buttonHard(id, value);
 	});
 
 	button2 = EntityManager::getInstance()->createEntity(100, 360);
@@ -64,8 +64,8 @@ void Menu::load() {
     label2->position.y = tr2->position.y + 16 - (label2->h/2);
 
 	bt2->hover = 0;
-	bt2->setCallback([&](int value) {
-        buttonHard(value);
+	bt2->setCallback([&](int id, int value) {
+        buttonHard(id, value);
 	});
 
 	for(int i = 1; i < 1000; i++) {
@@ -75,15 +75,15 @@ void Menu::load() {
 		//enemy->addComponent(new Box(32, 32, Tags::getLayer(Tag::ui), true));
 		//enemy->addComponent(new Sprite("hard", true, Tags::getLayer(Tag::ui)));
 		enemy->addComponent(new Circle(16, Tags::getLayer(Tag::ui), false, Color::getRed()));
+		enemy->addComponent(new Circle(12, Tags::getLayer(Tag::ui), false, Color::getBlue()));
 		enemy->addComponent(new BoxCollider(enemy->getComponent<Circle>()->getSize()));
 		enemy->addComponent(new Button()); 
 		enemy->addComponent(new SpriteText("HemiHead.ttf", true, {-3, -9}, "E", 12, Color::getRed()));
 		auto bt2 = enemy->getComponent<Button>();
 		bt2->hover = 0;
-		bt2->setCallback([&](int value) {
-        buttonHard(value);
-	});
-
+		bt2->setCallback([&](int id, int value) {
+        	buttonHard(id, value);
+		});
 	}
 
 	auto line = EntityManager::getInstance()->createEntity(300, 300);
@@ -164,7 +164,8 @@ void Menu::render() {
 	endRender();
 }
 
-void Menu::buttonHard(int value) {
+void Menu::buttonHard(int id, int value) {
+	std::cout << "entity: "<< id << std::endl;
 	if (value == 1) {
 		std::cout << "hard button click left" << std::endl;
 	}

@@ -11,7 +11,7 @@
 
 class Button : public Component {
 public:
-    typedef std::function<void(int)> Callback;
+    typedef std::function<void(int, int)> Callback;
     short hover = 8;
     bool isHover = false;
     
@@ -40,9 +40,9 @@ public:
        callback_ = callback;
     }
 
-    void onClick(int value) {
+    void onClick(int id, int value) {
        if (callback_) {
-           callback_(value);
+           callback_(id, value);
        }
     }
 

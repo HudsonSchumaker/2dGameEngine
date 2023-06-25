@@ -34,7 +34,7 @@ private:
 	void update() override;
 	void render() override;
 	void unload() override;
-	void buttonHard(int value);
+	void buttonHard(int id, int value);
 	
 public:
 	Menu();
