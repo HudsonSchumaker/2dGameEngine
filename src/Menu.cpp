@@ -75,7 +75,6 @@ void Menu::load() {
 		//enemy->addComponent(new Box(32, 32, Tags::getLayer(Tag::ui), true));
 		//enemy->addComponent(new Sprite("hard", true, Tags::getLayer(Tag::ui)));
 		enemy->addComponent(new Circle(16, Tags::getLayer(Tag::ui), false, Color::getRed()));
-		enemy->addComponent(new Circle(12, Tags::getLayer(Tag::ui), false, Color::getBlue()));
 		enemy->addComponent(new BoxCollider(enemy->getComponent<Circle>()->getSize()));
 		enemy->addComponent(new Button()); 
 		enemy->addComponent(new SpriteText("HemiHead.ttf", true, {-3, -9}, "E", 12, Color::getRed()));

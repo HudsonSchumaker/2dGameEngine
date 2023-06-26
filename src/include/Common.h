@@ -46,7 +46,7 @@
 
 class Common final {
 public:
-    inline static const char NAME[] = "- -";
+    inline static const char NAME[] = "- doodi engine 0.0.2 -";
 
     static const int FPS = 80;
     static const int MILLISECS_PER_FRAME = 1000 / FPS; 
