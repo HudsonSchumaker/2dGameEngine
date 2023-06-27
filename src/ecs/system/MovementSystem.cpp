@@ -5,6 +5,7 @@
 
 #include "MovementSystem.h"
 #include "../EntityManager.h"
+#include "../component/Waypoint.h"
 #include "../component/Transform.h"
 #include "../component/RigidBody.h"
 
@@ -15,9 +16,11 @@ void MovementSystem::update(float dt) {
 		RigidBody* rigidBody = entity->getComponent<RigidBody>();
 		Transform* transform = entity->getComponent<Transform>();
 
-		if (rigidBody && transform) {
-			transform->position.x += rigidBody->velocity.x * dt;
-			transform->position.y += rigidBody->velocity.y * dt;
+		if (!entity->getComponent<Waypoint>()) {
+			if (rigidBody && transform) {
+				transform->position.x += rigidBody->velocity.x * dt;
+				transform->position.y += rigidBody->velocity.y * dt;
+			}
 		}
 	}
 }
