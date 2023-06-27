@@ -26,9 +26,9 @@ public:
     Circle(int radius, short layer, bool isFixed, SDL_Color color) : r(radius), layer(layer), isFixed(isFixed), color(color) { sideCalculation(); }
     ~Circle() = default;
 
+    void sideCalculation();
     int getRadius() const { return r; }
     void setRadius(int radius) { r = radius; sideCalculation(); }
-    void sideCalculation();
     Dimension getSize() const;
     static bool compareAsc(Entity* e1, Entity* e2);
 	static bool compareDesc(Entity* e1, Entity* e2);
