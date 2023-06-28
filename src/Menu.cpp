@@ -73,12 +73,14 @@ void Menu::load() {
 std::vector<std::pair<short, short>> waypoints = {
     {150, 150},
     {150, 400},
-    {400, 400}
+    {400, 400},
+	{500, 500},
+	{10, 10}
 };
 	for(int i = 1; i < 2; i++) {
 		auto enemy = EntityManager::getInstance()->createEntity(0, i * 80);
 		enemy->tag = Tag::ui;
-		enemy->addComponent(new RigidBody(7.0f + i, 7.0f + i));
+		enemy->addComponent(new RigidBody(13.0f + i, 7.0f + i));
 		//enemy->addComponent(new Box(32, 32, Tags::getLayer(Tag::ui), true));
 		//enemy->addComponent(new Sprite("hard", true, Tags::getLayer(Tag::ui)));
 		enemy->addComponent(new Circle(16, Tags::getLayer(Tag::ui), false, Color::getRed()));
