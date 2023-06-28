@@ -11,6 +11,7 @@
 #include "ecs/system/MouseSystem.h"
 #include "ecs/system/PrimitiveRenderSystem.h" 
 #include "ecs/system/MovementSystem.h"
+#include "ecs/system/WaypointNavigationSystem.h"
 
 class Menu final : public Scene {
 private:
@@ -28,6 +29,7 @@ private:
     RenderTextSystem renderTextSystem;
 	PrimitiveRenderSystem primitiveRenderSystem;
 	MovementSystem movementSystem;
+	WaypointNavigationSystem waypointNavigationSystem;
 
     void load() override;
 	void input() override;

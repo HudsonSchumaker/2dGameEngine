@@ -13,6 +13,7 @@
 #include "ecs/component/Transform.h"
 #include "ecs/component/RigidBody.h"
 #include "ecs/component/SpriteText.h"
+#include "ecs/component/Waypoint.h"
 
 Menu::Menu() {}
 
@@ -68,14 +69,20 @@ void Menu::load() {
         buttonHard(id, value);
 	});
 
-	for(int i = 1; i < 1000; i++) {
-		auto enemy = EntityManager::getInstance()->createEntity(0, i * 32);
+
+std::vector<std::pair<short, short>> waypoints = {
+    {150, 150},
+    {150, 400},
+    {400, 400}
+};
+	for(int i = 1; i < 2; i++) {
+		auto enemy = EntityManager::getInstance()->createEntity(0, i * 80);
 		enemy->tag = Tag::ui;
-		enemy->addComponent(new RigidBody(0.1f + i, 0.0f));
+		enemy->addComponent(new RigidBody(7.0f + i, 7.0f + i));
 		//enemy->addComponent(new Box(32, 32, Tags::getLayer(Tag::ui), true));
 		//enemy->addComponent(new Sprite("hard", true, Tags::getLayer(Tag::ui)));
 		enemy->addComponent(new Circle(16, Tags::getLayer(Tag::ui), false, Color::getRed()));
-
+		enemy->addComponent(new Waypoint(waypoints));
 		enemy->addComponent(new BoxCollider(enemy->getComponent<Circle>()->getSize()));
 		enemy->addComponent(new Button()); 
 		enemy->addComponent(new SpriteText("HemiHead.ttf", true, { -3, -9 }, "E", 12, Color::getRed()));
@@ -152,6 +159,7 @@ void Menu::update() {
 	collisionSystem.update();
 	mouseSystem.update(pointer);
 	movementSystem.update(deltaTime);
+	waypointNavigationSystem.update(deltaTime);
 } 
 
 void Menu::render() {
