@@ -10,6 +10,7 @@
 
 void CollisionSystem::update() {
 	auto entities = EntityManager::getInstance()->getEntitiesWithComponent<BoxCollider>();
+    
     for (int i = 0; i < entities.size(); i++) {
         Entity* a = entities[i];
         auto aTransform = a->getComponent<Transform>();
