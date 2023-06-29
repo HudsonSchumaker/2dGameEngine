@@ -69,13 +69,12 @@ void Menu::load() {
         buttonHard(id, value);
 	});
 
-
 std::vector<std::pair<short, short>> waypoints = {
-    {150, 150},
-    {150, 400},
-    {400, 400},
-	{500, 500},
-	{10, 10}
+    { 150, 150 },
+    { 150, 400 },
+    { 400, 400 },
+	{ 500, 500 },
+	{ 10, 10 }
 };
 	for(int i = 1; i < 20; i++) {
 		auto enemy = EntityManager::getInstance()->createEntity(0, i * 80);
