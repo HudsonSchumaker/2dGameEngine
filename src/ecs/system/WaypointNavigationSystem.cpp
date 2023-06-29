@@ -46,5 +46,4 @@ void WaypointNavigationSystem::update(float dt) {
             }
         }
     }      
-    
 }
