@@ -22,12 +22,7 @@ EntityManager* EntityManager::getInstance() {
 }
 
 Entity* EntityManager::createEntity() {
-	Entity* entity = new Entity();
-	index++;
-	entity->id = index;
-	entity->addComponent(new Transform(Vec2(0, 0)));
-	entities.push_back(entity);
-	return entity;
+	return createEntity(0.0f ,0.0f);
 }
 
 Entity* EntityManager::createEntity(float x, float y) {
