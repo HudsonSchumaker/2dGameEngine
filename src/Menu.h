@@ -3,14 +3,15 @@
 #include "gfx/Scene.h"
 #include "ecs/Entity.h"
 #include "core/MousePointer.h"
+#include "ecs/system/RadarSystem.h" 
+#include "ecs/system/MouseSystem.h"
 #include "ecs/system/RenderSystem.h"
+#include "ecs/system/MovementSystem.h"
 #include "ecs/system/CollisionSystem.h"
 #include "ecs/system/GuiUpdateSystem.h"
 #include "ecs/system/RenderTextSystem.h"
 #include "ecs/system/ControllerSystem.h"
-#include "ecs/system/MouseSystem.h"
 #include "ecs/system/PrimitiveRenderSystem.h" 
-#include "ecs/system/MovementSystem.h"
 #include "ecs/system/WaypointNavigationSystem.h"
 
 class Menu final : public Scene {
@@ -30,6 +31,7 @@ private:
 	PrimitiveRenderSystem primitiveRenderSystem;
 	MovementSystem movementSystem;
 	WaypointNavigationSystem waypointNavigationSystem;
+	RadarSystem radarSystem;
 
     void load() override;
 	void input() override;

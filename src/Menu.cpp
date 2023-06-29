@@ -7,6 +7,7 @@
 #include "gfx/Sprite.h"
 #include "event/EventBus.h"
 #include "ecs/EntityManager.h"
+#include "ecs/component/Radar.h"
 #include "ecs/component/Button.h"
 #include "event/MouseClickEvent.h"
 #include "ecs/component/TextLabel.h"
@@ -38,6 +39,7 @@ void Menu::load() {
 	button->addComponent(new BoxCollider(button->getComponent<Box>()->getSize()));
 	button->addComponent(new Button()); 
 	button->addComponent(new TextLabel("HemiHead.ttf", true, button->getComponent<Transform>()->position, "T", 12, Color::getRed()));
+	button->addComponent(new Radar(64));
    
     auto label = button->getComponent<TextLabel>();
 	auto bt = button->getComponent<Button>();
@@ -76,10 +78,10 @@ void Menu::load() {
 		{ 500, 500 },
 		{ 10, 10 }
 	};
-	
-	for(int i = 1; i < 20; i++) {
+
+	for(int i = 1; i < 3; i++) {
 		auto enemy = EntityManager::getInstance()->createEntity(0, i * 80);
-		enemy->tag = Tag::ui;
+		enemy->tag = Tag::enemy;
 		enemy->addComponent(new RigidBody(21.0f + i, 21.0f + i));
 		//enemy->addComponent(new Box(32, 32, Tags::getLayer(Tag::ui), true));
 		//enemy->addComponent(new Sprite("hard", true, Tags::getLayer(Tag::ui)));
@@ -162,6 +164,7 @@ void Menu::update() {
 	mouseSystem.update(pointer);
 	movementSystem.update(deltaTime);
 	waypointNavigationSystem.update(deltaTime);
+	radarSystem.update();
 } 
 
 void Menu::render() {
