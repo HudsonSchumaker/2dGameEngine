@@ -8,7 +8,8 @@
 #include "../include/Common.h"
 
 /*
- 	Camera class  
+ 	Camera class
+	used to define the viewport
 */
 class Camera final {
 public:
