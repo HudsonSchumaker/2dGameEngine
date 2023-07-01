@@ -51,6 +51,11 @@ std::vector<std::string> FileUtils::listFontFilesInFolder() {
     return listFilesInFolder(FONT_FOLDER, fontExtensions);
 }
 
+std::vector<std::string> FileUtils::listMapFilesInFolder() {
+    const std::set<std::string> mapExtensions = {".map"};
+    return listFilesInFolder(MAP_FOLDER, mapExtensions);
+}
+
 std::vector<std::string> FileUtils::listFilesInFolder(const std::filesystem::path dirPath, const std::set<std::string> &extensions) {
     std::vector<std::string> fileNames;
 

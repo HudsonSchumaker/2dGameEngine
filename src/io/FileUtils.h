@@ -18,5 +18,6 @@ public:
     static std::vector<std::string> listImageFilesInFolder();
     static std::vector<std::string> listAudioFilesInFolder();
     static std::vector<std::string> listFontFilesInFolder();
+    static std::vector<std::string> listMapFilesInFolder();
     static std::vector<std::string> listFilesInFolder(const std::filesystem::path dirPath, const std::set<std::string>& extensions);
 };
