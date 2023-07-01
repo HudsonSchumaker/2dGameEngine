@@ -47,6 +47,11 @@ std::vector<std::string> FileUtils::listAudioFilesInFolder() {
     return listFilesInFolder(AUDIO_FOLDER, soundExtensions);
 }
 
+std::vector<std::string> FileUtils::listFontFilesInFolder() {
+    const std::set<std::string> fontExtensions = {".ttf"};
+    return listFilesInFolder(FONT_FOLDER, fontExtensions);
+}
+
 std::vector<std::string> FileUtils::listFilesInFolder(const std::filesystem::path dirPath, const std::set<std::string> &extensions) {
     std::vector<std::string> fileNames;
 
