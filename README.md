@@ -31,6 +31,8 @@
     PrimitiveRenderSystem
     ProjectilesEmitterSystem
     ProjectileLifecycleSystem
+    RadarSystem
     RenderColliderSystem
     RenderSystem
     RenderTextSystem
+    WaypointNavigationSystem
