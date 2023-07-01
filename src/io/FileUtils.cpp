@@ -50,13 +50,10 @@ std::vector<std::string> FileUtils::listAudioFilesInFolder() {
 std::vector<std::string> FileUtils::listFilesInFolder(const std::filesystem::path dirPath, const std::set<std::string> &extensions) {
     std::vector<std::string> fileNames;
 
-    for (const auto &entry : std::filesystem::directory_iterator(dirPath))
-    {
-        if (entry.is_regular_file())
-        {
+    for (const auto &entry : std::filesystem::directory_iterator(dirPath)) {
+        if (entry.is_regular_file()) {
             std::string extension = entry.path().extension().string();
-            if (extensions.find(extension) != extensions.end())
-            {
+            if (extensions.find(extension) != extensions.end()) {
                 fileNames.push_back(entry.path().filename().string());
             }
         }
