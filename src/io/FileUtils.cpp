@@ -30,8 +30,7 @@ std::string FileUtils::getFileExtension(std::filesystem::path file) {
 
 std::string FileUtils::getFileExtension(const std::string fileName) {
     std::size_t pos = fileName.find_last_of(".");
-    if (pos != std::string::npos)
-    {
+    if (pos != std::string::npos) {
         return fileName.substr(pos + 1);
     }
     return "";
