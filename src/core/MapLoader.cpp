@@ -13,36 +13,50 @@
 #include "../ecs/component/BoxCollider.h"
 
 void MapLoader::loadMap(Map map) {
-	std::fstream mapFile;
-	auto path = MAP_FOLDER + map.mapId;
-	mapFile.open(path);
+    std::fstream mapFile;
+    auto path = MAP_FOLDER + map.mapId;
 
-	for (short y = 0; y < map.mapNumRows; y++) {
-		for (short x = 0; x < map.mapNumCols; x++) {
-			char ch;
+    // Open the map file
+    mapFile.open(path);
 
-			mapFile.get(ch);
-			int srcRectY = std::atoi(&ch) * map.tileSize;			
-			mapFile.get(ch);
-			int srcRectX = std::atoi(&ch) * map.tileSize;
-			
-			mapFile.get(ch);
-			char collider = ch;
-			mapFile.ignore();
+    // Iterate over each row and column of the map
+    for (short y = 0; y < map.mapNumRows; y++) {
+        for (short x = 0; x < map.mapNumCols; x++) {
+            char ch;
 
-			auto e = EntityManager::getInstance()->createEntity(
-				x * map.scale * map.tileSize, 
-				y * map.scale * map.tileSize
-			);
-			e->getComponent<Transform>()->scale.x = map.scale;
-			e->getComponent<Transform>()->scale.y = map.scale;
-			e->tag = Tag::tile;
-			e->addComponent(new Sprite(map.assertId, srcRectX, srcRectY,
-				map.tileSize, map.tileSize, (int)Tag::tile));
+            // Read the character from the map file to determine the source rectangle position
+            mapFile.get(ch);
+            int srcRectY = std::atoi(&ch) * map.tileSize;			
+            mapFile.get(ch);
+            int srcRectX = std::atoi(&ch) * map.tileSize;
 
-			if (collider == 'C') {
-				e->addComponent(new BoxCollider(0, 0, map.tileSize, map.tileSize));
-			}
-		}
-	}
+            // Read the character representing the collider type
+            mapFile.get(ch);
+            char collider = ch;
+            mapFile.ignore();
+
+            // Create an entity for the tile at the current position
+            auto e = EntityManager::getInstance()
+				->createEntity(x * map.scale * map.tileSize, 
+                               y * map.scale * map.tileSize);
+            
+            // Set the entity's transform and scale
+            e->getComponent<Transform>()->scale.x = map.scale;
+            e->getComponent<Transform>()->scale.y = map.scale;
+
+            // Set the entity's tag
+            e->tag = Tag::tile;
+
+            // Add a sprite component to the entity
+            e->addComponent(new Sprite(map.assertId, srcRectX, srcRectY, map.tileSize, map.tileSize, (int)Tag::tile));
+
+            // If the collider type is 'C', add a box collider component to the entity
+            if (collider == 'C') {
+                e->addComponent(new BoxCollider(0, 0, map.tileSize, map.tileSize));
+            }
+        }
+    }
+
+    // Close the map file
+    mapFile.close();
 }
