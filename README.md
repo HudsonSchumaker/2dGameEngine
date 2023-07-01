@@ -12,10 +12,12 @@
     Health       - to set a health value
     Line         - to draw a line
     Projectile   - to set a projectile
+    Radar        - to tigger collision detection in a radius
     RigidBody    - to set the velocity
     Sprite       - to draw a sprite on the screen
     TextLabel    - to draw a text on the screen
     Transform    - to set the position
+    Waypoint     - to be used waypoint navigation
 
 ### Systems
     AnimationSystem
