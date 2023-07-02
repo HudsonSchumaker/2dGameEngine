@@ -1,5 +1,5 @@
 
-#include "Menu.h"
+#include "Playground.h"
 #include "gfx/Box.h"
 #include "gfx/Line.h"
 #include "gfx/Circle.h"
@@ -16,13 +16,13 @@
 #include "ecs/component/SpriteText.h"
 #include "ecs/component/Waypoint.h"
 
-Menu::Menu() {}
+Playground::Playground() {}
 
-Menu::~Menu() {
+Playground::~Playground() {
     unload();
 }
 
-void Menu::load() {
+void Playground::load() {
    /* background = EntityManager::getInstance()->createEntity(0, 0);
 	background->tag = Tag::background;
     background->addComponent(new Sprite("back129", true, Tags::getLayer(Tag::background)));
@@ -38,8 +38,8 @@ void Menu::load() {
 	button->addComponent(new Box(32, 32, Tags::getLayer(Tag::ui), true));
 	button->addComponent(new BoxCollider(button->getComponent<Box>()->getSize()));
 	button->addComponent(new Button()); 
-	button->addComponent(new TextLabel("HemiHead.ttf", true, button->getComponent<Transform>()->position, "T", 12, Color::getRed()));
-	button->addComponent(new Radar(64));
+	button->addComponent(new TextLabel("HemiHead.ttf", true, button->getComponent<Transform>()->position, "T", 12, Color::getBlue()));
+	button->addComponent(new Radar(64, {16, 16}));
    
     auto label = button->getComponent<TextLabel>();
 	auto bt = button->getComponent<Button>();
@@ -58,7 +58,7 @@ void Menu::load() {
 	button2->addComponent(new Box(32, 32, Tags::getLayer(Tag::ui), true));
 	button2->addComponent(new BoxCollider(button->getComponent<Box>()->getSize()));
 	button2->addComponent(new Button()); 
-	button2->addComponent(new TextLabel("HemiHead.ttf", true, button2->getComponent<Transform>()->position, "T", 12, Color::getRed()));
+	button2->addComponent(new TextLabel("HemiHead.ttf", true, button2->getComponent<Transform>()->position, "T", 12, Color::getBlue()));
    
     auto label2 = button2->getComponent<TextLabel>();
 	auto bt2 = button2->getComponent<Button>();
@@ -76,7 +76,7 @@ void Menu::load() {
     	{ 150, 400 },
     	{ 400, 400 },
 		{ 500, 500 },
-		{ 10, 10 }
+		{ 18, 18 }
 	};
 
 	for(int i = 1; i < 3; i++) {
@@ -85,11 +85,11 @@ void Menu::load() {
 		enemy->addComponent(new RigidBody(21.0f + i, 21.0f + i));
 		//enemy->addComponent(new Box(32, 32, Tags::getLayer(Tag::ui), true));
 		//enemy->addComponent(new Sprite("hard", true, Tags::getLayer(Tag::ui)));
-		enemy->addComponent(new Circle(16, Tags::getLayer(Tag::ui), false, Color::getRed()));
+		enemy->addComponent(new Circle(16, Tags::getLayer(Tag::ui), false, Color::getBlue()));
 		enemy->addComponent(new Waypoint(waypoints));
-		enemy->addComponent(new BoxCollider(enemy->getComponent<Circle>()->getSize()));
+		enemy->addComponent(new BoxCollider(enemy->getComponent<Circle>()->getSize(), {-10, -10}));
 		enemy->addComponent(new Button()); 
-		enemy->addComponent(new SpriteText("HemiHead.ttf", true, { -3, -9 }, "E", 12, Color::getRed()));
+		enemy->addComponent(new SpriteText("HemiHead.ttf", true, { -3, -9 }, "E", 12, Color::getBlue()));
 		auto bt2 = enemy->getComponent<Button>();
 		bt2->hover = 0;
 		bt2->setCallback([&](int id, int value) {
@@ -104,7 +104,7 @@ void Menu::load() {
     isRunning = true;
 }
 
-short Menu::run() {
+short Playground::run() {
     load();
     while (isRunning) {
 		input();
@@ -114,7 +114,7 @@ short Menu::run() {
 	return exit;
 }
 
-void Menu::input() {
+void Playground::input() {
 	SDL_Event sdlEvent;
 	SDL_GetMouseState(&pointer.x, &pointer.y);
 	while (SDL_PollEvent(&sdlEvent)) {
@@ -142,10 +142,10 @@ void Menu::input() {
 	}
 }
 
-void Menu::update() {
+void Playground::update() {
 	calculateDeltaTime();
 
-	auto circles = EntityManager::getInstance()->getEntitiesWithComponent<Circle>();
+/* 	auto circles = EntityManager::getInstance()->getEntitiesWithComponent<Circle>();
 	for(auto& circle : circles) {
 		if( circle->id%2 == 0) {
 			auto r = circle->getComponent<Circle>()->getRadius();
@@ -157,7 +157,7 @@ void Menu::update() {
 				circle->getComponent<Circle>()->setRadius(r - 16.0f);
 			}
 		}
-	}
+	} */
 
 	EntityManager::getInstance()->update();
 	collisionSystem.update();
@@ -167,17 +167,18 @@ void Menu::update() {
 	radarSystem.update();
 } 
 
-void Menu::render() {
+void Playground::render() {
 	beginRender();
 		
 	renderSystem.update(&camera);
 	renderTextSystem.update(&camera);
 	primitiveRenderSystem.update(&camera);
+	renderColliderSystem.update(&camera);
 
 	endRender();
 }
 
-void Menu::buttonHard(int id, int value) {
+void Playground::buttonHard(int id, int value) {
 	std::cout << "entity: "<< id << std::endl;
 	if (value == 1) {
 		std::cout << "hard button click left" << std::endl;
@@ -192,6 +193,6 @@ void Menu::buttonHard(int id, int value) {
 	}
 }
 
-void Menu::unload() {
+void Playground::unload() {
     EntityManager::getInstance()->clear();
 }

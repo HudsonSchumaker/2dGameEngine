@@ -13,8 +13,9 @@
 #include "ecs/system/ControllerSystem.h"
 #include "ecs/system/PrimitiveRenderSystem.h" 
 #include "ecs/system/WaypointNavigationSystem.h"
+#include "ecs/system/RenderColliderSystem.h"
 
-class Menu final : public Scene {
+class Playground final : public Scene {
 private:
     //Entity* background = nullptr;
     //Entity* title = nullptr;
@@ -32,6 +33,7 @@ private:
 	MovementSystem movementSystem;
 	WaypointNavigationSystem waypointNavigationSystem;
 	RadarSystem radarSystem;
+	RenderColliderSystem renderColliderSystem;
 
     void load() override;
 	void input() override;
@@ -41,7 +43,7 @@ private:
 	void buttonHard(int id, int value);
 	
 public:
-	Menu();
-	~Menu();
+	Playground();
+	~Playground();
 	short run() override;
 };

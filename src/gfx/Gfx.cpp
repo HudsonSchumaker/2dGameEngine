@@ -58,12 +58,17 @@ SDL_Renderer* Gfx::getRenderer() {
 }
 
 SDL_Texture* Gfx::createText(std::string fontName, std::string text, short size, SDL_Color color) {
+	Uint8 r, g, b, a;
+    SDL_GetRenderDrawColor(renderer, &r, &g, &b, &a);
+
 	auto path = FONT_FOLDER + fontName;
 	TTF_Font* font = TTF_OpenFont(path.c_str(), size);
 	SDL_Surface* surface = TTF_RenderText_Blended(font, text.c_str(), color);
 	SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
 
 	SDL_FreeSurface(surface);
+
+	SDL_SetRenderDrawColor(renderer, r, g, b, a);	
 	return texture;
 }
 
@@ -265,7 +270,9 @@ void Gfx::drawFillRect(int x, int y, int width, int height, SDL_Color color) {
 void Gfx::drawBox(SDL_Rect rect, SDL_Color color) {
 	Uint8 r, g, b, a;
     SDL_GetRenderDrawColor(renderer, &r, &g, &b, &a);
+
     SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
     SDL_RenderDrawRect(renderer, &rect);
+
     SDL_SetRenderDrawColor(renderer, r, g, b, a);
 }

@@ -9,20 +9,20 @@
 #include "sfx/AudioManager.h"
 #include "io/FileUtils.h"
 #include "SplashScreen.h"
-#include "Menu.h"
+#include "Playground.h"
 #include "ecs/EntityManager.h"
 
 int main(int argc, char* argv[]) {
     setUp();
     auto renderer = Gfx::getInstance()->getRenderer();
 
-    SplashScreen* splashScreen = new SplashScreen();
+   /*  SplashScreen* splashScreen = new SplashScreen();
     splashScreen->run();
-    delete splashScreen;
+    delete splashScreen; */
 
-    Menu* menu = new Menu();
-    menu->run();
-    delete menu;
+    Playground* playground = new Playground();
+    playground->run();
+    delete playground;
 
     SDL_Rect rect = { 100, 100, 64, 64 };
     int x, y;

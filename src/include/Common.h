@@ -39,9 +39,9 @@
 #define IMAGE_FOLDER "./data/images/"
 #define MAP_FOLDER "./data/maps/"
 
-#define SCREEN_WIDTH 1600
+#define SCREEN_WIDTH 800
 #define SCREEN_H_WIDTH SCREEN_WIDTH/2
-#define SCREEN_HEIGHT 900
+#define SCREEN_HEIGHT 600
 #define SCREEN_H_HEIGHT SCREEN_HEIGHT/2 
 
 class Common final {
