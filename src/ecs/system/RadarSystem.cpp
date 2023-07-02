@@ -16,8 +16,8 @@ void RadarSystem::update() {
         auto radar = entity->getComponent<Radar>();
         Transform* transform = entity->getComponent<Transform>();
         
-        float radarX = transform->position.x;
-        float radarY = transform->position.y;
+        float radarX = transform->position.x + radar->offset.x;
+        float radarY = transform->position.y + radar->offset.y;
         float radarRadius = radar->r;
 
         auto enemies = EntityManager::getInstance()->getEntitiesWithTag(radar->tag);
@@ -32,7 +32,8 @@ void RadarSystem::update() {
 
                 // Check if the other entity is within the radar area
                 if (distance <= radarRadius) {
-                    std::cout << " colidiu " << std::endl;
+                    std::cout << " colidiu :" << enemy->id << std::endl;
+                    std::cout << " point :" << enemyTransform->position.x << " ," << enemyTransform->position.y << enemy->id << std::endl;
                     // ...
                 }
             }
