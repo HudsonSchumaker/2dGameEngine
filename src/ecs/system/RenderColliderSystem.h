@@ -10,6 +10,8 @@
 class RenderColliderSystem final : public System {
 private:
 	SDL_Renderer* renderer = nullptr;
+	void renderBoxCollider(Camera* camera);
+	void renderRadarCollider();
 
 public:
 	RenderColliderSystem();
