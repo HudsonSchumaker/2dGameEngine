@@ -17,6 +17,8 @@ public:
     short layer = 10;
     float side = 0.0f;
     bool isFixed = false;
+    bool isDashed = false;
+    short dashLength = 8;
     SDL_Color color = Color::getWhite();
 
     Circle(): r(2) { sideCalculation(); }
@@ -24,6 +26,7 @@ public:
     Circle(int radius, short layer) : r(radius), layer(layer) { sideCalculation(); }
     Circle(int radius, short layer, bool isFixed) : r(radius), layer(layer), isFixed(isFixed) { sideCalculation(); }
     Circle(int radius, short layer, bool isFixed, SDL_Color color) : r(radius), layer(layer), isFixed(isFixed), color(color) { sideCalculation(); }
+    Circle(int radius, short layer, bool isFixed, short dashLength, SDL_Color color) : r(radius), layer(layer), isFixed(isFixed), dashLength(dashLength) ,color(color) { sideCalculation(); }
     ~Circle() = default;
 
     void sideCalculation();
