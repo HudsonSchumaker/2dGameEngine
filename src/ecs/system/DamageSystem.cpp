@@ -16,12 +16,10 @@ void DamageSystem::subscribeToEvents() {
 }
 
 void DamageSystem::onCollision(CollisionEvent& event) {
-
 	if (event.a->tag == Tag::bullet) {
 		EntityManager::getInstance()->killEntity(event.a);
 		if (event.b->tag == Tag::enemy) {
 			EntityManager::getInstance()->killEntity(event.b);
 		}
 	}
-
 }
