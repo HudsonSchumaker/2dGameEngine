@@ -7,6 +7,7 @@
 #include "RadarSystem.h"
 #include "../EntityManager.h"
 #include "../component/Radar.h"
+#include "../component/Callback.h"
 #include "../component/Transform.h"
 
 void RadarSystem::update() {
@@ -32,9 +33,8 @@ void RadarSystem::update() {
 
                 // Check if the other entity is within the radar area
                 if (distance <= radarRadius) {
-                    std::cout << " colidiu :" << enemy->id << std::endl;
-                    std::cout << " point :" << enemyTransform->position.x << " ," << enemyTransform->position.y << enemy->id << std::endl;
-                    // ...
+                   Callback* callback = entity->getComponent<Callback>();
+                   callback->call(entity->id, enemy->id);
                 }
             }
         }
