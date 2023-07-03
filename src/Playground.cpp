@@ -15,6 +15,7 @@
 #include "ecs/component/RigidBody.h"
 #include "ecs/component/SpriteText.h"
 #include "ecs/component/Waypoint.h"
+#include "ecs/component/Callback.h"
 
 Playground::Playground() {}
 
@@ -40,6 +41,9 @@ void Playground::load() {
 	button->addComponent(new Button()); 
 	button->addComponent(new TextLabel("HemiHead.ttf", true, button->getComponent<Transform>()->position, "T", 12, Color::getBlue()));
 	button->addComponent(new Radar(64, {16, 16}));
+	button->addComponent(new Callback([&](unsigned long id, unsigned long otherId) { 
+		std::cout << " colidiu :" << otherId << std::endl;
+	}));
    
     auto label = button->getComponent<TextLabel>();
 	auto bt = button->getComponent<Button>();
@@ -48,7 +52,7 @@ void Playground::load() {
     label->position.y= tr->position.y + 16 - (label->h/2);
 
 	bt->hover = 0;
-	bt->setCallback([&](int id, int value) {
+	bt->setCallback([&](unsigned long id, int value) {
         buttonHard(id, value);
 	});
 
@@ -67,7 +71,7 @@ void Playground::load() {
     label2->position.y = tr2->position.y + 16 - (label2->h/2);
 
 	bt2->hover = 0;
-	bt2->setCallback([&](int id, int value) {
+	bt2->setCallback([&](unsigned long id, int value) {
         buttonHard(id, value);
 	});
 
