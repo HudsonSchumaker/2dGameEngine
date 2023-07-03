@@ -22,7 +22,7 @@ EntityManager* EntityManager::getInstance() {
 }
 
 Entity* EntityManager::createEntity() {
-	return createEntity(0.0f ,0.0f);
+	return createEntity(0.0f, 0.0f);
 }
 
 Entity* EntityManager::createEntity(float x, float y) {
