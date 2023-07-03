@@ -22,20 +22,18 @@ void ProjectileEmitSystem::subscribeToEvents() {
 void ProjectileEmitSystem::onFire(FireEvent& event) {
     auto entities = EntityManager::getInstance()->getEntitiesWithTag(event.tag);
     for (auto& entity : entities) {
-        RigidBody* rigidBody = entity->getComponent<RigidBody>();
         Transform* transform = entity->getComponent<Transform>();
         Animation* animation = entity->getComponent<Animation>();
         ProjectileEmiter* emiter = entity->getComponent<ProjectileEmiter>();
 
-        if (rigidBody && transform && animation && emiter) {
+        if (transform && animation && emiter) {
             auto bullet = BulletFactory::getInstance()->createBullet(emiter->bulletType, true);
             auto bulletTransform = bullet->getComponent<Transform>();
             if (animation->flip) {
                 auto bulletRigidBody = bullet->getComponent<RigidBody>();
                 bulletRigidBody->velocity.x *= -1.0f;
                 bulletTransform->position.x = transform->position.x - animation->bounds.x;
-            }
-            else {
+            } else {
                 bulletTransform->position.x = transform->position.x + animation->bounds.x;
             }
 

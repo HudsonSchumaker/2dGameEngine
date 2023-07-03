@@ -30,7 +30,7 @@ public:
 struct Bullet1 {
 	std::string id = "1";
 	Vec2 velocity = { 0.50f, 0.0f };
-	short damage = 5;
+	short damage = 4;
 	unsigned int duration = 10000;
 
 	Bullet1() {}
@@ -39,7 +39,7 @@ struct Bullet1 {
 struct Bullet2 {
 	std::string id = "1";
 	Vec2 velocity = { 100.0f, 0.0f };
-	short damage = 5;
+	short damage = 6;
 	unsigned int duration = 10000;
 	
 	Bullet2() {}
@@ -48,7 +48,7 @@ struct Bullet2 {
 struct Bullet3 {
 	std::string id = "1";
 	Vec2 velocity = { 100.0f, 0.0f };
-	short damage = 5;
+	short damage = 8;
 	unsigned int duration = 10000;
 	
 	Bullet3() {}
