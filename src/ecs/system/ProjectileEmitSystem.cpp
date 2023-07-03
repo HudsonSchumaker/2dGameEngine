@@ -1,6 +1,7 @@
 /*
-    SchumakerTeam
-    Hudson Schumaker
+	Dodoi Lab
+	Dodoi Engine
+	Hudson Schumaker
 */
 
 #include "ProjectileEmitSystem.h"

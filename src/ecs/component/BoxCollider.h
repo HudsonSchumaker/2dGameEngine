@@ -1,8 +1,8 @@
 /*
-	SchumakerTeam
+	Dodoi Lab
+	Dodoi Engine
 	Hudson Schumaker
 */
-
 #pragma once
 #include "Component.h"
 #include "../../physics/Vec2.h"

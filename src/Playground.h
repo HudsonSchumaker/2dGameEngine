@@ -1,3 +1,8 @@
+/*
+	Dodoi Lab
+	Dodoi Engine
+	Hudson Schumaker
+*/
 
 #include "include/Common.h"
 #include "gfx/Scene.h"

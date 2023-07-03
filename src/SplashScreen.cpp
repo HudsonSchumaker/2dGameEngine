@@ -1,3 +1,8 @@
+/*
+	Dodoi Lab
+	Dodoi Engine
+	Hudson Schumaker
+*/
 
 #include "SplashScreen.h"
 #include "gfx/AssetManager.h"

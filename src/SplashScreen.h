@@ -1,3 +1,9 @@
+/*
+	Dodoi Lab
+	Dodoi Engine
+	Hudson Schumaker
+*/
+
 #pragma once
 #include "gfx/Scene.h"
 

@@ -1,7 +1,7 @@
 /*
-    Windows 10 - 11
-    SchumakerTeam
-    Hudson Schumaker
+	Dodoi Lab
+	Dodoi Engine
+	Hudson Schumaker
 */
 
 #include "Scene.h"

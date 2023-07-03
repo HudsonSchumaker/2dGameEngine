@@ -1,3 +1,8 @@
+/*
+	Dodoi Lab
+	Dodoi Engine
+	Hudson Schumaker
+*/
 
 #include "Playground.h"
 #include "gfx/Box.h"
