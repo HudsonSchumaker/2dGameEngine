@@ -37,6 +37,10 @@ Animation::~Animation() {
 	}
 }
 
+Dimension Animation::getSize() const {
+	return Dimension(bounds.x, bounds.y);
+}
+
 bool Animation::compareAsc(Entity* e1, Entity* e2) {
 	return (e1->getComponent<Animation>()->layer < e2->getComponent<Animation>()->layer);
 }

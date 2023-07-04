@@ -26,14 +26,14 @@ void AnimationSystem::update(Camera* camera) {
             animation->currentFrame = ((SDL_GetTicks() - animation->startTime)
                 * animation->frameSpeedRate / 1000) % animation->numFrames;
 
-            SDL_Rect origin = { animation->currentFrame * animation->bounds.x, 0,
-                animation->bounds.x, animation->bounds.y };
+            SDL_Rect origin = { animation->currentFrame * animation->getSize().w, 0,
+                animation->getSize().h, animation->getSize().h };
 
             SDL_FRect dest;
             dest.x = transform->position.x - (animation->isFixed ? 0 : camera->x);
             dest.y = transform->position.y - (animation->isFixed ? 0 : camera->y);
-            dest.w = animation->bounds.x * transform->scale.x;
-            dest.h = animation->bounds.y * transform->scale.y;
+            dest.w = animation->getSize().w * transform->scale.x;
+            dest.h = animation->getSize().h * transform->scale.y;
             
             if (animation->flip) {
                 SDL_RenderCopyExF(
