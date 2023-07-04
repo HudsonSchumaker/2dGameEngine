@@ -9,16 +9,16 @@
 
 class Health final : public Component {
 public:
-	int life = 0;
+	int healthPercentage = 0;
 
 	Health() {}
-	Health(int life) {
-		this->life = life;
+	Health(int healthPercentage) {
+		this->healthPercentage = healthPercentage;
 	}
 
 	~Health() = default;
 
 	Health clone() {
-		return Health(life);
+		return Health(healthPercentage);
 	}
 };
