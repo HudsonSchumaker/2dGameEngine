@@ -7,8 +7,10 @@
 #include "RadarSystem.h"
 #include "../EntityManager.h"
 #include "../component/Radar.h"
+#include "../../event/EventBus.h"
 #include "../component/Callback.h"
 #include "../component/Transform.h"
+#include "../../event/CollisionEvent.h"
 
 void RadarSystem::update() {
     auto entities = EntityManager::getInstance()->getEntitiesWithComponent<Radar>();
@@ -35,6 +37,8 @@ void RadarSystem::update() {
                 if (distance <= radarRadius) {
                    Callback* callback = entity->getComponent<Callback>();
                    callback->call(entity->id, enemy->id);
+
+                   EventBus::getInstance()->emitEvent<CollisionEvent>(entity, enemy);
                 }
             }
         }
