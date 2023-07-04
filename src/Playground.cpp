@@ -21,6 +21,7 @@
 #include "ecs/component/SpriteText.h"
 #include "ecs/component/Waypoint.h"
 #include "ecs/component/Callback.h"
+#include "ecs/component/Health.h"
 
 Playground::Playground() {}
 
@@ -67,7 +68,7 @@ void Playground::load() {
 	button2->addComponent(new Box(32, 32, Tags::getLayer(Tag::ui), true));
 	button2->addComponent(new BoxCollider(button->getComponent<Box>()->getSize()));
 	button2->addComponent(new Button()); 
-	button2->addComponent(new TextLabel("HemiHead.ttf", true, button2->getComponent<Transform>()->position, "T", 12, Color::getBlue()));
+	button2->addComponent(new TextLabel("pico8.ttf", true, button2->getComponent<Transform>()->position, "T", 12, Color::getBlue()));
    
     auto label2 = button2->getComponent<TextLabel>();
 	auto bt2 = button2->getComponent<Button>();
@@ -88,8 +89,8 @@ void Playground::load() {
 		{ 18, 18 }
 	};
 
-	for(int i = 1; i < 11; i++) {
-		auto enemy = EntityManager::getInstance()->createEntity(0, i + 48);
+	for(int i = 1; i < 4; i++) {
+		auto enemy = EntityManager::getInstance()->createEntity(0, i * 42);
 		enemy->tag = Tag::enemy;
 		enemy->addComponent(new RigidBody(21.0f + i, 21.0f + i));
 		//enemy->addComponent(new Box(32, 32, Tags::getLayer(Tag::ui), true));
@@ -98,7 +99,8 @@ void Playground::load() {
 		enemy->addComponent(new Waypoint(waypoints));
 		enemy->addComponent(new BoxCollider(enemy->getComponent<Circle>()->getSize(), {-10, -10}));
 		enemy->addComponent(new Button()); 
-		enemy->addComponent(new SpriteText("HemiHead.ttf", true, { -3, -9 }, "E", 12, Color::getBlue()));
+		enemy->addComponent(new SpriteText("pico8.ttf", true, { -3, -9 }, "E", 12, Color::getBlue()));
+		enemy->addComponent(new Health(100));
 		auto bt2 = enemy->getComponent<Button>();
 		bt2->hover = 0;
 		bt2->setCallback([&](int id, int value) {
@@ -182,7 +184,8 @@ void Playground::render() {
 	renderSystem.update(&camera);
 	renderTextSystem.update(&camera);
 	primitiveRenderSystem.update(&camera);
-	renderColliderSystem.update(&camera);
+	renderHealthBarSystem.update(&camera);
+	//renderColliderSystem.update(&camera);
 
 	endRender();
 }

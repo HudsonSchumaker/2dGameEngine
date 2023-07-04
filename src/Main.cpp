@@ -6,11 +6,11 @@
 
 #include "include/Main.h"
 #include "gfx/Gfx.h"
-#include "gfx/AssetManager.h"
-#include "sfx/AudioManager.h"
+#include "Playground.h"
 #include "io/FileUtils.h"
 #include "SplashScreen.h"
-#include "Playground.h"
+#include "gfx/AssetManager.h"
+#include "sfx/AudioManager.h"
 #include "ecs/EntityManager.h"
 
 int main(int argc, char* argv[]) {

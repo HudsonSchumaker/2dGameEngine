@@ -16,9 +16,11 @@
 #include "ecs/system/GuiUpdateSystem.h"
 #include "ecs/system/RenderTextSystem.h"
 #include "ecs/system/ControllerSystem.h"
+#include "ecs/system/RenderColliderSystem.h"
+#include "ecs/system/RenderHealthBarSystem.h"
 #include "ecs/system/PrimitiveRenderSystem.h" 
 #include "ecs/system/WaypointNavigationSystem.h"
-#include "ecs/system/RenderColliderSystem.h"
+#include "ecs/system/DamageSystem.h"
 
 class Playground final : public Scene {
 private:
@@ -39,6 +41,8 @@ private:
 	WaypointNavigationSystem waypointNavigationSystem;
 	RadarSystem radarSystem;
 	RenderColliderSystem renderColliderSystem;
+	RenderHealthBarSystem renderHealthBarSystem;
+	DamageSystem damageSystem;
 
     void load() override;
 	void input() override;
