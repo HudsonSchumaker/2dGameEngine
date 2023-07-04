@@ -33,12 +33,12 @@ void ProjectileEmitSystem::onFire(FireEvent& event) {
             if (animation->flip) {
                 auto bulletRigidBody = bullet->getComponent<RigidBody>();
                 bulletRigidBody->velocity.x *= -1.0f;
-                bulletTransform->position.x = transform->position.x - animation->bounds.x;
+                bulletTransform->position.x = transform->position.x - animation->getSize().w;
             } else {
-                bulletTransform->position.x = transform->position.x + animation->bounds.x;
+                bulletTransform->position.x = transform->position.x + animation->getSize().h;
             }
 
-            bulletTransform->position.y = transform->position.y + (animation->bounds.y /2.0f);
+            bulletTransform->position.y = transform->position.y + (animation->getSize().h /2.0f);
         }
     }
 }
