@@ -4,6 +4,8 @@
 	Hudson Schumaker
 */
 
+#include <future>
+#include <thread>
 #include "RenderColliderSystem.h"
 #include "../../gfx/Gfx.h"
 #include "../../gfx/Color.h"
@@ -18,8 +20,20 @@ RenderColliderSystem::RenderColliderSystem() {
 }
 
 void RenderColliderSystem::update(Camera* camera) {
-	renderBoxCollider(camera);
-	renderRadarCollider();
+
+	std::future<void> box = std::async(std::launch::async, [this, camera = camera]() {
+        renderBoxCollider(camera);
+    });
+
+	std::future<void> radar = std::async(std::launch::async, [this]() {
+    	renderRadarCollider();
+	});
+
+    box.wait();
+    radar.wait();
+
+	//renderBoxCollider(camera);
+	//renderRadarCollider();
 }
 
 void RenderColliderSystem::renderBoxCollider(Camera* camera) {
