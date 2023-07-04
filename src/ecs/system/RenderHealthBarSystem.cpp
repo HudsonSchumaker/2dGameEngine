@@ -38,6 +38,9 @@ void RenderHealthBarSystem::update(Camera* camera) {
             if (health->healthPercentage >= 80 && health->healthPercentage <= 100) {
                 healthBarColor = { 0, 255, 0 }; // 80-100 = green
             }
+            if (health->healthPercentage < 0) {
+                health->healthPercentage = 0;
+            }
 
             // Position the health bar indicator in the top-right part of the entity sprite
             int healthBarWidth = 15;
