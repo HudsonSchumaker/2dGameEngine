@@ -185,7 +185,7 @@ void Playground::render() {
 	renderTextSystem.update(&camera);
 	primitiveRenderSystem.update(&camera);
 	renderHealthBarSystem.update(&camera);
-	//renderColliderSystem.update(&camera);
+	renderColliderSystem.update(&camera);
 
 	endRender();
 }
