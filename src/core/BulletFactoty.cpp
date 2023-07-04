@@ -47,7 +47,7 @@ Entity* BulletFactory::createBullet(std::string id, Vec2 velocity, short damage,
 	bullet->addComponent(new Transform(-10.0f));
 	bullet->addComponent(new Animation(id, 5, 8, (int)Tag::bullet, true));
 	auto animation = bullet->getComponent<Animation>();
-	bullet->addComponent(new BoxCollider(animation->bounds.x, animation->bounds.y));
+	bullet->addComponent(new BoxCollider(animation->getSize().w, animation->getSize().h));
 	bullet->addComponent(new RigidBody(velocity));
 	bullet->addComponent(new Projectile(isFriendly, damage, duration));
 
