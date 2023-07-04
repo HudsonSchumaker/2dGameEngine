@@ -88,8 +88,8 @@ void Playground::load() {
 		{ 18, 18 }
 	};
 
-	for(int i = 1; i < 3; i++) {
-		auto enemy = EntityManager::getInstance()->createEntity(0, i * 80);
+	for(int i = 1; i < 300; i++) {
+		auto enemy = EntityManager::getInstance()->createEntity(0, i + 48);
 		enemy->tag = Tag::enemy;
 		enemy->addComponent(new RigidBody(21.0f + i, 21.0f + i));
 		//enemy->addComponent(new Box(32, 32, Tags::getLayer(Tag::ui), true));
