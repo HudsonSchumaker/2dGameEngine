@@ -69,7 +69,8 @@ SDL_Texture* Gfx::createText(std::string fontName, std::string text, short size,
 
 	SDL_FreeSurface(surface);
 
-	SDL_SetRenderDrawColor(renderer, r, g, b, a);	
+	SDL_SetRenderDrawColor(renderer, r, g, b, a);
+	TTF_CloseFont(font);	
 	return texture;
 }
 
