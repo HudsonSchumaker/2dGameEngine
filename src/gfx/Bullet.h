@@ -9,7 +9,9 @@
 #include "../ecs/Entity.h"
 #include "../physics/Vec2.h"
 #include "../physics/Dimension.h"
+#include "../ecs/EntityManager.h"
 #include "../ecs/component/Component.h"
+#include "../ecs/component/Transform.h"
 
 class Bullet : public Component {
 public:
@@ -20,15 +22,13 @@ public:
     float destinationX = 1.0f;
     float destinationY = 1.0f;
     
-    float size = 2.0f;
+    float size = 3.0f;
     float magnitude = 0.0f;
 
-    short layer = 10;
-    bool isFixed = false;
     SDL_Color color = Color::getOrange();
 
-    Bullet(Vec2 destination) {
-        auto parent = EntityManager::getInstance()->getEntity(parentId);
+    Bullet(unsigned long id, Vec2 destination) {
+        auto parent = EntityManager::getInstance()->getEntity(id);
 	    auto transform = parent->getComponent<Transform>();
         originX = transform->position.x;
         originY = transform->position.y;

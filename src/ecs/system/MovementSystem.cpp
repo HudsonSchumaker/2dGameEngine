@@ -7,9 +7,9 @@
 #include "MovementSystem.h"
 #include "../EntityManager.h"
 #include "../component/Waypoint.h"
-#include "../component/Projectile.h"
 #include "../component/Transform.h"
 #include "../component/RigidBody.h"
+#include "../component/Projectile.h"
 
 void MovementSystem::update(float dt) {
 	auto entities = EntityManager::getInstance()->getEntitiesWithComponent<RigidBody>();

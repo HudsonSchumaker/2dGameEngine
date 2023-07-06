@@ -22,6 +22,7 @@
 #include "ecs/component/Waypoint.h"
 #include "ecs/component/Callback.h"
 #include "ecs/component/Health.h"
+#include "core/BulletFactory.h"
 
 Playground::Playground() {}
 
@@ -50,6 +51,18 @@ void Playground::load() {
 	button->addComponent(new Radar(64, {16, 16}));
 	button->addComponent(new Callback([&](unsigned long id, unsigned long otherId) { 
 		std::cout << "colidiu :" << otherId << std::endl;
+		auto me = EntityManager::getInstance()->getEntity(id);
+		auto other = EntityManager::getInstance()->getEntity(otherId);
+
+		auto meTransform = me->getComponent<Transform>();
+		auto otherTransform = other->getComponent<Transform>();
+
+		BulletFactory::getInstance()->createBullet(
+			meTransform->position, 
+			otherTransform->position, 
+			BulletType::BASIC, 
+			true
+		);
 	}));
    
     auto label = button->getComponent<TextLabel>();

@@ -48,7 +48,7 @@ Entity* BulletFactory::createBullet(Vec2 origin, Vec2 destination, Vec2 velocity
 	auto bullet = EntityManager::getInstance()->createEntity(origin.x, origin.y);
 	bullet->tag = Tag::bullet;
  
-	bullet->addComponent(new Bullet(destination));
+	bullet->addComponent(new Bullet(bullet->id, destination));
 	auto bulletDimension = bullet->getComponent<Bullet>()->getDimension();
 
 	bullet->addComponent(new BoxCollider(bulletDimension));
