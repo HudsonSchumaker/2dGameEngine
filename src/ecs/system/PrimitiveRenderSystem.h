@@ -15,6 +15,7 @@ private:
 	void renderLine(Camera* camera);
     void renderBox(Camera* camera);
     void renderCircle(Camera* camera);
+	void renderBullet();
 	
 public:
 	PrimitiveRenderSystem();

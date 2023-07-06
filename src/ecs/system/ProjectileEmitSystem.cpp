@@ -28,7 +28,7 @@ void ProjectileEmitSystem::onFire(FireEvent& event) {
         ProjectileEmiter* emiter = entity->getComponent<ProjectileEmiter>();
 
         if (transform && animation && emiter) {
-            auto bullet = BulletFactory::getInstance()->createBullet(emiter->bulletType, true);
+           /*  auto bullet = BulletFactory::getInstance()->createBullet(emiter->bulletType, true);
             auto bulletTransform = bullet->getComponent<Transform>();
             if (animation->flip) {
                 auto bulletRigidBody = bullet->getComponent<RigidBody>();
@@ -38,7 +38,7 @@ void ProjectileEmitSystem::onFire(FireEvent& event) {
                 bulletTransform->position.x = transform->position.x + animation->getSize().h;
             }
 
-            bulletTransform->position.y = transform->position.y + (animation->getSize().h /2.0f);
+            bulletTransform->position.y = transform->position.y + (animation->getSize().h /2.0f); */
         }
     }
 }

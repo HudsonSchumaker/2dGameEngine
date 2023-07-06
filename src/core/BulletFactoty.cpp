@@ -20,37 +20,38 @@ BulletFactory* BulletFactory::getInstance() {
 	return instance;
 }
 
-Entity* BulletFactory::createBullet(BulletType bulletType, bool isFriendly) {
+Entity* BulletFactory::createBullet(Vec2 origin, Vec2 destination, BulletType bulletType, bool isFriendly) {
 	if (bulletType == BulletType::BASIC) {
 		BasicBullet b1 = {};
-		return createBullet(b1.velocity, isFriendly, b1.damage);
+		return createBullet(origin, destination, b1.velocity, isFriendly, b1.damage);
 	}
 
 	if (bulletType == BulletType::PLUS) {
 		PlusBullet b2 = {};
-		return createBullet(b2.velocity, isFriendly, b2.damage);
+		return createBullet(origin, destination, b2.velocity, isFriendly, b2.damage);
 	}
 
 	if (bulletType == BulletType::MASTER) {
 		MasterBullet b3 = {};
-		return createBullet(b3.velocity, isFriendly, b3.damage);
+		return createBullet(origin, destination, b3.velocity, isFriendly, b3.damage);
 	}
 
 	if (bulletType == BulletType::ULTRA) {
-		UltraBullet b3 = {};
-		return createBullet(b3.velocity, isFriendly, b3.damage);
+		UltraBullet b4 = {};
+		return createBullet(origin, destination, b4.velocity, isFriendly, b4.damage);
 	}
 
 	return EntityManager::getInstance()->createEntity();
 }
 
-Entity* BulletFactory::createBullet(Vec2 velocity, short damage, bool isFriendly, int duration) {
-	auto bullet = EntityManager::getInstance()->createEntity();
+Entity* BulletFactory::createBullet(Vec2 origin, Vec2 destination, Vec2 velocity, short damage, bool isFriendly, int duration) {
+	auto bullet = EntityManager::getInstance()->createEntity(origin.x, origin.y);
 	bullet->tag = Tag::bullet;
+ 
+	bullet->addComponent(new Bullet(destination));
+	auto bulletDimension = bullet->getComponent<Bullet>()->getDimension();
 
-	bullet->addComponent(new Transform(-10.0f));
-
-	bullet->addComponent(new BoxCollider(animation->getSize().w, animation->getSize().h));
+	bullet->addComponent(new BoxCollider(bulletDimension));
 	bullet->addComponent(new RigidBody(velocity));
 	bullet->addComponent(new Projectile(isFriendly, damage, duration));
 

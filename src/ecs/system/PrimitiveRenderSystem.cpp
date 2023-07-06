@@ -9,6 +9,7 @@
 #include "../../gfx/Gfx.h"
 #include "../../gfx/Line.h"
 #include "../../gfx/Circle.h"
+#include "../../gfx/Bullet.h"
 #include "../EntityManager.h"
 #include "../component/Transform.h"
 
@@ -117,6 +118,27 @@ void PrimitiveRenderSystem::renderCircle(Camera* camera) {
 			} else {
 				Gfx::getInstance()->drawDashedCircle(x, y, r, circle->dashLength, circle->color);
 			}
+		}
+	}
+}
+
+void PrimitiveRenderSystem::renderBullet() {
+	auto entities = EntityManager::getInstance()->getEntitiesWithComponent<Bullet>();
+
+	for (auto& entity : entities) {
+		Bullet* bullet = entity->getComponent<Bullet>();
+		Transform* transform = entity->getComponent<Transform>();
+		
+		if (bullet && transform) {
+			auto x0 = static_cast<int>(bullet->originX);
+			auto y0 = static_cast<int>(bullet->originY);
+			
+			float lineLength = bullet->size;
+
+			auto x1 = static_cast<int>(x0 + bullet->directionX * lineLength); 
+			auto y1 = static_cast<int>(y0 + bullet->directionY * lineLength);
+
+			Gfx::getInstance()->drawLine(x0, y0, x1, y1, bullet->color);
 		}
 	}
 }
