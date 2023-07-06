@@ -10,9 +10,10 @@
 #include "../gfx/AssetManager.h"
 
 enum class BulletType {
-	basic,
-	plus,
-	master,
+	BASIC,
+	PLUS,
+	MASTER,
+	ULTRA,
 };
 
 class BulletFactory final {
@@ -25,31 +26,39 @@ public:
 	Entity* createBullet(BulletType bulletType, bool isFriendly);
 };
 
-//TODO: fix bullet id and types
 
-struct Bullet1 {
+struct BasicBullet {
 	std::string id = "1";
 	Vec2 velocity = { 0.50f, 0.0f };
 	short damage = 4;
 	unsigned int duration = 10000;
 
-	Bullet1() {}
+	BasicBullet() {}
 };
 
-struct Bullet2 {
+struct PlusBullet {
 	std::string id = "1";
 	Vec2 velocity = { 100.0f, 0.0f };
 	short damage = 6;
 	unsigned int duration = 10000;
 	
-	Bullet2() {}
+	PlusBullet() {}
 };
 
-struct Bullet3 {
+struct MasterBullet {
 	std::string id = "1";
 	Vec2 velocity = { 100.0f, 0.0f };
 	short damage = 8;
 	unsigned int duration = 10000;
 	
-	Bullet3() {}
+	MasterBullet() {}
+};
+
+struct UltraBullet {
+	std::string id = "1";
+	Vec2 velocity = { 100.0f, 0.0f };
+	short damage = 8;
+	unsigned int duration = 10000;
+	
+	UltraBullet() {}
 };
