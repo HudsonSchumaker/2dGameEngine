@@ -14,7 +14,7 @@ public:
 	bool isFriendly = false;
 	int repeatFrequency = 0;
 	unsigned int lastEmissionTime = 0;
-	BulletType bulletType = BulletType::basic;
+	BulletType bulletType = BulletType::BASIC;
 
 	ProjectileEmiter(bool isFriendly, BulletType bulletType, int repeatFrequency = 0) {
 		this->isFriendly = isFriendly;
