@@ -19,13 +19,12 @@ enum class BulletType {
 class BulletFactory final {
 private:
     inline static BulletFactory* instance;
-	Entity* createBullet(Vec2 velocity, short damage, bool isFriendly, int duration = 10000);
+	Entity* createBullet(Vec2 origin, Vec2 destination, Vec2 velocity, short damage, bool isFriendly, int duration = 10000);
 
 public:
 	static BulletFactory* getInstance();
-	Entity* createBullet(BulletType bulletType, bool isFriendly);
+	Entity* createBullet(Vec2 origin, Vec2 destination, BulletType bulletType, bool isFriendly);
 };
-
 
 struct BasicBullet {
 	Vec2 velocity = { 0.50f, 0.0f };
