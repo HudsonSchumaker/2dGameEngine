@@ -14,17 +14,17 @@
 #include "../ecs/component/Transform.h"
 
 class Bullet : public Component {
-public:
+private:
     float originX = 0.0f;
     float originY = 0.0f;
     float directionX = 1.0f;
     float directionY = 1.0f;
     float destinationX = 1.0f;
     float destinationY = 1.0f;
-    
-    float size = 3.0f;
     float magnitude = 0.0f;
 
+public: 
+    float size = 3.0f;
     SDL_Color color = Color::getOrange();
 
     Bullet(unsigned long id, Vec2 destination) {
