@@ -21,6 +21,7 @@ void PrimitiveRenderSystem::update(Camera* camera) {
 	renderLine(camera);
 	renderBox(camera);
     renderCircle(camera);
+	renderBullet();
 }
 
 void PrimitiveRenderSystem::renderLine(Camera* camera) {
