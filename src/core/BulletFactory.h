@@ -19,7 +19,7 @@ enum class BulletType {
 class BulletFactory final {
 private:
     inline static BulletFactory* instance;
-	Entity* createBullet(std::string id, Vec2 velocity, short damage, bool isFriendly, int duration = 10000);
+	Entity* createBullet(Vec2 velocity, short damage, bool isFriendly, int duration = 10000);
 
 public:
 	static BulletFactory* getInstance();
@@ -28,7 +28,6 @@ public:
 
 
 struct BasicBullet {
-	std::string id = "1";
 	Vec2 velocity = { 0.50f, 0.0f };
 	short damage = 4;
 	unsigned int duration = 10000;
@@ -37,7 +36,6 @@ struct BasicBullet {
 };
 
 struct PlusBullet {
-	std::string id = "1";
 	Vec2 velocity = { 100.0f, 0.0f };
 	short damage = 6;
 	unsigned int duration = 10000;
@@ -46,7 +44,6 @@ struct PlusBullet {
 };
 
 struct MasterBullet {
-	std::string id = "1";
 	Vec2 velocity = { 100.0f, 0.0f };
 	short damage = 8;
 	unsigned int duration = 10000;
@@ -55,7 +52,6 @@ struct MasterBullet {
 };
 
 struct UltraBullet {
-	std::string id = "1";
 	Vec2 velocity = { 100.0f, 0.0f };
 	short damage = 8;
 	unsigned int duration = 10000;
