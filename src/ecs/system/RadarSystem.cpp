@@ -35,10 +35,11 @@ void RadarSystem::update() {
 
                 // Check if the other entity is within the radar area
                 if (distance <= radarRadius) {
-                   Callback* callback = entity->getComponent<Callback>();
-                   callback->call(entity->id, enemy->id);
+                    Callback* callback = entity->getComponent<Callback>();
+                    callback->call(entity->id, enemy->id);
 
-                   EventBus::getInstance()->emitEvent<CollisionEvent>(entity, enemy);
+                    //TODO: this for test
+                    EventBus::getInstance()->emitEvent<CollisionEvent>(entity, enemy);
                 }
             }
         }
