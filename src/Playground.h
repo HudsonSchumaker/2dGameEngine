@@ -29,6 +29,7 @@ private:
 	Entity* button = nullptr;
 	Entity* button2 = nullptr;
 	MousePointer pointer;
+	unsigned int lastEmissionTime = 0;
 
     CollisionSystem collisionSystem;
 	GuiUpdateSystem guiUpdateSystem;

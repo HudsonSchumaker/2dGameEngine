@@ -48,7 +48,7 @@ void Playground::load() {
 	button->addComponent(new BoxCollider(button->getComponent<Box>()->getSize()));
 	button->addComponent(new Button()); 
 	button->addComponent(new TextLabel("HemiHead.ttf", true, button->getComponent<Transform>()->position, "T", 12, Color::getBlue()));
-	button->addComponent(new Radar(80, {16, 16}));
+	button->addComponent(new Radar(96, {16, 16}));
 	button->addComponent(new Callback([&](unsigned long id, unsigned long otherId) { 
 		shoot(id, otherId);
 	}));
@@ -85,7 +85,6 @@ void Playground::load() {
 
 	std::vector<std::pair<short, short>> waypoints = {
     	{ 150, 150 },
-    	{ 150, 400 },
     	{ 400, 400 },
 		{ 500, 500 },
 		{ 18, 18 }
@@ -114,6 +113,7 @@ void Playground::load() {
 	line->tag = Tag::ui;
 	//line->addComponent(new Line(340, 340));
 	
+	lastEmissionTime = SDL_GetTicks();
     isRunning = true;
 }
 
@@ -178,18 +178,17 @@ void Playground::update() {
 	mouseSystem.update(pointer);
 	movementSystem.update(deltaTime);
 	waypointNavigationSystem.update(deltaTime);
-	
 } 
 
 void Playground::render() {
 	beginRender();
-		
-	//renderSystem.update(&camera);
-	renderTextSystem.update(&camera);
-	primitiveRenderSystem.update(&camera);
-	renderHealthBarSystem.update(&camera);
-	renderColliderSystem.update(&camera);
-
+	{
+		renderSystem.update(&camera);
+		renderTextSystem.update(&camera);
+		primitiveRenderSystem.update(&camera);
+		renderHealthBarSystem.update(&camera);
+		renderColliderSystem.update(&camera);
+	}	
 	endRender();
 }
 
@@ -213,17 +212,22 @@ void Playground::unload() {
 }
 
 void Playground::shoot(unsigned long id, unsigned long otherId) {
+	if (SDL_GetTicks() - lastEmissionTime > 120) {
+		auto me = EntityManager::getInstance()->getEntity(id);
+		auto other = EntityManager::getInstance()->getEntity(otherId);
 
-	auto me = EntityManager::getInstance()->getEntity(id);
-	auto other = EntityManager::getInstance()->getEntity(otherId);
+		auto meTransform = me->getComponent<Transform>();
+		auto otherTransform = other->getComponent<Transform>();
 
-	auto meTransform = me->getComponent<Transform>();
-	auto otherTransform = other->getComponent<Transform>();
-
-	auto b = BulletFactory::getInstance()->createBullet(
-		{200,200}, 
-		{18, 18}, 
-		BulletType::BASIC, 
-		true
-	);
+		auto nX = meTransform->position.x + 16;
+		auto nY = meTransform->position.y + 16;
+		BulletFactory::getInstance()->createBullet(
+			{ nX, nY }, 
+			otherTransform->position, 
+			BulletType::BASIC, 
+			true
+		);
+     
+    	lastEmissionTime = SDL_GetTicks();
+    }    
 }
