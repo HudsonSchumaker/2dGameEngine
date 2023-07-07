@@ -48,22 +48,9 @@ void Playground::load() {
 	button->addComponent(new BoxCollider(button->getComponent<Box>()->getSize()));
 	button->addComponent(new Button()); 
 	button->addComponent(new TextLabel("HemiHead.ttf", true, button->getComponent<Transform>()->position, "T", 12, Color::getBlue()));
-	button->addComponent(new Radar(64, {16, 16}));
+	button->addComponent(new Radar(80, {16, 16}));
 	button->addComponent(new Callback([&](unsigned long id, unsigned long otherId) { 
-		
-		auto me = EntityManager::getInstance()->getEntity(id);
-		auto other = EntityManager::getInstance()->getEntity(otherId);
-
-		auto meTransform = me->getComponent<Transform>();
-		auto otherTransform = other->getComponent<Transform>();
-
-		auto b = BulletFactory::getInstance()->createBullet(
-			meTransform->position, 
-			otherTransform->position, 
-			BulletType::BASIC, 
-			true
-		);
-		std::cout << "criou: " << b->id << std::endl;
+		shoot(id, otherId);
 	}));
    
     auto label = button->getComponent<TextLabel>();
@@ -107,7 +94,7 @@ void Playground::load() {
 	for(int i = 1; i < 3; i++) {
 		auto enemy = EntityManager::getInstance()->createEntity(0, i * 42);
 		enemy->tag = Tag::enemy;
-		enemy->addComponent(new RigidBody(21.0f + i, 21.0f + i));
+		enemy->addComponent(new RigidBody(32.0f + i, 32.0f + i));
 		//enemy->addComponent(new Box(32, 32, Tags::getLayer(Tag::ui), true));
 		//enemy->addComponent(new Sprite("hard", true, Tags::getLayer(Tag::ui)));
 		enemy->addComponent(new Circle(16, Tags::getLayer(Tag::ui), false, Color::getBlue()));
@@ -125,7 +112,7 @@ void Playground::load() {
 
 	auto line = EntityManager::getInstance()->createEntity(300, 300);
 	line->tag = Tag::ui;
-	line->addComponent(new Line(340, 340));
+	//line->addComponent(new Line(340, 340));
 	
     isRunning = true;
 }
@@ -187,16 +174,17 @@ void Playground::update() {
 
 	EntityManager::getInstance()->update();
 	collisionSystem.update();
+	radarSystem.update();
 	mouseSystem.update(pointer);
 	movementSystem.update(deltaTime);
 	waypointNavigationSystem.update(deltaTime);
-	radarSystem.update();
+	
 } 
 
 void Playground::render() {
 	beginRender();
 		
-	renderSystem.update(&camera);
+	//renderSystem.update(&camera);
 	renderTextSystem.update(&camera);
 	primitiveRenderSystem.update(&camera);
 	renderHealthBarSystem.update(&camera);
@@ -222,4 +210,20 @@ void Playground::buttonHard(int id, int value) {
 
 void Playground::unload() {
     EntityManager::getInstance()->clear();
+}
+
+void Playground::shoot(unsigned long id, unsigned long otherId) {
+
+	auto me = EntityManager::getInstance()->getEntity(id);
+	auto other = EntityManager::getInstance()->getEntity(otherId);
+
+	auto meTransform = me->getComponent<Transform>();
+	auto otherTransform = other->getComponent<Transform>();
+
+	auto b = BulletFactory::getInstance()->createBullet(
+		{200,200}, 
+		{18, 18}, 
+		BulletType::BASIC, 
+		true
+	);
 }

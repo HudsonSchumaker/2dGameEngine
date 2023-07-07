@@ -50,6 +50,7 @@ private:
 	void render() override;
 	void unload() override;
 	void buttonHard(int id, int value);
+	void shoot(unsigned long id, unsigned long otherId);
 	
 public:
 	Playground();

@@ -48,6 +48,6 @@ public:
     }
 
     Dimension getDimension() const { 
-        return Dimension(size, 2);
+        return Dimension(2, size);
     }
 };
