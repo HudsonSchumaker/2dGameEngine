@@ -20,7 +20,7 @@ BulletFactory* BulletFactory::getInstance() {
 	return instance;
 }
 
-Entity* BulletFactory::createBullet(Vec2 origin, Vec2 destination, BulletType bulletType, bool isFriendly) {
+Entity* BulletFactory::createBullet(const Vec2 origin, const Vec2 destination, BulletType bulletType, bool isFriendly) {
 	if (bulletType == BulletType::BASIC) {
 		BasicBullet b1 = {};
 		return createBullet(origin, destination, b1.velocity, isFriendly, b1.damage);
@@ -41,10 +41,10 @@ Entity* BulletFactory::createBullet(Vec2 origin, Vec2 destination, BulletType bu
 		return createBullet(origin, destination, b4.velocity, isFriendly, b4.damage);
 	}
 
-	return EntityManager::getInstance()->createEntity();
+	return nullptr;
 }
 
-Entity* BulletFactory::createBullet(Vec2 origin, Vec2 destination, Vec2 velocity, short damage, bool isFriendly, int duration) {
+Entity* BulletFactory::createBullet(const Vec2 origin, const Vec2 destination, Vec2 velocity, short damage, bool isFriendly, int duration) {
 	auto bullet = EntityManager::getInstance()->createEntity(origin.x, origin.y);
 	bullet->tag = Tag::bullet;
  
