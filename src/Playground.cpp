@@ -50,19 +50,20 @@ void Playground::load() {
 	button->addComponent(new TextLabel("HemiHead.ttf", true, button->getComponent<Transform>()->position, "T", 12, Color::getBlue()));
 	button->addComponent(new Radar(64, {16, 16}));
 	button->addComponent(new Callback([&](unsigned long id, unsigned long otherId) { 
-		std::cout << "colidiu :" << otherId << std::endl;
+		
 		auto me = EntityManager::getInstance()->getEntity(id);
 		auto other = EntityManager::getInstance()->getEntity(otherId);
 
 		auto meTransform = me->getComponent<Transform>();
 		auto otherTransform = other->getComponent<Transform>();
 
-		BulletFactory::getInstance()->createBullet(
+		auto b = BulletFactory::getInstance()->createBullet(
 			meTransform->position, 
 			otherTransform->position, 
 			BulletType::BASIC, 
 			true
 		);
+		std::cout << "criou: " << b->id << std::endl;
 	}));
    
     auto label = button->getComponent<TextLabel>();
