@@ -29,6 +29,8 @@ void MovementSystem::update(float dt) {
 				bullet->originX += bullet->directionX * rigidBody->velocity.x * dt;
 				bullet->originY += bullet->directionY * rigidBody->velocity.y * dt;
 				
+				transform->position.x = bullet->originX;
+				transform->position.y = bullet->originY; 
 				continue;
 			}
 

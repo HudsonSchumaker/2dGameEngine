@@ -18,12 +18,13 @@ void DamageSystem::subscribeToEvents() {
 }
 
 void DamageSystem::onCollision(CollisionEvent& event) {
-	if (event.a->tag == Tag::bullet) {
+
+	/* if (event.a->tag == Tag::bullet) {
 		EntityManager::getInstance()->killEntity(event.a);
 		if (event.b->tag == Tag::enemy) {
 			EntityManager::getInstance()->killEntity(event.b);
 		}
-	}
+	} */
 
 	if (event.b->tag == Tag::enemy && event.a->tag == Tag::ui) {
 		Health* health = event.b->getComponent<Health>();
