@@ -128,9 +128,8 @@ void PrimitiveRenderSystem::renderBullet() {
 
 	for (auto& entity : entities) {
 		Bullet* bullet = entity->getComponent<Bullet>();
-		Transform* transform = entity->getComponent<Transform>();
 		
-		if (bullet && transform) {
+		if (bullet) {
 			auto x0 = static_cast<int>(bullet->originX);
 			auto y0 = static_cast<int>(bullet->originY);
 			
