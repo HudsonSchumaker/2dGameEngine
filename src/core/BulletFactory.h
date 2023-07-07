@@ -27,7 +27,7 @@ public:
 };
 
 struct BasicBullet {
-	Vec2 velocity = { 24.0f, 24.0f };
+	Vec2 velocity = { 42.0f, 42.0f };
 	short damage = 4;
 	unsigned int duration = 10000;
 
