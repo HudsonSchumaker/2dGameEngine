@@ -8,7 +8,7 @@
 #include "Animation.h"
 #include "AssetManager.h"
 
-Animation::Animation(const std::string& name, short numFrames, short frameSpeedRate, bool isLoop) {
+Animation::Animation(const std::string& name, short numFrames, int frameSpeedRate, bool isLoop) {
 	this->numFrames = numFrames;
 	this->frameSpeedRate = frameSpeedRate;
 	this->isLoop = isLoop;
@@ -19,7 +19,7 @@ Animation::Animation(const std::string& name, short numFrames, short frameSpeedR
 	startTime = SDL_GetTicks();
 }
 
-Animation::Animation(const std::string& name, short numFrames, short frameSpeedRate, short layer, bool isLoop) {
+Animation::Animation(const std::string& name, short numFrames, int frameSpeedRate, short layer, bool isLoop) {
 	this->numFrames = numFrames;
 	this->frameSpeedRate = frameSpeedRate;
 	this->layer = layer;

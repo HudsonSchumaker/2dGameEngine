@@ -16,17 +16,17 @@ private:
 public:
     SDL_Texture* texture = nullptr;
 
-    int startTime;
+    unsigned int startTime = 0;
     bool flip = false;
     bool isLoop = true;
     bool isFixed = false;
     short layer = 1;
     short numFrames = 1;
     short currentFrame = 1;
-    short frameSpeedRate = 1;
+    int frameSpeedRate = 1;
     
-    Animation(const std::string& name, short numFrames, short frameSpeedRate, bool isLoop);
-    Animation(const std::string& name, short numFrames, short frameSpeedRate, short layer, bool isLoop);
+    Animation(const std::string& name, short numFrames, int frameSpeedRate, bool isLoop);
+    Animation(const std::string& name, short numFrames, int frameSpeedRate, short layer, bool isLoop);
     ~Animation();
 
     Dimension getSize() const;
