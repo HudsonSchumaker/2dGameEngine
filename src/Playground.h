@@ -10,8 +10,10 @@
 #include "core/MousePointer.h"
 #include "ecs/system/RadarSystem.h" 
 #include "ecs/system/MouseSystem.h"
+#include "ecs/system/DamageSystem.h"
 #include "ecs/system/RenderSystem.h"
 #include "ecs/system/MovementSystem.h"
+#include "ecs/system/AnimationSystem.h"
 #include "ecs/system/CollisionSystem.h"
 #include "ecs/system/GuiUpdateSystem.h"
 #include "ecs/system/RenderTextSystem.h"
@@ -20,7 +22,6 @@
 #include "ecs/system/RenderHealthBarSystem.h"
 #include "ecs/system/PrimitiveRenderSystem.h" 
 #include "ecs/system/WaypointNavigationSystem.h"
-#include "ecs/system/DamageSystem.h"
 
 class Playground final : public Scene {
 private:
@@ -44,6 +45,7 @@ private:
 	RenderColliderSystem renderColliderSystem;
 	RenderHealthBarSystem renderHealthBarSystem;
 	DamageSystem damageSystem;
+	AnimationSystem animationSystem;
 
     void load() override;
 	void input() override;

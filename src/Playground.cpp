@@ -10,6 +10,7 @@
 #include "gfx/Circle.h"
 #include "gfx/Color.h"
 #include "gfx/Sprite.h"
+#include "gfx/Animation.h"
 #include "event/EventBus.h"
 #include "ecs/EntityManager.h"
 #include "ecs/component/Radar.h"
@@ -115,6 +116,9 @@ void Playground::load() {
 	
 	lastEmissionTime = SDL_GetTicks();
     isRunning = true;
+
+	auto bayley = EntityManager::getInstance()->createEntity(250, 250);
+	bayley->addComponent(new Animation("bayley", 6, 15, false));
 }
 
 short Playground::run() {
@@ -184,6 +188,7 @@ void Playground::render() {
 	beginRender();
 	{
 		renderSystem.update(&camera);
+		animationSystem.update(&camera);
 		renderTextSystem.update(&camera);
 		primitiveRenderSystem.update(&camera);
 		renderHealthBarSystem.update(&camera);
