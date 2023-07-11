@@ -25,6 +25,10 @@ void AnimationSystem::update(Camera* camera) {
         if (animation && transform) {
             animation->currentFrame = ((SDL_GetTicks() - animation->startTime)
                 * animation->frameSpeedRate / 1000) % animation->numFrames;
+
+            if (animation->currentFrame == animation->skipFrameIndex) {
+                animation->currentFrame = 1;
+            }
             
             SDL_Rect origin = { animation->currentFrame * animation->getSize().w, 0,
                 animation->getSize().h, animation->getSize().h };
