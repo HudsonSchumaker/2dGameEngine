@@ -27,7 +27,7 @@ void AnimationSystem::update(Camera* camera) {
                 * animation->frameSpeedRate / 1000) % animation->numFrames;
 
             if (animation->currentFrame == animation->skipFrameIndex) {
-                animation->currentFrame = 1;
+                animation->currentFrame = 0;
             }
             
             SDL_Rect origin = { animation->currentFrame * animation->getSize().w, 0,
