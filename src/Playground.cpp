@@ -118,7 +118,7 @@ void Playground::load() {
     isRunning = true;
 
 	auto bayley = EntityManager::getInstance()->createEntity(250, 250);
-	bayley->addComponent(new Animation("bayley", 6, 8, false));
+	bayley->addComponent(new Animation("bayley", 6, 5, false));
 }
 
 short Playground::run() {
