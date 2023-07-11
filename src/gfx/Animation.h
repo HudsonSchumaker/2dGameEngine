@@ -23,6 +23,7 @@ public:
     short layer = 1;
     short numFrames = 1;
     short currentFrame = 1;
+    short skipFrameIndex = 6;
     int frameSpeedRate = 1;
     
     Animation(const std::string& name, short numFrames, int frameSpeedRate, bool isLoop);
