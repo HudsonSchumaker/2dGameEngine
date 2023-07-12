@@ -4,8 +4,8 @@
             "name": "Mac",
             "includePath": [
                 "${workspaceFolder}/**",
-                "/opt/homebrew/Cellar/sdl2/2.26.4/include/**",
-                "/opt/homebrew/Cellar/sdl2_image/2.6.3/include/**",
+                "/opt/homebrew/Cellar/sdl2/2.28.1/include/**",
+                "/opt/homebrew/Cellar/sdl2_image/2.6.3_1/include/**",
                 "/opt/homebrew/Cellar/sdl2_ttf/2.20.2/include/**",
                 "/opt/homebrew/Cellar/sdl2_mixer/2.6.3_1/include/**",
                 "/opt/homebrew/Cellar/sdl2_gfx/1.0.4/include/**"
