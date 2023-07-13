@@ -117,9 +117,12 @@ void Playground::load() {
 	lastEmissionTime = SDL_GetTicks();
     isRunning = true;
 
-	auto bayley = EntityManager::getInstance()->createEntity(250, 250);
-	bayley->addComponent(new Animation("bayley", 6, 6, false));
-	bayley->getComponent<Animation>()->skipFrameIndex = 5;
+	auto bayley = EntityManager::getInstance()->createEntity(200, 200);
+	bayley->addComponent(new Animation("run2", 8, 10, false));
+	//bayley->getComponent<Animation>()->skipFrameIndex = 5;
+	auto transform = bayley->getComponent<Transform>();
+	transform->scale.x = 2;
+	transform->scale.y = 2;
 }
 
 short Playground::run() {
