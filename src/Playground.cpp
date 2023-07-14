@@ -123,6 +123,9 @@ void Playground::load() {
 	auto transform = bayley->getComponent<Transform>();
 	transform->scale.x = 2;
 	transform->scale.y = 2;
+
+	auto coin = EntityManager::getInstance()->createEntity(500, 500);
+	coin->addComponent(new Animation("coin20x20",8, 10, false));
 }
 
 short Playground::run() {
