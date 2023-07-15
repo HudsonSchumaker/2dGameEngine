@@ -91,7 +91,7 @@ void Playground::load() {
 		{ 18, 18 }
 	};
 
-	for(int i = 1; i < 50; i++) {
+	for(int i = 1; i < 5; i++) {
 		auto enemy = EntityManager::getInstance()->createEntity(0, i* 42);
 		enemy->tag = Tag::enemy;
 		enemy->addComponent(new RigidBody(32.0f + i, 32.0f + i));
