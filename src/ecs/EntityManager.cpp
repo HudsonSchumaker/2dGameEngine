@@ -6,9 +6,14 @@
 
 #include "EntityManager.h"
 #include "../physics/Vec2.h"
+#include "../event/EventBus.h"
 #include "../ecs/component/Transform.h"
+#include "../event/AddEntityComponentEvent.h"
 
-EntityManager::EntityManager() {}
+EntityManager::EntityManager() {
+	//EventBus::getInstance()->subscribeToEvent<AddEntityComponentEvent>(this, &EntityManager::addEntityComponent);
+}
+
 EntityManager::~EntityManager() {
 	clear();
 }
@@ -27,10 +32,10 @@ Entity* EntityManager::createEntity() {
 
 Entity* EntityManager::createEntity(float x, float y) {
 	Entity* entity = new Entity();
-	index++;
-	entity->id = index;
-	entity->addComponent(new Transform(Vec2(x, y)));
+	entity->id = ++index;
+	auto component = entity->addComponent(new Transform(Vec2(x, y)));
 	entities.push_back(entity);
+	addEntityComponent(entity, component);
 	return entity;
 }
 
@@ -50,13 +55,26 @@ void EntityManager::removeEntity(Entity* entity) {
 		entities.erase(it);
 		delete entity;
 	}
+
+ 	std::vector<std::thread> threads;
+    for (auto& it : entitiesByComponent) {
+        auto iterator = std::find(it.second.begin(), it.second.end(), entity);
+        if (iterator != it.second.end()) {
+            threads.push_back(std::thread([&it, iterator, this]() {
+                entitiesByComponent[it.first].erase(iterator);
+            }));
+        }
+    }
+
+    for (auto& thread : threads) {
+        thread.join();
+    }
 }
 
 void EntityManager::update() {
 	for (auto& e : entitiesToBeKilled) {
 		removeEntity(e);
 	}
-
 	entitiesToBeKilled.clear();
 }
 

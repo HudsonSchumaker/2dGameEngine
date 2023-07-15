@@ -7,7 +7,9 @@
 #pragma once
 #include "Tag.h"
 #include "../include/Common.h"
+#include "../event/EventBus.h"
 #include "../ecs/component/Component.h"
+#include "../event/AddEntityComponentEvent.h"
 
 class Entity {
 private:
@@ -27,9 +29,12 @@ public:
 	}
 
 	template<typename T>
-	void addComponent(T* component) {
+	T* addComponent(T* component) {
 		components[&typeid(T)] = component;
 		component->parentId = id;
+		//EntityManager::getInstance()->addEntityComponent(this, component);
+		EventBus::getInstance()->emitEvent<AddEntityComponentEvent>(this, component);
+		return component;
 	}
 
 	template<typename T>
