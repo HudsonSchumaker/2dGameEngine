@@ -27,9 +27,10 @@ public:
 	}
 
 	template<typename T>
-	void addComponent(T* component) {
+	T* addComponent(T* component) {
 		components[&typeid(T)] = component;
 		component->parentId = id;
+		return component;
 	}
 
 	template<typename T>

@@ -68,8 +68,8 @@ void Playground::load() {
 	button2 = EntityManager::getInstance()->createEntity(100, 360);
 	button2->tag = Tag::ui;
 	//button->addComponent(new Sprite("hard", true, Tags::getLayer(Tag::ui)));
-	button2->addComponent(new Box(32, 32, Tags::getLayer(Tag::ui), true));
-	button2->addComponent(new BoxCollider(button->getComponent<Box>()->getSize()));
+	auto box = button2->addComponent(new Box(32, 32, Tags::getLayer(Tag::ui), true));
+	button2->addComponent(new BoxCollider(box->getSize()));
 	button2->addComponent(new Button()); 
 	button2->addComponent(new TextLabel("pico8.ttf", true, button2->getComponent<Transform>()->position, "T", 12, Color::getBlue()));
    
