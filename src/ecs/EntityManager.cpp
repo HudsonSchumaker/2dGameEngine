@@ -35,10 +35,23 @@ Entity* EntityManager::createEntity(float x, float y) {
 }
 
 Entity* EntityManager::getEntity(unsigned long id) {
-	for (auto& e : entities) {
-		if (e->id == id) {
-			return e;
-		}
+	// sort entities
+	sort(entities.begin(), entities.end(), compareAsc);
+	
+	unsigned long low = 0;
+  	unsigned long high = entities.size() - 1;
+
+	// search using binray search
+	while (low <= high) {
+    	unsigned long mid = (low + high) / 2;
+
+    	if (entities[mid]->id == id) {
+    		return entities[mid];
+    	} else if (entities[mid]->id < id) {
+    		low = mid + 1;
+    	} else {
+    		high = mid - 1;
+    	}
 	}
 
     return nullptr;
@@ -76,6 +89,10 @@ std::vector<Entity*> EntityManager::getEntitiesWithTag(Tag tag) {
 		}
 	}
 	return list;
+}
+
+bool EntityManager::compareAsc(const Entity* e1, const Entity* e2) {
+	return (e1->id < e2->id);
 }
 
 void EntityManager::clear() {
