@@ -18,6 +18,8 @@ private:
     EntityManager();
     ~EntityManager();
 
+   static bool compareAsc(const Entity* e1, const Entity* e2);
+
 public:
     static EntityManager* getInstance();
     Entity* createEntity();
