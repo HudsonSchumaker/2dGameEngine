@@ -6,6 +6,7 @@
 
 # include "WaypointNavigationSystem.h"
 #include "../EntityManager.h"
+#include "../../physics/DMath.h"
 #include "../component/Waypoint.h"
 #include "../component/Transform.h"
 #include "../component/RigidBody.h"
@@ -25,8 +26,8 @@ void WaypointNavigationSystem::update(float dt) {
             // Calculate the direction vector
             float dx = currentWaypoint.first - transform->position.x;
             float dy = currentWaypoint.second - transform->position.y;
-            float distance = std::sqrt(dx * dx + dy * dy);
-
+            float distance = DMath::rootf(dx * dx + dy * dy);
+ 
             // Check if the entity has reached the waypoint
             if (distance <= 1.0f) {
                 // Remove the current waypoint from the list

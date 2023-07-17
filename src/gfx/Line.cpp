@@ -6,6 +6,7 @@
 
 #include "Gfx.h"
 #include "Line.h"
+#include "../physics/DMath.h"
 #include "../ecs/EntityManager.h"
 #include "../ecs/component/Transform.h"
 
@@ -18,7 +19,7 @@ Dimension Line::getSize() const {
     	double x2 = b.x;
     	double y2 = b.y;
 
-    	double length = std::sqrt(std::pow(x2 - x1, 2) + std::pow(y2 - y1, 2));
+    	double length = DMath::rootd(std::pow(x2 - x1, 2) + std::pow(y2 - y1, 2));
 		return Dimension(length, 2);
 	}
 	
