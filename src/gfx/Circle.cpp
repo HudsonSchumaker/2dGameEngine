@@ -6,11 +6,12 @@
 
 #include "Gfx.h"
 #include "Circle.h"
+#include "../physics/DMath.h"
 #include "../ecs/EntityManager.h"
 #include "../ecs/component/Transform.h"
 
 void Circle::sideCalculation() {
-    side = std::sqrt(2) * r;
+    side = DMath::rootf(2) * r;
 }
 
 Dimension Circle::getSize() const {

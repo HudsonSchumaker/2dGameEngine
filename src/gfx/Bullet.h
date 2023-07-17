@@ -8,6 +8,7 @@
 #include "../gfx/Color.h"
 #include "../ecs/Entity.h"
 #include "../physics/Vec2.h"
+#include "../physics/DMath.h"
 #include "../physics/Dimension.h"
 #include "../ecs/EntityManager.h"
 #include "../ecs/component/Component.h"
@@ -42,7 +43,7 @@ public:
     void calculate() {
         float dx = destinationX - originX;
         float dy = destinationY - originY;
-        magnitude = std::sqrt(dx * dx + dy * dy);
+        magnitude = DMath::rootf(dx * dx + dy * dy);
         directionX = dx / magnitude;
         directionY = dy / magnitude;
     }
