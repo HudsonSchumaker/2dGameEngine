@@ -14,7 +14,7 @@
 
 void MapLoader::loadMap(Map map) {
     std::fstream mapFile;
-    auto path = MAP_FOLDER + map.mapId;
+    auto path = MAP_FOLDER + map.mapId + ".map";
 
     // Open the map file
     mapFile.open(path);
@@ -22,7 +22,7 @@ void MapLoader::loadMap(Map map) {
     // Iterate over each row and column of the map
     for (short y = 0; y < map.mapNumRows; y++) {
         for (short x = 0; x < map.mapNumCols; x++) {
-            char ch;
+            char ch = 0;
 
             // Read the character from the map file to determine the source rectangle position
             mapFile.get(ch);
@@ -48,8 +48,8 @@ void MapLoader::loadMap(Map map) {
             e->tag = Tag::tile;
 
             // Add a sprite component to the entity
-            e->addComponent(new Sprite(map.assertId, srcRectX, srcRectY, map.tileSize, map.tileSize, (int)Tag::tile));
-
+            e->addComponent(new Sprite(map.assetId, srcRectX, srcRectY, map.tileSize, map.tileSize, (int)Tag::tile));
+            
             // If the collider type is 'C', add a box collider component to the entity
             if (collider == 'C') {
                 e->addComponent(new BoxCollider(0, 0, map.tileSize, map.tileSize));
