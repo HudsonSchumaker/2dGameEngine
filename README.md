@@ -1,24 +1,23 @@
 # Dodoi Engine 
 
 ### Components
-    Audio        - to play audio files
-    Animation    - to draw animated sprites
-    Box          - to draw boxes on the screen
-    BoxCollider  - to add a collider to an entity
-    Button       - to add a button functions
-    CameraFollow - to follow an entity
-    Circle       - to draw a circle   
-    Controller   - to use a joystick controller
-    Health       - to set a health value
-    Line         - to draw a line
-    Projectile   - to set a projectile
-    Radar        - to tigger collision detection in a radius
-    RigidBody    - to set the velocity
-    Sprite       - to draw a sprite on the screen
-    TextLabel    - to draw a text on the screen
-    Transform    - to set the position
-    Waypoint     - to be used waypoint navigation
-
+    Audio: Holds data for audio files to be played.
+	Animation: Holds data for animated sprites.
+	Box: Holds data for drawing boxes on the screen.
+	BoxCollider: Holds data for collision detection.
+	Button: Holds data for button functionality.
+	CameraFollow: Holds data for camera movement.
+	Circle: Holds data for drawing circles on the screen.
+	Controller: Holds data for joystick controller input.
+	Health: Holds data for entity health.
+	Line: Holds data for drawing lines on the screen.
+	Projectile: Holds data for projectiles.
+	Radar: Holds data for radius-based collision detection.
+	RigidBody: Holds data for entity velocity.
+	Sprite: Holds data for drawing sprites on the screen.
+	TextLabel: Holds data for drawing text on the screen.
+	Transform: Holds data for entity position.
+	Waypoint: Holds data for waypoint navigation.
 ### Systems
     AnimationSystem
     CameraMovementSystem
