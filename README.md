@@ -19,19 +19,19 @@
     Transform   : Holds data for entity position.
     Waypoint    : Holds data for waypoint navigation.
 ### Systems
-    AnimationSystem
-    CameraMovementSystem
-    CollisionSystem
-    ControllerSystem
-    DamageSystem
-    GuiUpdateSystem
-    MouseSystem
-    MovmentSystem
-    PrimitiveRenderSystem
-    ProjectilesEmitterSystem
-    ProjectileLifecycleSystem
-    RadarSystem
-    RenderColliderSystem
-    RenderSystem
-    RenderTextSystem
-    WaypointNavigationSystem
+    AnimationSystem: Updates animations based on time and state.
+	CameraMovementSystem: Moves the camera based on the followed entity's position.
+	CollisionSystem: Checks for collisions between entities.
+	ControllerSystem: Handles joystick controller input.
+	DamageSystem: Updates entity health based on damage taken.
+	GuiUpdateSystem: Updates the GUI based on game state.
+	MouseSystem: Handles mouse input.
+	MovementSystem: Updates entity positions based on their velocity.
+	PrimitiveRenderSystem: Draws primitive shapes like boxes and circles.
+	ProjectilesEmitterSystem: Emits projectiles based on game state.
+	ProjectileLifecycleSystem: Handles the lifecycle of projectiles.	
+	RadarSystem: Checks for entities within a certain radius.
+	RenderColliderSystem: Draws colliders for debugging purposes.
+	RenderSystem: Draws entities on the screen.
+	RenderTextSystem: Draws text on the screen.
+	WaypointNavigationSystem: Moves entities along waypoints.
