@@ -27,8 +27,7 @@ Entity* EntityManager::createEntity() {
 
 Entity* EntityManager::createEntity(float x, float y) {
 	Entity* entity = new Entity();
-	index++;
-	entity->id = index;
+	entity->id = ++index;
 	entity->addComponent(new Transform(Vec2(x, y)));
 	entities.push_back(entity);
 	return entity;
